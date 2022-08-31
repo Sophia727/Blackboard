@@ -13,6 +13,15 @@
 .bg-c-pink {
     background: linear-gradient(45deg,#FF5370,#ff869a);
 }
+.bg-c-purple {
+    background: linear-gradient(45deg,#a680ca,#af86c9);
+}
+.bg-c-greenish {
+    background: linear-gradient(45deg,#c0d152,#c0d152);
+}
+.bg-c-darkblue {
+    background: linear-gradient(45deg,#6d9dbb,#6d9ab2);
+}
 
 
 .card {

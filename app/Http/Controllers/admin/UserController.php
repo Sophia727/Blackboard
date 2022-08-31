@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -11,9 +13,31 @@ use Illuminate\Support\Str;
  */
 class UserController extends Controller
 {
+    public function showAdmins(){
+        return view('post-login.admin.adminsList');
+        // $users = User::all();
+        // return view('users', ['users'=>$users]);
+    }
+    public function showProfessors(){
+        return view('post-login.admin.professorsList');
+        // $users = User::all();
+        // return view('users', ['users'=>$users]);
+    }
+    public function showParents(){
+        return view('post-login.admin.parentsList');
+        // $users = User::all();
+        // return view('users', ['users'=>$users]);
+    }
+    public function showStudents(){
+        return view('post-login.admin.studentsList');
+        // $users = User::all();
+        // return view('users', ['users'=>$users]);
+    }
+
     public function create(){
         return view('post-login.admin.addUser');
     }
+
 
     public function store(Request $request){
         $dataOk = $request->validate([
@@ -39,8 +63,16 @@ class UserController extends Controller
 
         if($request->file('photo')){
             $file = $request->file('photo');
-            $file = "user-".time().".".$file->getClientOriginalExtension();
-            $path = $file->storeAs('images/')
+            $fileName = "user-".time().".".$file->getClientOriginalExtension();
+            $path = $file->storeAs('images/users', $fileName, 'public');
+            $user['photo'] = $path;
+        }
+        $userCreate = User::create($user);
+        if($userCreate){
+            //send email about created account
+            return view('adminsList');
+        } else{
+            return back()->with("error", "Failed to create the User")->withInput();
         }
     }
 }

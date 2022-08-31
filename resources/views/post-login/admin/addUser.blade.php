@@ -1,7 +1,17 @@
 @extends('template.user_homepage')
 @section('content')
-<div class="container">
-    <div class="card">
+{{-- <head>
+<link rel="stylesheet" href="{{asset('css/post-login/dashboard.css')}}">  
+</head>--}}
+
+<div class="row">
+    <div class="col-1">
+        @include('post-login.components.sidebar_admin')
+    </div>
+    <div class="col-10">
+        <div class="row">
+        
+        <div class="card">
         <div class="card-header">
           <h4 class="card-title">Register a new user</h4>
           <h6 class="text-muted">Add a new user to the database</h6>
@@ -98,5 +108,8 @@
         </form>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 @endsection

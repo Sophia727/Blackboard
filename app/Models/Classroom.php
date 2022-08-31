@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class classroom extends Model
+class Classroom extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,6 @@ class classroom extends Model
     ];
     
     public function subject(){
-        // return $this->morphToMany(Subject::class);
+        //return $this->morphToMany(Subject::class);
     }
 }

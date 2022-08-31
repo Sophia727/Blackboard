@@ -21,7 +21,7 @@
   <footer class="py-3 my-4 bg-dark text-white">
     <hr>
     <div class="text-center text-white">
-        <i class="bi bi-building fa-4x"></i>
+        <i class="bi bi-building fa-2x"></i>
         <hr>
     </div>
     <ul class="nav justify-content-center border-bottom pb-3 mb-3">

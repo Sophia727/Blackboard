@@ -17,8 +17,7 @@ class CreateClassroomsTable extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
-            $table->unsignedBigInteger("subject_id");
-            $table->foreign("subject_id")->references("id")->on('subjects');
+            
         });
     }
 

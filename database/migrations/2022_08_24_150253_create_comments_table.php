@@ -19,8 +19,8 @@ class CreateCommentsTable extends Migration
             $table->date("publication_date")->nullable();
             $table->boolean("published")->default(false);
             $table->timestamps();
-            $table->unsignedBigInteger("author_id");
-            $table->foreign("author_id")->references("id")->on('users');
+            $table->unsignedBigInteger("author_comm_id");
+            $table->foreign("author_comm_id")->references("id")->on('users');
             $table->unsignedBigInteger("post_id");            
             $table->foreign("post_id")->references("id")->on('posts');
 

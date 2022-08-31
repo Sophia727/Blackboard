@@ -24,8 +24,8 @@ class UserFactory extends Factory
             'registration_num'=>$this->faker->numerify(),
             'phone'=>$this->faker->phoneNumber(),
             'address'=>$this->faker->address(),
-            'role'=>Arr::random(["admin", "professor", "parents", "student"]),
-            'photo' => $this->faker->imageUrl(640,480,'users',true),
+            'role'=>Arr::random(["admin", "professor", "parent", "student"]),
+            'photo' => $this->faker->imageUrl(200,200,true),
         ];
     }
 

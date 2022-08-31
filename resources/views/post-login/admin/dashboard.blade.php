@@ -10,20 +10,53 @@
     </div>
     <div class="col-10  ">
         <h1>Dashboard</h1>
-        <div class="row">
 
+     {{-- first row of cards --}}
+        <div class="row">
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-purple order-card">
+                    <a role="button"
+                    href="{{route('admins.list')}}">
+                        <div class="card-block">
+                            <h3 class="m-b-20">Admins</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-greenish order-card">
+                    <a role="button"
+                    href="{{route('institution.info')}}" >
+                        <div class="card-block">
+                            <h3 class="m-b-20">Institution</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-darkblue order-card">
+                    <a role="button"
+                    href="{{route('reports.info')}}">
+                        <div class="card-block">
+                            <h3 class="m-b-20">Reports</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {{-- second row of cards --}}
+        <div class="row">
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-blue order-card">
                     <a data-bs-toggle="collapse" role="button" aria-expanded="false" 
                     href="#classrooms" 
                     aria-controls="classrooms">
-                    
                         <div class="card-block">
                             <h3 class="m-b-20">Classrooms</h3>
                         </div>
-    
                     </a>
-                    
                 </div>
             </div>
             
@@ -36,7 +69,6 @@
                             <h3 class="m-b-20">Grades</h3>
                         </div>
                     </a>
-                    
                 </div>
             </div>
             <div class="col-md-4 col-xl-3">
@@ -57,7 +89,7 @@
                     href="#grades" 
                     aria-controls="grades">
                         <div class="card-block">
-                            <h3 class="m-b-20">Reports</h3>
+                            <h3 class="m-b-20">Attendance</h3>
                         </div>
                     </a>
                     
@@ -83,7 +115,7 @@
                 </div>
                 <div class="collapse multi-collapse" id="reports">
                     <div class="card card-body">
-                        SHOW REPORTS
+                        This is a placeholder
                     </div>
                 </div>
                 
