@@ -70,19 +70,19 @@
                     <div class="form-check form-check-inline">
                         <h6 style="margin:0 8rem 1rem 0;">Choose profile </h6>
                         <div style="margin: 0 45px">
-                            <input class="form-check-input" type="radio" name="admin" id="admin">
+                            <input class="form-check-input" type="radio" name="admin" role="admin" id="admin">
                             <label class="form-check-label" for="inlineCheckbox1">Admin</label>   
                         </div>
                         <div style="margin: 0 45px;">
-                            <input class="form-check-input" type="radio" name="professor" id="professor">
+                            <input class="form-check-input" type="radio" name="professor" role="professor" id="professor">
                             <label class="form-check-label" for="inlineCheckbox2">Professor</label>
                         </div>
                         <div style="margin: 0 45px;">
-                            <input class="form-check-input" type="radio" name="parent" id="parent">
+                            <input class="form-check-input" type="radio" name="parent" role="parent" id="parent">
                             <label class="form-check-label" for="inlineCheckbox1">Parent</label>    
                         </div>
                         <div style="margin: 0 45px;">
-                            <input class="form-check-input" type="radio" name="student" id="student">
+                            <input class="form-check-input" type="radio" name="student" role="student" id="student">
                             <label class="form-check-label" for="inlineCheckbox1">Student</label>
                         </div>
                     </div>
