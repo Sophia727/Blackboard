@@ -1,12 +1,19 @@
-@extends('template.homepage')
+@extends('template.user_homepage')
 
 @section('content')
 
 <div class="container">
     <p class="spacer" style="font-weight: 700; font-size: 24px; padding: 0 0 16px 0; margin: 48px 0 32px 0; border-bottom: 2px solid #e8ebed; line-height: 1.25;">
         <div class="row">
-            <div class="col8"><strong>LATEST NEWS</strong></div>
-            <div class="col-4"></div>
+                {{-- alert message box --}}
+                @if(session('status'))
+                <x-alert type="success" :message="session('status')" class="mb-4"/>   
+                @endif
+                @if(session('error'))
+                <x-alert type="danger" :message="session('error')" class="mb-4"/>   
+                @endif
+            <div class="col-8"><strong>LATEST NEWS</strong></div>
+            <div class="col-4"><x-searchPost/></div>
             </div>
         <div class="row"><div class="div">{{$posts->links()}}</div>
     </div>

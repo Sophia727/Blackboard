@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class ClassroomController extends Controller
 {
     public function showClassroom(){
-        return view('post-login.admin.adminsList');
+        return "chlassroom lst";
+        //return view('post-login.admin.lists.classroomList');
         // $users = User::all();
         // return view('users', ['users'=>$users]);
     }

@@ -34,7 +34,10 @@ class AuthController extends Controller
         'email' => 'The provided info does not match our records.',
     ])->onlyInput('email');
     }
+    public function dashboardIndex(){
+        return view('post-login.admin.dashboard');
 
+    }
 
     public function logout(Request $request){
         Auth::logout();

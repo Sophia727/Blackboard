@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('address');
             $table->enum('role',["admin", "professor", "parent", "student", ])->default('parent');
             $table->boolean("activate")->default(false);
-            $table->string("photo")->default(null);
+            $table->string("photo")->nullable();
             $table->rememberToken();
             $table->timestamps();
             

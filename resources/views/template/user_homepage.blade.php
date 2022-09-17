@@ -6,7 +6,6 @@
 
         <title>University </title>
 
- 
         <!-- Fonts and styles / bootstrap and font awesome-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -18,12 +17,24 @@
     </head>
 
     <body>
-        
-        @include('post-login.components.navbar_userLogged')
-        @yield('content')
+        <x-navbar_userLogged/>        
+        <div class="row">
+            <div class="col-1">
+        @auth('role'=='admin')
+            <x-sidebar_admin/>
+        @endauth 
+        @guest
+            <x-navbar/>
+        @endguest
+        </div>
+        <div class="col-10">
+            @yield('content')
+        </div>
+        <div class="col-1"></div>
+        </div>
     </body>
     <footer>
-        @include('pre-login.components.footer')
+        <x-footer/>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
