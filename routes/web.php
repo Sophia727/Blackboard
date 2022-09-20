@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\InstitutionController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,6 +30,7 @@ Route::get('/feed', function(){
 Route::get('/about-us', function(){
     return view('pre-login.aboutUs.aboutUs');
 })->name('aboutUs');
+
 Route::get('/contact-us', function(){
     return view('pre-login.contactUs');
 })->name('contactUs');
@@ -35,9 +38,10 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 
 //test route
-// Route::get('/{id}showUser', function(){
-//      return view('post-login.admin.profiles.adminProfile');
-// });
+Route::get('/addfaculty', function(){
+return view('post-login.admin.faculty');
+});
+// Route::get('/addsubject', [SubjectController::class, 'create']);
 
 
 Route::middleware(['auth', 'admin'])->group(function(){
@@ -66,11 +70,18 @@ Route::middleware(['auth', 'admin'])->group(function(){
 
         
         // dashboard routes
-        Route::get('/admins-list', [UserController::class, 'showAdmins'] )->name('admins.list');   
-        Route::get('/insitution-info', [InstitutionController::class, 'institutionInfo'] )->name('institution.info');   
-        Route::get('/reports', [InstitutionController::class, 'reportsInfo'] )->name('reports.info');   
+        Route::get('/admins-list', [UserController::class, 'showAdmins'])->name('admins.list');   
+        Route::get('/reports', [InstitutionController::class, 'reportsInfo'])->name('reports.info');  
+            //institution
+        Route::get('/insitution-info', [InstitutionController::class, 'institutionInfo'])->name('institution.info');   
+        Route::get('/add-subject', [SubjectController::class, 'create'])->name('add.subject');
+        Route::post('/subject-post', [SubjectController::class, 'store'] )->name('store.subject');  
+
+        Route::get('/add-faculty', [FacultyController::class, 'create'])->name('add.faculty');
+        Route::post('/faculty-post', [FacultyController::class, 'store'] )->name('store.faculty');  
+
         //news
-        Route::get('/feed-posts', [PostController::class, 'showPosts'] )->name('show.news');  
+        // Route::get('/feed-posts', [PostController::class, 'showPosts'] )->name('show.news');  
         Route::get('/news', [PostController::class, 'showPosts'] )->name('show.news');  
         Route::get('/{post}/news-article', [PostController::class, 'readMore'] )->name('news.readmore');  
         Route::get('/create-post', [PostController::class, 'create'] )->name('write.post');  

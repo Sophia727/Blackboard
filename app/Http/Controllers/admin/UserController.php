@@ -157,7 +157,7 @@ class UserController extends Controller
     }
     /**
      * ADMIN SECTION:
-     * showAdmins + searchAdmin 
+     * showAdmins 
      *
      */
     public function showAdmins()
@@ -175,7 +175,7 @@ class UserController extends Controller
 
     /**
      * PROFESSORS SECTION
-     * showProfessors + searchProfessors
+     * showProfessors
      *
      */
     public function showProfessors()
@@ -187,7 +187,7 @@ class UserController extends Controller
 
     /**
      * PARENTS SECTION
-     * showParents + searchParent
+     * showParents 
      *
      */
     public function showParents()
@@ -199,7 +199,7 @@ class UserController extends Controller
 
     /**
      * STUDENTS SECTION
-     * showStudents + searchStudent
+     * showStudents 
      *
      */
     public function showStudents()
