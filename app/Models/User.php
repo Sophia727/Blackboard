@@ -54,4 +54,8 @@ class User extends Authenticatable
     public function institution(){
         return $this->belongsTo(Institution::class);
     }
+    public function faculty()
+    {
+        return $this->hasMany(Faculty::class);
+    }
 }

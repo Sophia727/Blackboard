@@ -1,9 +1,7 @@
 @extends('template.user_homepage')
 
 @section('content')
-    <head>
-    <link rel="stylesheet" href="{{asset('css/post-login/dashboard.css')}}"> 
-    </head>
+
 
         <h1>Dashboard</h1>
         <div class="row">

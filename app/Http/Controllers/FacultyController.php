@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FacultyController extends Controller
@@ -19,8 +20,10 @@ class FacultyController extends Controller
     public function store(Request $request){
         $dataOk = $request->validate([
             'name' => 'required|min:2',
-            'rector'=>'required'
+            'rector_id'=>'required',
+            'logo'=>'max:10240'
         ]);
+        
         $newFaculty= $dataOk;
         if ($request->file('logo')) {
             $file = $request->file('logo');
@@ -28,12 +31,10 @@ class FacultyController extends Controller
             $path = $file->storeAs('images/logos', $fileName, 'public');
             $newFaculty['logo'] = 'storage/'. $path;
         }
-        $facultyCreate = Faculty::create($newFaculty);
         
+        $facultyCreate = Faculty::create($newFaculty);
         if ($facultyCreate) {
-            $newFaculty['created_at'] = now();
-            
-            return redirect()->route('institution.info')->with(["status" => "$facultyCreate->name created successfully"]);
+            return redirect()->route('institution.info')->with(["message" => "$facultyCreate->name created successfully"]);
         } else {
             return back()->with("error", "Failed to create faculty")->withInput();
         }

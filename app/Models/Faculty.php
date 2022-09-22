@@ -10,7 +10,14 @@ class Faculty extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'rector',
+        'rector_id',
         'photo',
+        'speciality_id'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function speciality(){
+        return $this->belongsTo(Institution::class);
+    }
 }

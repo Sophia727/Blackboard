@@ -34,20 +34,16 @@
             <div class="col">
                 <div class="form-group ">
                     <h6>Select professor:</h6>
-                    <select class="form-select" aria-label="multiple select example">
+                    <select class="form-select" name="professor" aria-label="multiple select example">
                         
                         <option selected>Professors...</option>
                         @foreach ($role as $user)  
-                            <div class="form-check @error('professor')is-invalid @enderror">
+                            <div class="form-check">
                                 <option value="{{$user->name}}" name="professor">{{$user->name}}</option>
                             </div>  
                         @endforeach
                       
                     </select>
-                    {{-- @error('professor')
-                        <div class="alert alert-danger">{{$message}}</div>
-                    @enderror --}}
-                
                 </div>
             </div>
             
@@ -56,19 +52,19 @@
         <div class="row m-2">
             <div class="col">
                 <div class="form-group">
-                    <h6>Choose assigned faculties: </h6>
-                    <select class="form-select @error('classroom')is-invalid @enderror" aria-label="multiple select example">
-                        {{-- faculties --}}
-                        <option selected >Faculty...</option>
-                        {{-- @foreach ($role as $user)  
+                    <h6>Choose assigned Speciality: </h6>
+                    <select name="speciality" class="form-select @error('classroom')is-invalid @enderror" aria-label="multiple select example">
+                       
+                        <option selected >Speciality...</option>
+                        @foreach ($speciality as $spec)  
                             <div class="form-check">
-                                <option value="{{$user->name}}">{{$user->name}}</option>
+                                <option value="{{$spec->id}}">{{$spec->name}}</option>
                             </div>  
-                        @endforeach --}}
+                        @endforeach
                       </select>  
-                      {{-- @error('faculty')
+                      @error('speciality')
                         <div class="alert alert-danger">{{$message}}</div>
-                    @enderror                 --}}
+                    @enderror                
                 </div>
             </div>
         </div>

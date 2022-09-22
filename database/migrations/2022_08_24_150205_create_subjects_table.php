@@ -16,7 +16,11 @@ class CreateSubjectsTable extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("classroom_name");
+        
             $table->integer("semester");
+            $table->unsignedBigInteger("professor_id");
+            $table->foreign("professor_id")->references("id")->on('users')->where('role','professor');
             $table->timestamps();
 
         });

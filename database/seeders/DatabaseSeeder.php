@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
+use App\Models\Faculty;
 use App\Models\Post;
 use App\Models\User;
 use Carbon\Factory;
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         User::factory(30)->create();
         Post::factory(50)->create();
         Comment::factory(20)->create();
+        $this->call(FacultySeeder::class);
     }
 }

@@ -4,9 +4,9 @@
 
 <div class="row">
     <div class="container">
-        @if(session('status'))
+        @if(session('message'))
             <div class="alert alert--success">
-            {{session('status')}}
+            {{session('message')}}
             </div>
         @endif
         <div class="card">
@@ -31,11 +31,11 @@
             <div class="row m-2">
             <div class="col">
                     <h6>Select Rector:</h6>
-                    <select class="form-select" required name="rector">
+                    <select class="form-select" required name="rector_id">
                         <option selected value>Select...</option>
                         @foreach ($role as $user)  
                             <div class="form-check">
-                                <option value="{{$user->name}}">{{$user->name}}</option>
+                                <option value="{{$user->id}}">{{$user->name}}</option>
                             </div>  
                         @endforeach                    
                     </select>                    

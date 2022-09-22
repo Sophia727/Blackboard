@@ -15,7 +15,8 @@ class SubjectController extends Controller
     {
         
         $user = DB::table('users')->where('role', 'professor')->orderBy('name', 'asc')->get();
-        return view('post-login.admin.institution.subject.addSubject',['role' => $user]);
+        $spec= DB::table('specialities')->orderBy('name', 'asc')->get();
+        return view('post-login.admin.institution.subject.addSubject',['role' => $user, 'speciality'=>$spec]);
         // dd($user);
     }
     public function store(Request $request)
@@ -24,9 +25,9 @@ class SubjectController extends Controller
         $dataOk = $request->validate([
             'name' => 'required|min:2',
             'professor' => 'required',
-            // 'faculty' => "required",
+            'speciality' => "required",
             'classroom' => 'required|min:2',
-            // 'semester'=>"required"
+            'semester'=>"required"
 
         ]);
         $subject = $dataOk;

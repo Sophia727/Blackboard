@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -80,6 +81,8 @@ Route::middleware(['auth', 'admin'])->group(function(){
         Route::get('/add-faculty', [FacultyController::class, 'create'])->name('add.faculty');
         Route::post('/faculty-post', [FacultyController::class, 'store'] )->name('store.faculty');  
 
+        Route::get('/add-speciality', [SpecialityController::class, 'create'])->name('add.speciality');
+        Route::post('/speciality-post', [SpecialityController::class, 'store'] )->name('store.speciality');  
         //news
         // Route::get('/feed-posts', [PostController::class, 'showPosts'] )->name('show.news');  
         Route::get('/news', [PostController::class, 'showPosts'] )->name('show.news');  
