@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
+use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +11,13 @@ use Illuminate\Support\Facades\DB;
 class FacultyController extends Controller
 {
     public function index(){
-        //
+        $faculty= Faculty::all();
+        return view('pre-login.aboutUs.faculties', ['faculty'=>$faculty]);
+    }
+    public function facultyProfile($id){
+        $faculty = Faculty::find($id);
+        $speciality = Speciality::all();
+        return view('post-login.admin.institution.faculty.facultyProfile', ['faculty' => $faculty, 'speciality'=>$speciality]);
     }
     public function create()
     {

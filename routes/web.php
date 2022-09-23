@@ -22,15 +22,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 // visitor navigation
-Route::get('/welcome_page', function(){
-    return view('pre-login.welcomepage');
-})->name('pre-login.welcomepage');
+Route::get('/', [AuthController::class, 'welcomepage'])->name('pre-login.welcomepage');
 Route::get('/feed', function(){
     return view('pre-login.news.news');
 })->name('news');
+//About us
 Route::get('/about-us', function(){
     return view('pre-login.aboutUs.aboutUs');
 })->name('aboutUs');
+Route::get('/faculties', [FacultyController::class, 'index'])->name('faculty.list');
+Route::get('/{id}/faculty-profile', [FacultyController::class, 'facultyProfile'])->name('faculty.profile');
+Route::get('/facilities', function(){
+    return view('pre-login.aboutUs.facilities');
+})->name('facilities');
+
 
 Route::get('/contact-us', function(){
     return view('pre-login.contactUs');
@@ -60,15 +65,13 @@ Route::middleware(['auth', 'admin'])->group(function(){
         Route::get('/students-list', [UserController::class, 'showStudents'] )->name('students.list');   
         //users
         Route::get('/add-user', [UserController::class, 'create'] )->name('add.user');  
-        Route::post('/storing-user', [UserController::class, 'store'] )->name('store.user');  
-        Route::put('user/{id}/activate', [UserController::class, "activate"])->name("user.activate");
-        Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
+        Route::post('/storing-user', [UserController::class, 'store'] )->name('store.user');
         Route::get('/{view}/search-user', [UserController::class, 'searchUser'])->name('search.user');
-
         //profiles
         Route::get('/{id}/profile', [UserController::class, 'userProfile'])->name('user.profile');
         Route::get('/{id}/profile/delete', [UserController::class, 'destroy'])->name('destroy.profile');
-
+ Route::put('user/{id}/activate', [UserController::class, "activate"])->name("user.activate");
+        Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
         
         // dashboard routes
         Route::get('/admins-list', [UserController::class, 'showAdmins'])->name('admins.list');   
@@ -83,6 +86,7 @@ Route::middleware(['auth', 'admin'])->group(function(){
 
         Route::get('/add-speciality', [SpecialityController::class, 'create'])->name('add.speciality');
         Route::post('/speciality-post', [SpecialityController::class, 'store'] )->name('store.speciality');  
+        // Route::get('/{view}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
         //news
         // Route::get('/feed-posts', [PostController::class, 'showPosts'] )->name('show.news');  
         Route::get('/news', [PostController::class, 'showPosts'] )->name('show.news');  

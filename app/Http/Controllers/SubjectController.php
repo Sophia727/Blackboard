@@ -27,11 +27,14 @@ class SubjectController extends Controller
             'professor' => 'required',
             'speciality' => "required",
             'classroom' => 'required|min:2',
-            'semester'=>"required"
+            'semester'=> 'required|array'
 
         ]);
+        
         $subject = $dataOk;
-        dd($subject);
+        // $subject['semester']= implode()
+        // $subject['semester']= explode()
+        // dd($subject);
         $subjectCreate = Subject::create($subject);
         if ($subjectCreate) {
             // $subjectCreate['semester'] = $subjectSemester 

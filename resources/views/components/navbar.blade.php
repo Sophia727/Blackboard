@@ -12,8 +12,8 @@
             
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{route('aboutUs')}}">History, Vision, Mission & Team</a></li>
-                <li><a class="dropdown-item" href="#">Faculties</a></li>
-                <li><a class="dropdown-item" href="#">Facilities and student life</a></li>
+                <li><a class="dropdown-item" href="{{route('faculty.list')}}">Faculties</a></li>
+                <li><a class="dropdown-item" href="{{route('facilities')}}">Facilities and student life</a></li>
                 <li><a class="dropdown-item" href="#">Partnerships</a></li>
               </ul>
             </div>

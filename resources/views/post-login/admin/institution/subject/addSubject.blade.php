@@ -89,14 +89,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" name="semester[]" value="s1" for="inlineCheckbox1">S-1</label>                     
+                                <input class="form-check-input" name="semester[]" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label"  value="s1" for="inlineCheckbox1">S-1</label>                     
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" name="semester[]"value="s2" for="inlineCheckbox2">S-2</label>
+                                <input class="form-check-input" name="semester[]" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s2" for="inlineCheckbox2">S-2</label>
                             </div>
                         </div>
                     </div>
@@ -106,14 +106,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                                <label class="form-check-label" name="semester[]" value="s3" for="inlineCheckbox1">S-3</label>                     
+                                <input class="form-check-input" name="semester[]" type="checkbox" id="inlineCheckbox1" value="option1">
+                                <label class="form-check-label" value="s3" for="inlineCheckbox1">S-3</label>                     
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" name="semester[]" value="s4" for="inlineCheckbox2">S-4</label>
+                                <input class="form-check-input" name="semester[]" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s4" for="inlineCheckbox2">S-4</label>
                             </div>
                         </div>
                     </div>
@@ -125,14 +125,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label"name="semester[]" value="s5" for="inlineCheckbox2">S-5</label>
+                                <input class="form-check-input" type="checkbox" name="semester[]"id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s5" for="inlineCheckbox2">S-5</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" name="semester[]" value="s6" for="inlineCheckbox2">S-6</label>
+                                <input class="form-check-input"name="semester[]" type="checkbox" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label"  value="s6" for="inlineCheckbox2">S-6</label>
                             </div>
                         </div>
                     </div>
@@ -143,14 +143,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label"name="semester[]" value="s7" for="inlineCheckbox2">S-7</label>
+                                <input class="form-check-input" type="checkbox"name="semester[]" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s7" for="inlineCheckbox2">S-7</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label"name="semester[]" value="s8" for="inlineCheckbox2">S-8</label>
+                                <input class="form-check-input" type="checkbox"name="semester[]" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s8" for="inlineCheckbox2">S-8</label>
                             </div>
                         </div>
                     </div>
@@ -160,14 +160,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label"name="semester[]" value="s9" for="inlineCheckbox2">S-9</label>
+                                <input class="form-check-input" type="checkbox" name="semester[]"id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s9" for="inlineCheckbox2">S-9</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label"name="semester[]" value="s10" for="inlineCheckbox2">S-10</label>
+                                <input class="form-check-input" type="checkbox"name="semester[]" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label" value="s10" for="inlineCheckbox2">S-10</label>
                             </div>
                         </div>
                     </div>
@@ -178,14 +178,14 @@
                         </div>
                         <div class="col">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label"name="semester[]" value="s11" for="inlineCheckbox2">S-11</label>
+                            <input class="form-check-input" name="semester[]"type="checkbox" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label" value="s11" for="inlineCheckbox2">S-11</label>
                         </div>
                         </div>
                         <div class="col">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                            <label class="form-check-label" name="semester[]" value="s12" for="inlineCheckbox2">S-12</label>
+                            <input class="form-check-input" type="checkbox"name="semester[]" id="inlineCheckbox2" value="option2">
+                            <label class="form-check-label"  value="s12" for="inlineCheckbox2">S-12</label>
                         </div>
                         </div>
                     </div>
@@ -195,14 +195,14 @@
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" name="semester[]" value="s13"for="inlineCheckbox2">S-13</label>
+                                <input class="form-check-input" type="checkbox" name="semester[]"id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label"  value="s13"for="inlineCheckbox2">S-13</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                                <label class="form-check-label" name="semester[]" value="s14"for="inlineCheckbox2">S-14</label>
+                                <input class="form-check-input" type="checkbox"name="semester[]" id="inlineCheckbox2" value="option2">
+                                <label class="form-check-label"  value="s14"for="inlineCheckbox2">S-14</label>
                             </div>
                         </div>
                     </div>   

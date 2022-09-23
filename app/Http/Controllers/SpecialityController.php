@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class SpecialityController extends Controller
 {
-    public function index(){
-        //
-    }
+    // public function index($view){
+    //     $spec=DB::table('specialities')->orderBy('name', 'asc')->get(); 
+    //     return view($view, ['speciality' => $spec]);
+    // }
     public function create()
     {
         $faculty = DB::table('faculties')->orderBy('name', 'asc')->get(); 

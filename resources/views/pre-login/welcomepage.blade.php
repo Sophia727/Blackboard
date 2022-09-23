@@ -1,7 +1,7 @@
 @extends('template.homepage')
 @section('content')
 {{-- LES SLIDERS / caroussel--}}
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="margin-top: 0px;">
+    <div class="carousel slide carousel-fade" data-ride="carousel" style="margin-top: 0px;">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{asset('images/InscripOuv.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%">
@@ -100,48 +100,20 @@
     {{-- posts news --}}
     <div style="background-color:#a7c5bd;">
     <section style="margin: 50px; padding:20px">
-        <h3>Nouveautés</h3>
+        <h3>News feed</h3>
         <div class="card-group">
+          @foreach ($posts as $posts)
+              
+          
             <div class="card" style="margin: 20px" >
-              <img href="" src="{{asset('images/dummy-image.jpg')}}" class="card-img-top" alt="..." width="245" height="138">
+              <img href="" src="{{$posts->photo}}" class="card-img-top" alt="..." width="245" height="138">
               <div class="card-body">
-                <h5 href="#" class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted"> Updated 3 mins ago</small></p>
+                <h5 href="#" class="card-title">{{$posts->title}}</h5>
+                <p class="card-text"><small class="text-muted">{{$posts->updated_at}}</small></p>
             </div>
             </div>
+          @endforeach
 
-            <div class="card" style="margin: 20px">
-              <img src="{{asset('images/dummy-image.jpg')}}" class="card-img-top" alt="..." width="245" height="138">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted"> Updated 3 mins ago</small></p>
-              </div>
-            </div>
-
-            <div class="card" style="margin: 20px">
-              <img src="{{asset('images/dummy-image.jpg')}}" class="card-img-top" alt="..." width="245" height="138">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted"> Updated 3 mins ago</small></p>
-              </div>
-            </div>
-
-            <div class="card" style="margin: 20px">
-              <img src="{{asset('images/dummy-image.jpg')}}" class="card-img-top" alt="..." width="245" height="138">
-              <div class="card-body">
-                <h5 href="#" class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted"> Updated 3 mins ago</small></p>
-              </div>
-            </div>
-
-            <div class="card" style="margin: 20px">
-              <img src="{{asset('images/dummy-image.jpg')}}" class="card-img-top" alt="..." width="245" height="138">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text"><small class="text-muted"> Updated 3 mins ago</small></p>
-              </div>
-            </div>
-          </div>
     </section>
 </div>
 
@@ -159,11 +131,11 @@
         </div>
 
         <div class="col-lg-7 my-4">
-          <h2>Un mot du recteur</h2>
+          <h2>A word from our Director</h2>
           <p class="my-2">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, quaerat incidunt. Vitae vero officiis dignissimos suscipit illum est enim amet repellendus ut. Esse aspernatur incidunt deleniti sequi velit modi distinctio eligendi quibusdam voluptate sit, perspiciatis totam nam minus vitae numquam.
           </p>
-          <button class="btn btn-primary">Rejoignez-nous!</button>
+          <button class="btn btn-primary">Join us!</button>
         </div>
       </div>
     </div>

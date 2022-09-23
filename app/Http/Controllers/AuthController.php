@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function welcomepage(){
+        $posts = Post::orderBy('updated_at', 'asc')->paginate(5);
+        return view('pre-login.welcomepage', ['posts'=>$posts]);
+    }
+    
     public function index(){
         return view('pre-login.loginForm');
     }

@@ -44,8 +44,6 @@
                 
                 <div class="card">
                     <div class="card-body">
-                        {{-- <form action="" method="post"> --}}
-                            {{-- <form action="{{route('update.profile')}}" method="post"> --}}
                                 <form action="{{route('update.profile', ['user'=>$user->id])}}" method="post">
                                 @csrf
                         @method('put')    

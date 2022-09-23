@@ -5,7 +5,7 @@
 <h1>Institution file</h1>
 <div class="row">
     
-    <div class="col-md-4 col-xl-4">
+    <div class="col-xl-3">
         <div class="card bg-c-greenish order-card">
             <a role="button"
             href="{{route('add.faculty')}}">
@@ -15,7 +15,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-4 col-xl-4">
+    <div class="col-xl-3">
         <div class="card bg-c-greenish order-card">
             <a role="button"
             href="{{route('add.faculty')}}">
@@ -25,7 +25,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-4 col-xl-4">
+    <div class="col-xl-3">
         <div class="card bg-c-greenish order-card">
             <a role="button"
             href="{{route('add.speciality')}}">
@@ -36,7 +36,7 @@
         </div>
     </div>
     
-    <div class="col-md-4 col-xl-4">
+    <div class="col-xl-3">
         <div class="card bg-c-greenish order-card">
             <a role="button"
             href="{{route('add.subject')}}">
@@ -46,7 +46,20 @@
             </a>
         </div>
     </div>
-    
+    <hr>
+</div>
+<div class="row" style="justify-content:center">
+  @foreach ($faculty as $faculty)
+  <div class="card" style="width: 18rem;">
+    <img src="{{$faculty->logo}}" class="card-img-top" alt="{{$faculty->name}} logo ">
+    <div class="card-body">
+      <h5 class="card-title">{{$faculty->name}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="" class="btn btn-primary">See all specialities</a>
+      {{-- <a href="{{route('speciality.list')}}" class="btn btn-primary">See all specialities</a> --}}
+    </div>
+  </div>
+  @endforeach
 </div>
 
 @endsection
