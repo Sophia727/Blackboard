@@ -24,17 +24,15 @@ class SubjectController extends Controller
         
         $dataOk = $request->validate([
             'name' => 'required|min:2',
-            'professor' => 'required',
+            'professor_id' => 'required',
             'speciality' => "required",
-            'classroom' => 'required|min:2',
-            'semester'=> 'required|array'
-
+            'classroom_name' => 'required|min:2',
+            'semester'=> 'required'
         ]);
         
+        // $subject['semester'] = implode('-',$dataOk['semester']);
+        // dd($dataOk['semester']);
         $subject = $dataOk;
-        // $subject['semester']= implode()
-        // $subject['semester']= explode()
-        // dd($subject);
         $subjectCreate = Subject::create($subject);
         if ($subjectCreate) {
             // $subjectCreate['semester'] = $subjectSemester 

@@ -122,6 +122,16 @@ class UserController extends Controller
         } else {
             return back()->with("error", "Failed to create the User")->withInput();
         }
+    }    
+    /**
+     * myProfile: function for avery user to view his/her own profile
+     *
+     * @return void
+     */
+    public function myProfile(){
+        return view(
+            'post-login.admin.profiles.myProfile'
+        );
     }
     /**
      * destroy: delete this user's data

@@ -15,7 +15,7 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#">Home</a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="#">Calendar</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{route('calendar')}}">Calendar</a></li>
               {{-- <li class="nav-item"><a class="nav-link" href="#">Contact us</a></li> --}}
               <li class="nav-item">
               {{-- <div class="dropdown">
@@ -35,6 +35,7 @@
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                   <a class="dropdown-item" href="#"> <i class="bi bi-bell"></i> Notifications</a>
                   <a class="dropdown-item" href="#"> <i class="bi bi-envelope"></i>  Messages</a>
+                  <a class="dropdown-item" href="#"> <i class="bi bi-person"></i>  Profile</a>
                   <a class="dropdown-item" href="#"> <i class="bi bi-grid"></i> Dashboard</a>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>

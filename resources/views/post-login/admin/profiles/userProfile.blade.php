@@ -44,8 +44,8 @@
                 
                 <div class="card">
                     <div class="card-body">
-                                <form action="{{route('update.profile', ['user'=>$user->id])}}" method="post">
-                                @csrf
+                        <form action="{{route('update.profile', ['user'=>$user->id])}}" method="post">
+                        @csrf
                         @method('put')    
                         <div class="row mb-3">
                             <div class="col-sm-3">

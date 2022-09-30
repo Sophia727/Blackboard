@@ -5,6 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>University </title>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+{{-- calendar --}}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+{{-- end calendar --}}
 
         <!-- Fonts and styles / bootstrap and font awesome-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -14,6 +22,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <script src="https://kit.fontawesome.com/5c45cf9def.js" crossorigin="anonymous"></script>  
         <link rel="stylesheet" href="{{asset('css/post-login/dashboard.css')}}"> 
+        <link rel="stylesheet" href="{{asset('css/post-login/myProfile.css')}}"> 
+        <link rel="stylesheet" href="{{asset('css/post-login/generals.css')}}"> 
+        
 
     </head>
 
@@ -30,9 +41,11 @@
         </div>
         <div class="col-10">
             @yield('content')
+            
         </div>
         <div class="col-1"></div>
         </div>
+  
     </body>
     <footer>
         <x-footer/>

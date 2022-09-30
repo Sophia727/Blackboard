@@ -55,8 +55,8 @@
     <div class="card-body">
       <h5 class="card-title">{{$faculty->name}}</h5>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="" class="btn btn-primary">See all specialities</a>
-      {{-- <a href="{{route('speciality.list')}}" class="btn btn-primary">See all specialities</a> --}}
+      <a href="" class="btn btn-outline-secondary">See all specialities</a>
+      {{-- <a href="{{route('speciality.list')}}" class="btn btn-outline-secondary">See all specialities</a> --}}
     </div>
   </div>
   @endforeach

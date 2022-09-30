@@ -24,12 +24,22 @@
         <div class="row">
             <div class="col-4">
                 <a class="" href="#">
-                    <img src="{{asset('images/dummy-image.jpg')}}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
+                    {{-- <img src="{{asset('images/dummy-image.jpg')}}" style="width: 15rem; border-radius:5%" alt="placeholder"/> --}}
+                    @if($post->photo)
+                    @if(Str::contains($post->photo, 'https://'))
+                      <img src="{{$post->photo}}" alt="{{$post->title}}"  style="width: 15rem; border-radius:5%"/>
+                      @else
+                      <img src="{{asset("storage/".$post->photo)}}" alt="{{$post->title}}" style="width: 15rem; border-radius:5%"/>
+                    @endif
+                    @else
+                    <img src="{{asset('images/dummy-image.jpg'.$post->photo)}}"alt="{{$post->title}}" style="width: 15rem; border-radius:5%"/>
+                    
+                  @endif 
                 </a>
             </div>
             <div class="col-8">
                 <h2 class="card-title">
-                    <a href="{{route('news.readmore', ['post'=>$post->id])}}">{{$post->title}}</a>
+                    <a href="{{route('news.readmore', ['post'=>$post->id])}}" class="text-dark">{{$post->title}}</a>
                 </h2>
                 <p class="card-text">{{$post->description}}</p>
                 <div class="text-right">
