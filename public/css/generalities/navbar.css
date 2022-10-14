@@ -1,0 +1,14 @@
+.prelogin_navbar{
+    position:absolute;
+    z-index: 100; 
+    top:0cm;
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+.postlogin_navbar{
+    /* position:absolute; */
+    z-index: 100; 
+    top:0cm;
+    width:100%;
+    background-image: linear-gradient(90deg, #bec4cc9d,#fff, #ffff , #fff, #ffff, #ffff,#bec4cc9d);
+}

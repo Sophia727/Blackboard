@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faculty;
 use App\Models\Speciality;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SpecialityController extends Controller
-{
-    // public function index($view){
-    //     $spec=DB::table('specialities')->orderBy('name', 'asc')->get(); 
-    //     return view($view, ['speciality' => $spec]);
-    // }
+{    
+    /**
+     * index : afficher dynamiquement les specialités par rapport aux facultés
+     *
+     * @param  mixed $view
+     * @param  mixed $id
+     * @return void
+     */
+    public function index($view, $id){
+        $faculty = Faculty::find($id);
+        $specialities = $faculty->specialities;
+        return view($view, ['specialities' => $specialities]);
+    }
+
     public function create()
     {
         $faculty = DB::table('faculties')->orderBy('name', 'asc')->get(); 
@@ -21,11 +31,11 @@ class SpecialityController extends Controller
     public function store(Request $request){
         $dataOk = $request->validate([
             'name' => 'required|min:2',
-            'faculty'=>'required',
+            'faculty_id'=>'required',
         ]);
         
         $newSpeciality= $dataOk;
-        
+
         $specialityCreate = Speciality::create($newSpeciality);
         if ($specialityCreate) {
             return redirect()->route('institution.info')->with(["message" => "$specialityCreate->name created successfully"]);
@@ -33,4 +43,5 @@ class SpecialityController extends Controller
             return back()->with("error", "Failed to create Speciality")->withInput();
         }
     }
+
 }

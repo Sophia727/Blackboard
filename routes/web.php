@@ -4,10 +4,14 @@ use App\Http\Controllers\admin\InstitutionController;
 use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\parent\ParentController;
+use App\Http\Controllers\professor\ProfessorController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SpecialityController;
+use App\Http\Controllers\student\StudentController;
 use App\Http\Controllers\SubjectController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,10 +42,11 @@ Route::get('/facilities', function () {
     return view('pre-login.aboutUs.facilities');
 })->name('facilities');
 
-
+//contact us
 Route::get('/contact-us', function () {
     return view('pre-login.contactUs');
 })->name('contactUs');
+//login
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 
@@ -49,18 +54,40 @@ Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 // Route::get('/addfaculty', function () {
 //     return view('post-login.admin.faculty');
 // });
-Route::get('/myProfile', [UserController::class, 'myProfile']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
 
+});
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('post-login.admin.dashboard');
-    })->name('admin.dashboard');
+Route::middleware(['auth', 'parent'])->group(function () {
+    Route::get('/parent', [ParentController::class, 'index'])->name('parent.dashboard');
+});
+
+Route::middleware(['auth', 'professor'])->group(function () {
+    Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.dashboard');
+});
+//student
+Route::middleware(['auth', 'student'])->group(function () {
+    Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
+    Route::prefix('/student')->group(function () {
+        // Route::get('/{id}/student-profile', [UserController::class, 'myProfile'])->name('student.profile');
+
+    });
+});
+
 
     /**
      * admin
      */
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', function () {
+        return view('post-login.admin.dashboard');
+    })->name('admin.dashboard');
+       
     Route::prefix('/admin')->group(function () {
+        // navbar
+        Route::get('/{id}/admin-profile', [UserController::class, 'myProfile'])->name('admin.profile');
+
         //calendar routes
         Route::get('full-calendar', [FullCalendarController::class, 'index'])->name('calendar');
         Route::post('full-calendar/action', [FullCalendarController::class, 'action']);
@@ -90,7 +117,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/add-speciality', [SpecialityController::class, 'create'])->name('add.speciality');
         Route::post('/speciality-post', [SpecialityController::class, 'store'])->name('store.speciality');
-        // Route::get('/{view}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
+        Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
         //reports
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        
         Route::get('/add-report', [ReportController::class, 'create'])->name('add.report');
@@ -106,6 +133,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/publishing-post', [PostController::class, 'store'])->name('store.post');
         // Route::post('/list-posts', [PostController::class, 'postsList'] )->name('posts.list');  
         Route::get('article/search', [PostController::class, 'searchPost'])->name('search.post');
+        //comments
+        Route::put('store-comment', [CommentController::class, 'store'])->name('store.comment');
+        //Route::put('article/Destroy-comment', [User_commentController::class, 'destroy'])->name('userArticleComment.destroy');
     });
+
     Route::get('/logout', [AuthController::class, 'logout'])->name("logout");
 });

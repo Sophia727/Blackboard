@@ -1,7 +1,7 @@
-
+<div class="postlogin_navbar">
     <nav class="navbar navbar-expand-lg bg-transparent">
         <div class="container px-4">
-          <a href="#" class="navbar-brand fs-5"><i class="bi bi-building"></i> logo</a>
+          <a href="#" class="navbar-brand fs-1"><i class="bi bi-building text-muted"></i></a>
           <button
             type="button"
             class="navbar-toggler"
@@ -35,7 +35,7 @@
                 <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                   <a class="dropdown-item" href="#"> <i class="bi bi-bell"></i> Notifications</a>
                   <a class="dropdown-item" href="#"> <i class="bi bi-envelope"></i>  Messages</a>
-                  <a class="dropdown-item" href="#"> <i class="bi bi-person"></i>  Profile</a>
+                  <a class="dropdown-item" href="{{route('myProfile')}}"> <i class="bi bi-person"></i>  Profile</a>
                   <a class="dropdown-item" href="#"> <i class="bi bi-grid"></i> Dashboard</a>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>

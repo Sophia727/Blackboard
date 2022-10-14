@@ -15,4 +15,5 @@ class InstitutionController extends Controller
     public function reportsInfo(){
         return view('post-login.admin.reports');
     }
+
 }

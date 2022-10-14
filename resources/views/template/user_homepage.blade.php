@@ -24,26 +24,29 @@
         <link rel="stylesheet" href="{{asset('css/post-login/dashboard.css')}}"> 
         <link rel="stylesheet" href="{{asset('css/post-login/myProfile.css')}}"> 
         <link rel="stylesheet" href="{{asset('css/post-login/generals.css')}}"> 
-        
-
+        <link rel="stylesheet" href="{{asset('css/post-login/aboutUs.css')}}">
+        <link rel="stylesheet" href="{{asset('css/generalities/navbar.css')}}">
+        <link rel="stylesheet" href="{{asset('css/generalities/footer.css')}}">
     </head>
 
     <body>
         <x-navbar_userLogged/>        
-        <div class="row">
-            <div class="col-1">
-        @auth('role'=='admin')
-            <x-sidebar_admin/>
-        @endauth 
-        @guest
-            <x-navbar/>
-        @endguest
+        <div class="row"> 
+        <div class="col-1">
+            @auth
+            @if (Auth::user()->role==='admin')
+                 <x-sidebar_admin/>
+            @endif
+               
+            @endauth        
         </div>
+
         <div class="col-10">
-            @yield('content')
-            
+            @yield('content')            
         </div>
-        <div class="col-1"></div>
+        <div class="col-1">
+
+        </div>
         </div>
   
     </body>

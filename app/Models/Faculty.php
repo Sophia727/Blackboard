@@ -17,7 +17,7 @@ class Faculty extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
-    public function speciality(){
-        return $this->belongsTo(Institution::class);
+    public function specialities(){
+        return $this->hasMany(Speciality::class);
     }
 }

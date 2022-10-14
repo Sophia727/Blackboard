@@ -23,4 +23,6 @@ class Subject extends Model
     public function speciality(){
         return $this->belongsTo(speciality::class);
     }
+
+
 }

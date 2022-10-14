@@ -1,17 +1,18 @@
 
+    <div class="prelogin_navbar">
     <nav class="navbar navbar-expand-lg ">
       <div class="container px-4">
-        <a href="{{route('pre-login.welcomepage')}}" class="navbar-brand fs-5"><i class="bi bi-building"></i> logo</a>
+        <a href="{{route('pre-login.welcomepage')}}" class="navbar-brand fs-5"><i class="bi bi-building"></i></a>
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
             <div class="dropdown">
-              <a class="btn dropdown-toggle bg-transparent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 About us
               </a>
             
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{route('aboutUs')}}">History, Vision, Mission & Team</a></li>
+                <li><a class="dropdown-item" href="{{route('aboutUs')}}">History & Mission</a></li>
                 <li><a class="dropdown-item" href="{{route('faculty.list')}}">Faculties</a></li>
                 <li><a class="dropdown-item" href="{{route('facilities')}}">Facilities and student life</a></li>
                 <li><a class="dropdown-item" href="#">Partnerships</a></li>
@@ -42,3 +43,4 @@
         </div>
       </div>
     </nav>
+  </div>

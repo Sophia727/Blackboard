@@ -83,12 +83,14 @@
             </div>
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-yellow order-card">
-                    <a data-bs-toggle="collapse" role="button" aria-expanded="false" 
-                    href="#postsList" 
-                    aria-controls="posts">
+                    <a role="button"
+                    href="{{route('show.news')}}">
                         <div class="card-block">
                             <h3 class="m-b-20">Posts</h3>
                         </div>
+                    </a>
+                    
+                    
                     </a>
                 </div>
             </div>

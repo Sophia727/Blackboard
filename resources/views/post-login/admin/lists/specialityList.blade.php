@@ -26,17 +26,16 @@
             <thead>
               <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Subjects</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
               <tbody>
-                @foreach ($speciality as $spec)
+                @foreach ($specialities as $spec)
                 <tr>
-                  
+            
                   <td>{{$spec->name}}</td>
-                  {{-- <td>{{$spec->subjects->name}}</td> --}}
+             
                   
                   <td> 
                     {{-- <a href="{{route('user.profile', ['id'=>$user->id])}}" title="profile" class="btn btn-sm"><i class="fa-solid fa-eye"></i></a> --}}

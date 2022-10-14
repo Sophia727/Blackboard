@@ -38,6 +38,63 @@
                     </div>
                     
                 </div>
+                <hr>
+                <section style="margin: 50px 0;">
+                <div class="row">
+                    <div>
+                        {{-- <div class="card"> --}}
+                            {{-- <div class="card-header"> --}}
+                                
+                                <h5 class="card-title">Leave a comment:</h5>
+                            {{-- </div> --}}
+                            <div>
+                                <div class="row">
+                                    
+                                    <div class="col">
+                                        <form action="{{route('store.comment')}}" method="post">
+                                        @csrf
+                                        @method('put')
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name='message' style="border-radius:20px; margin-left:0%; background-color:lavender;"></textarea>
+                                    
+                                    </div>
+                                
+                                    <div class="col-1">
+                                        <button class="btn btn-md btn-primary"> <i class="bi bi-check"></i> Publish</button>
+
+                                    </div>
+                                </div>  
+                                    <div class="row">
+
+                                        @foreach ($comments as $comment)
+                                        <div class="card text-left w-50 mx-auto shadow">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{$comment->author_id}}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{$comment->created_at}}</h6>
+                                                <p class="card-text">{{$comment->message}}</p>
+                                                
+                                                <small><p class="card-text"> last updated on :{{$comment->updated_at}}</p></small>
+                                            
+                                                {{-- delete --}}
+                                                {{-- <button onclick="if(confirm('Are you sure you want to delete this comment?')){
+                                                document.getElementById('form-{{$comment->id}}').submit();
+                                                }"
+                                                class="btn btn-danger btn-sm" title="Delete"><i class="bi bi-trash"></i></button>
+                                                <form id="form-{{$comment->id}}" action="{{route('userArticleComment.destroy', ['comment'=>$comment->id])}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                </form> --}}
+                                            
+                                            </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                            </div>
+                            </form>
+                    
+                    </div>
+                </div>
+            </section>
+            
             </div>
             
             {{-- side section --}}

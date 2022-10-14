@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +17,9 @@ class PostController extends Controller
     }
     public function readMore($id){
         $post = Post::find($id);
+        $comments = Comment::where('post_id','like','post_id');
         $posts = Post::orderBy('updated_at', 'asc')->paginate(3);
-        return view('post-login.news.news_article', ['post'=>$post, 'posts'=>$posts]);
+        return view('post-login.news.news_article', ['post'=>$post, 'posts'=>$posts, 'comments'=>$comments]);
 
     }
     public function create(){

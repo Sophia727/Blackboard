@@ -32,8 +32,10 @@ class AuthController extends Controller
             return redirect('/professor');
         } elseif (Auth::user()->role =='parent') {
             return redirect('/parent');
-        } else {
+        } elseif (Auth::user()->role =='student') {
             return redirect('/student');
+        } else {
+            return redirect('/login');
         }
     }
     return back()->withErrors([
@@ -42,7 +44,6 @@ class AuthController extends Controller
     }
     public function dashboardIndex(){
         return view('post-login.admin.dashboard');
-
     }
 
     public function logout(Request $request){

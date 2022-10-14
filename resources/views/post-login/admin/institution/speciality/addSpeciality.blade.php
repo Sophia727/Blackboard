@@ -33,11 +33,11 @@
                 <div class="col">
                     <div class="form-group">
                         <h6>Choose assigned faculties: </h6>
-                        <select name="faculty" class="form-select" required aria-label="multiple select example">
+                        <select name="faculty_id" class="form-select" required aria-label="multiple select example">
                             <option selected >Faculty...</option>
                             @foreach ($faculty as $faculty)  
                                 <div class="form-check">
-                                    <option value="{{$faculty->name}}">{{$faculty->name}}</option>
+                                    <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                                 </div>  
                             @endforeach
                           </select>  

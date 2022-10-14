@@ -20,8 +20,7 @@ class CreateFacultiesTable extends Migration
             $table->unsignedBigInteger("rector_id")->nullable();
             $table->foreign("rector_id")->references("id")->on("users")->where('role','admin');
             $table->timestamps();
-            
-            
+                        
         });
     }
 

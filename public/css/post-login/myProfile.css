@@ -4,7 +4,7 @@
 
 }
 .myProfile_head{
-    background-image: linear-gradient(90deg, purple,orange);
+    background-image: linear-gradient(90deg, #1D3557,#457B9D,#E63946);
     height: 250px;
     background-size:cover; 
   
@@ -23,7 +23,7 @@
     position:relative;
     top:45%;
     left:45%;  
-    background:orange;
+    background:#E63946;
 }
 .myProfile_body h3{
     margin-top: 50px;

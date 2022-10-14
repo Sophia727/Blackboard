@@ -1,7 +1,7 @@
 @extends('template.homepage')
 @section('content')
 {{-- LES SLIDERS / caroussel--}}
-    <div class="carousel slide carousel-fade" data-ride="carousel" style="margin-top: 0px;">
+    <div class="carousel slide carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="{{asset('images/InscripOuv.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%">

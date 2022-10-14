@@ -128,11 +128,23 @@ class UserController extends Controller
      *
      * @return void
      */
+    //public function myProfile($id){
+        // if (Auth::user()->role =='admin') {
+        //     $admin= User::find($id);
+        //     return view('post-login.admin.profiles.myProfile',['id' => $admin->id]);
+        // } else {
+        //     $user= User::find($id);
+        //     return view('post-login.users.profile.myProfile',['id' => $user->id]);
+        // }
+        //$admin= User::find($id);
+        //return view('post-login.admin.profiles.myProfile',['id' => $admin->id]);
+    //}
     public function myProfile(){
-        return view(
-            'post-login.admin.profiles.myProfile'
-        );
+        // // $userProfile=Auth->user($id);
+        $userProfile = Auth::user();
+        return view('post-login.users.profile.myProfile', ['user'=>$userProfile]);
     }
+    
     /**
      * destroy: delete this user's data
      *
@@ -175,6 +187,7 @@ class UserController extends Controller
         $user = DB::table('users')->where('role', 'admin')->orderBy('name', 'asc')->paginate(15);
         return view('post-login.admin.lists.adminsList', ['role' => $user]);
     }
+    
     public function userProfile($id)
     {
         $user = User::find($id);
