@@ -18,7 +18,7 @@ class Post extends Model
         "published",
         
     ];
-    public function comment(){
+    public function comments(){
         return $this->hasMany(Comment::class);
     }
     public function author(){

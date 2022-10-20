@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,10 @@ class ReportController extends Controller
         $fileTag= $newReport['tag'];
         if($request->file('file')){
             $file = $request->file('file');
-            $fileName = $fileTag."-".time().".".$file->getClientOriginalExtension();
+            $fileName = $fileTag."-".date("d-m-Y H:i").".".$file->getClientOriginalExtension();
+          
             $path = $file->storeAs('files/reports', $fileName, 'public');
-            $post['file'] = $path;
+            $newReport['file'] = $path;
         }
         $createReport = Report::create($newReport);
         if ($createReport) {
@@ -44,10 +46,10 @@ class ReportController extends Controller
     }
     //public function download($id){
 
-    //$report = Report::where('id', $id)->firstOrFail();
-   // $report = Report::find($id);
-    //$pathToFile = storage_path('files/reports/' . $report);
-    //return response()->download($pathToFile);
+        //$report = Report::where('id', $id)->firstOrFail();
+        // $report = Report::find($id);
+        //$pathToFile = storage_path('files/reports/' . $report);
+        //return response()->download($pathToFile);
 
         //$report = Report::find($id);
         // return Storage::disk('public')->download($report->path);
@@ -63,13 +65,24 @@ class ReportController extends Controller
         //     ]);
         // } return redirect('/404');
     //}
+
     public function download(Request $request, $report){
 
-        //$report = Report::where('id', $id)->firstOrFail();
-        // $report = Report::find($id);
+        return Storage::download(asset("storage/".$report));
 
-        return response()->download(public_path('/storage/files/reports/'.$report));
-    }    
+        // if (Storage::disk('public')->exists("storage/files/reports/".$request->name)) {
+        //     $path = Storage::disk('public')->path("storage/files/reports/".$request->name);
+        //     $content = file_get_contents($path);
+        //     return response()->download(public_path('storage/files/reports/'.$report->file));
+        // } else{
+        //     return redirect('/404');
+            
+        // }
+    }
+
+    public function viewFile($id){
+        //
+    } 
 
     public function destroy($id)
     {

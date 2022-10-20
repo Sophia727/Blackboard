@@ -51,6 +51,9 @@ class User extends Authenticatable
     public function post(){
         return $this->hasMany(Post::class);
     }
+    public function comments(){
+        return $this->hasMany(Comment::class, 'author_comm_id');
+    }
     public function institution(){
         return $this->belongsTo(Institution::class);
     }

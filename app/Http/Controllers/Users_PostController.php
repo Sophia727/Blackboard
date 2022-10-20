@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\professor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\PostDec;
 
-class PostController extends Controller
+class Users_PostController extends Controller
 {
     public function showPosts(){
         $posts = Post::orderBy('updated_at', 'asc')->paginate(10);

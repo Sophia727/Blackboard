@@ -9,7 +9,8 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\parent\ParentController;
 use App\Http\Controllers\professor\ProfessorController;
-use App\Http\Controllers\ReportController;
+use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\professor\Users_PostController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\student\StudentController;
 use App\Http\Controllers\SubjectController;
@@ -54,9 +55,21 @@ Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 // Route::get('/addfaculty', function () {
 //     return view('post-login.admin.faculty');
 // });
+
+
+
+
+
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
 
+    //News
+    Route::get('/news', [Users_PostController::class, 'showPosts'])->name('user.show.news');
+    Route::get('/news', [Users_PostController::class, 'showPosts'])->name('user.show.news');
+    Route::get('/{post}/news-article', [Users_PostController::class, 'readMore'])->name('user.news.readmore');
+    Route::get('/create-post', [Users_PostController::class, 'create'])->name('user.write.post');
+    Route::post('/publishing-post', [Users_PostController::class, 'store'])->name('user.store.post');
 });
 
 Route::middleware(['auth', 'parent'])->group(function () {
@@ -65,6 +78,7 @@ Route::middleware(['auth', 'parent'])->group(function () {
 
 Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.dashboard');
+    
 });
 //student
 Route::middleware(['auth', 'student'])->group(function () {
@@ -122,7 +136,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        
         Route::get('/add-report', [ReportController::class, 'create'])->name('add.report');
         Route::post('/report-post', [ReportController::class, 'store'])->name('store.report');
-        Route::get('/download-report{report}', [ReportController::class, 'download'])->name('download.report');
+        // Route::post('/download-report{report}', [ReportController::class, 'download'])->name('download.report');
+        Route::get('/download-report/{report}', [ReportController::class, 'download'])->name('download.report');
+        // Route::get('/view-report{report}', [ReportController::class, 'viewFile'])->name('view.report');
         Route::delete('/destroy-report/{report}', [ReportController::class, 'destroy'])->name('destroy.report');
 
         //news
@@ -133,9 +149,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::post('/publishing-post', [PostController::class, 'store'])->name('store.post');
         // Route::post('/list-posts', [PostController::class, 'postsList'] )->name('posts.list');  
         Route::get('article/search', [PostController::class, 'searchPost'])->name('search.post');
+        Route::get("news/{post}/edit", [PostController::class, 'editPost'])->name('edit.post');
+        Route::put("articles/{post}/update", [PostController::class, 'update'])->name('update.post');
+        
         //comments
-        Route::put('store-comment', [CommentController::class, 'store'])->name('store.comment');
-        //Route::put('article/Destroy-comment', [User_commentController::class, 'destroy'])->name('userArticleComment.destroy');
+        Route::post('/store-comment', [CommentController::class, 'store'])->name('store.comment');
+        Route::delete('/destroy-comment/{comment}', [CommentController::class, 'destroy'])->name('destroy.comment');
     });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name("logout");

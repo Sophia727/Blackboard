@@ -9,30 +9,34 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    
+    public function store(Request $request, Post $post)
     {
         $validText = $request->validate([
             'message' => 'required',
         ]);
         $comment = $validText;
         
-
         $comment['published'] = $request['published']?false:true;
         $comment['author_comm_id'] = Auth::user()->id;
-        $comment['post_id'] = $request['comments_post_id_foreign'];
-        // $comment['post_id']
-        // $comment['post_id'] = $request->post('id');
+        $comment['post_id'] = $request['post_id'];
         if ($comment['published']) {
             $comment['created_at'] = now();
         }
-        $newComment = Comment::create($comment);
+        $comment = Comment::create($comment);
+        return back();
         
-        if ($newComment) {      
-           return  redirect()->route('news.readmore', ['post_id'=>$request['post_id'], 'comments'=>$comment])->with(["status"=>"Comment added successfully"]);
-        }else{
-            return back()->with("error","Adding comment: Failed")->withInput();
+    }
+    public function destroy($id)
+    { 
+        $comment = Comment::find($id);
+        if($comment->delete()){
+        return back()->with('status', 'comment by '.$comment->user->name.' deleted successfully');
+        } else {
+            return back()->with('status', "Oops: failed to delete $comment->message ");
         }
     }
-    
+
+
 
 }

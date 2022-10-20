@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    
+    protected $guarded = [];
     protected $fillable = [
         "author_comm_id",
         "post_id",
@@ -17,7 +17,10 @@ class Comment extends Model
         "published",
 
     ];
-    public function comments(){
+    public function post(){
         return $this->belongsTo(Post::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class, 'author_comm_id');
     }
 }

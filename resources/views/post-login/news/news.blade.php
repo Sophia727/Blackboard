@@ -12,9 +12,22 @@
                 @if(session('error'))
                 <x-alert type="danger" :message="session('error')" class="mb-4"/>   
                 @endif
-            <div class="col-8"><strong>LATEST NEWS</strong></div>
-            <div class="col-4"><x-searchPost/></div>
+            <div class="col-6"><strong>LATEST NEWS</strong></div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col">
+                        <x-searchPost/>
+                    </div>
+                    <div class="col-4">
+                        <div class="btn btn-outline-primary">
+                            <a href="{{route('write.post')}}" class="text-primary" title="writePost" data-bs-placement="right"><i class="fa-solid fa-pen-to-square text-primary"></i>  New Post</a>
+                        </div>
+                    </div>
+                </div>
+                
+              
             </div>
+        </div>
         <div class="row"><div class="div">{{$posts->links()}}</div>
     </div>
     </p>

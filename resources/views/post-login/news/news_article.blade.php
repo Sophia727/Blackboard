@@ -3,6 +3,17 @@
 @section('content')
 
 <div class="container">
+    
+        <div class="row">
+                {{-- alert message box --}}
+                @if(session('status'))
+                <x-alert type="success" :message="session('status')" class="mb-4"/>   
+                @endif
+                @if(session('error'))
+                <x-alert type="danger" :message="session('error')" class="mb-4"/>   
+                @endif
+        </div>
+    
     <p class="spacer" style="font-weight: 700; font-size: 24px; padding: 0 0 16px 0; margin: 48px 0 32px 0; border-bottom: 2px solid #e8ebed; line-height: 1.25;">
         <strong>LATEST NEWS</strong>
     </p>
@@ -14,13 +25,22 @@
                 <span></span>
             </div>
             <div class="col-8" style="padding: 0 20px 0 20px;">
-                <span class="text-muted">{{$post->updated_at}}</span>
-
+                <div class="row">
+                    <div class="col">
+                        <span class="text-muted">{{$post->updated_at}}</span>
+                    </div>
+                    @if (Auth::user()->role==='admin')    
+                    <div class="col text-right">
+                        <a href="{{route('edit.post', ['post'=>$post->id])}}"> <i class="bi bi-pencil-square text-success px-1 fa-lg"></i></a>
+                    </div>
+                    @endif
+                </div>
+                
                 <h2 class="card-title">
                     <a href="#">{{$post->title}}</a>
                 </h2>
                 <div class="card-header">
-                    <img src="{{asset('images/dummy-image.jpg') }}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
+                    <img src="{{$post->photo}}" style="width: 25rem; border-radius:5%" alt="placeholder"/>
                 </div>
                 <hr>
                 <p class="card-text">{{$post->description}}</p>
@@ -50,43 +70,62 @@
                             <div>
                                 <div class="row">
                                     
-                                    <div class="col">
-                                        <form action="{{route('store.comment')}}" method="post">
-                                        @csrf
-                                        @method('put')
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name='message' style="border-radius:20px; margin-left:0%; background-color:lavender;"></textarea>
-                                    
-                                    </div>
                                 
-                                    <div class="col-1">
-                                        <button class="btn btn-md btn-primary"> <i class="bi bi-check"></i> Publish</button>
-
+                                    <div class="col">
+                                        <form action="{{route('store.comment')}}" method="post" enctype="multipart/form-data"> 
+                                        @csrf
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" name='message' style="border-radius:20px; margin-left:0%; background-color:lavender;"></textarea>
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                        
                                     </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-md btn-primary" type="submit"> <i class="bi bi-check">Publish</i> </button>
+                                    </div>
+                                        </form>                        
                                 </div>  
-                                    <div class="row">
 
+                                <div class="row">
+                                    <section>                                     
+                                            
                                         @foreach ($comments as $comment)
-                                        <div class="card text-left w-50 mx-auto shadow">
+                                        <div class="col">
+                                            
                                             <div class="card-body">
-                                                <h5 class="card-title">{{$comment->author_id}}</h5>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <h5 class="card-title">{{$comment->user->name}} said:</h5>
+                                                    </div>
+                                                    <div class="col-1">    
+                                                        {{-- delete --}}
+                                                        @if (Auth::user()->role==='admin')
+                                                        <a href="#" onclick="if(confirm('Are you sure you want to delete this comment?')){
+                                                        document.getElementById('comment-{{$comment->id}}').submit(); }"
+                                                        class="btn btn-danger btn-sm" title="Delete">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                                          </svg>
+                                                        </a>
+                                                        <form id="comment-{{$comment->id}}" action="{{route('destroy.comment', ['comment'=>$comment->id])}}" method="POST">
+                                                        @csrf
+                                                        @method('delete')
+                                                        </form>
+                                                        
+                                                        @endif
+                                                        
+                                                    </div>
+                                                </div>
                                                 <h6 class="card-subtitle mb-2 text-muted">{{$comment->created_at}}</h6>
                                                 <p class="card-text">{{$comment->message}}</p>
                                                 
-                                                <small><p class="card-text"> last updated on :{{$comment->updated_at}}</p></small>
-                                            
-                                                {{-- delete --}}
-                                                {{-- <button onclick="if(confirm('Are you sure you want to delete this comment?')){
-                                                document.getElementById('form-{{$comment->id}}').submit();
-                                                }"
-                                                class="btn btn-danger btn-sm" title="Delete"><i class="bi bi-trash"></i></button>
-                                                <form id="form-{{$comment->id}}" action="{{route('userArticleComment.destroy', ['comment'=>$comment->id])}}" method="post">
-                                                @csrf
-                                                @method('delete')
-                                                </form> --}}
-                                            
+                                                <small><p class="card-subtitle mb-2 text-muted"> last updated on :{{$comment->updated_at}}</p></small>
                                             </div>
-                                            </div>
+                                        
+                                            
+                                        </div>
+                                            
                                         @endforeach
+                                    </section>
                                     </div>
                             </div>
                             </form>
