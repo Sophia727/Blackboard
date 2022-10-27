@@ -11,6 +11,29 @@ use PhpParser\Node\Expr\PostDec;
 
 class PostController extends Controller
 {
+    
+        
+    /**
+     * newsFeed: news list for non authentified guest. 
+     *
+     * @return void
+     */
+    public function newsFeed(){
+        $posts = Post::orderBy('updated_at', 'asc')->paginate(10);
+        return view("pre-login.news.news", ['posts' => $posts]);
+    }
+    public function guestReadMore($id, Comment $comments){
+        $post = Post::find($id);
+        $comments= Post::with('comments')->find($id)->comments;
+        $posts = Post::orderBy('updated_at', 'asc')->paginate(3);
+        return view('pre-login.news.news_article', 
+            ['post'=>$post,
+            'comments'=>$comments,
+            'posts'=>$posts
+            ]);
+
+    }
+    
     public function showPosts(){
         $posts = Post::orderBy('updated_at', 'asc')->paginate(10);
         return view("post-login.news.news", ['posts' => $posts]);

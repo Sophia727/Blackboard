@@ -1,12 +1,12 @@
 @extends('template.homepage')
 @section('content')
 
-<section>
-    <div class="container">
+<section class="contactUs_section">
+    <div class="container " >
       <div class="row my-5 gx-lg-5 gx-4 align-items-center">
-
-        <div class="col-lg-5 text-center">
-
+        
+        <div class="col-lg-5 text-center contact-info-area">
+          
           <h4>Address</h4>
           <p>Lorem, ipsum dolor.<br>
           Lorem ipsum dolor sit.<br>
@@ -14,10 +14,11 @@
           <h4>Tel:</h4>
           <p>+21252200000<br>
           212522100000</p>
+        
         </div>
       
 
-        <div class="col-lg-7 my-4">
+        <div class="col-lg-7 my-4 contact-message">
           
           <p class="my-2">
             <div class="contact-form">

@@ -1,0 +1,21 @@
+.join-us{
+    position: relative;
+    top: -250px;
+    left: 12rem;
+    width:14rem;
+    height: 3.5rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: white; */
+    border: none;
+    border-radius: 15px;
+    color: #854055;
+    font-size: x-large  ;
+    font-weight: 500;
+    text-transform:uppercase;
+    font-family:'Courier New', Courier, monospace;
+}
+.join-us:hover{
+    transform:rotate(-5deg);
+    transition: 1s;
+    box-shadow: 0 0 25px 5px #c2c2c2;
+}

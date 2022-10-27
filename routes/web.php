@@ -10,6 +10,7 @@ use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\parent\ParentController;
 use App\Http\Controllers\professor\ProfessorController;
 use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\professor\GradesController;
 use App\Http\Controllers\professor\Users_PostController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Controllers\student\StudentController;
@@ -30,15 +31,18 @@ use Illuminate\Support\Facades\Route;
 
 // visitor navigation
 Route::get('/', [AuthController::class, 'welcomepage'])->name('pre-login.welcomepage');
-Route::get('/feed', function () {
-    return view('pre-login.news.news');
-})->name('news');
+//News
+Route::get('/feed', [PostController::class, 'newsFeed'])->name('news');
+Route::get('/feed/{post}', [PostController::class, 'guestReadMore'])->name('readmore.guest');
+
 //About us
 Route::get('/about-us', function () {
     return view('pre-login.aboutUs.aboutUs');
 })->name('aboutUs');
 Route::get('/faculties', [FacultyController::class, 'index'])->name('faculty.list');
-Route::get('/{id}/faculty-profile', [FacultyController::class, 'facultyProfile'])->name('faculty.profile');
+Route::get('/{view}/{id}/faculty-profile-and-specialities', [FacultyController::class, 'facultyProfile'])->name('faculty.profile');
+// Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
+
 Route::get('/facilities', function () {
     return view('pre-login.aboutUs.facilities');
 })->name('facilities');
@@ -58,15 +62,20 @@ Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 
 
 
-
+//calendar routes
+Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
+Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
 
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
+    Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
 
+//calendar routes
+        Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
+        Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
     //News
-    Route::get('/news', [Users_PostController::class, 'showPosts'])->name('user.show.news');
-    Route::get('/news', [Users_PostController::class, 'showPosts'])->name('user.show.news');
+    Route::get('/news', [PostController::class, 'showPosts'])->name('user.show.news');
     Route::get('/{post}/news-article', [Users_PostController::class, 'readMore'])->name('user.news.readmore');
     Route::get('/create-post', [Users_PostController::class, 'create'])->name('user.write.post');
     Route::post('/publishing-post', [Users_PostController::class, 'store'])->name('user.store.post');
@@ -78,7 +87,9 @@ Route::middleware(['auth', 'parent'])->group(function () {
 
 Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.dashboard');
-    
+    Route::get('/all-grades', [GradesController::class, 'index'])->name('all.grades');
+    Route::get('/add-grades', [GradesController::class, 'create'])->name('add.grades');
+    Route::post('/store-grades', [GradesController::class, 'store'])->name('store.grades');
 });
 //student
 Route::middleware(['auth', 'student'])->group(function () {
@@ -101,10 +112,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         // navbar
         Route::get('/{id}/admin-profile', [UserController::class, 'myProfile'])->name('admin.profile');
-
-        //calendar routes
-        Route::get('full-calendar', [FullCalendarController::class, 'index'])->name('calendar');
-        Route::post('full-calendar/action', [FullCalendarController::class, 'action']);
         // sidebar routes
         Route::get('/professors-list', [UserController::class, 'showProfessors'])->name('professors.list');
         Route::get('/parents-list', [UserController::class, 'showParents'])->name('parents.list');
@@ -117,7 +124,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/{id}/profile', [UserController::class, 'userProfile'])->name('user.profile');
         Route::get('/{id}/profile/delete', [UserController::class, 'destroy'])->name('destroy.profile');
         Route::put('user/{id}/activate', [UserController::class, "activate"])->name("user.activate");
-        Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
 
         // dashboard routes
         Route::get('/admins-list', [UserController::class, 'showAdmins'])->name('admins.list');
@@ -136,18 +142,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        
         Route::get('/add-report', [ReportController::class, 'create'])->name('add.report');
         Route::post('/report-post', [ReportController::class, 'store'])->name('store.report');
-        // Route::post('/download-report{report}', [ReportController::class, 'download'])->name('download.report');
         Route::get('/download-report/{report}', [ReportController::class, 'download'])->name('download.report');
-        // Route::get('/view-report{report}', [ReportController::class, 'viewFile'])->name('view.report');
         Route::delete('/destroy-report/{report}', [ReportController::class, 'destroy'])->name('destroy.report');
 
         //news
-        // Route::get('/feed-posts', [PostController::class, 'showPosts'] )->name('show.news');  
         Route::get('/news', [PostController::class, 'showPosts'])->name('show.news');
         Route::get('/{post}/news-article', [PostController::class, 'readMore'])->name('news.readmore');
         Route::get('/create-post', [PostController::class, 'create'])->name('write.post');
         Route::post('/publishing-post', [PostController::class, 'store'])->name('store.post');
-        // Route::post('/list-posts', [PostController::class, 'postsList'] )->name('posts.list');  
         Route::get('article/search', [PostController::class, 'searchPost'])->name('search.post');
         Route::get("news/{post}/edit", [PostController::class, 'editPost'])->name('edit.post');
         Route::put("articles/{post}/update", [PostController::class, 'update'])->name('update.post');

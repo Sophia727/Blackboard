@@ -1,0 +1,21 @@
+.contactUs_section{
+    height: 530px;
+}
+
+.contact-info-area{
+    position: relative;
+    top: 23px;
+    right: 25px;
+    background: url('../../images/contactus.jpg') no-repeat  rgba(0, 0, 0, 0.4);
+    width: 100%;
+    border-radius: 2px;
+    padding: 15px;
+    color: white;
+}
+
+.contact-message{
+    position: relative;
+    top: 45px;
+    left: 20px;
+    box-shadow: 0 5px 10px 0px #bdbdbd;
+}

@@ -56,14 +56,14 @@
 </div>
 <div class="row">
   @foreach ($faculty as $faculty)
-  <div class="card">
-    <div class="row">
-    <div class="col-5">
+  
+    <div class="row mb-5">
+    <div class="col-5 text-center">
         <img src="{{$faculty->logo}}" class="card-img-left" alt="{{$faculty->name}} logo ">
     </div>
     <div class="col-5 text-left">
             <h5 class="card-title ">{{$faculty->name}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">Here goes a quick description of the faculty...</p>
     </div>
     <div class="col-2">
         {{-- <a href="" class="btn btn-outline-secondary">See all Specialities</a> --}}
@@ -71,7 +71,7 @@
 
     </div>
     </div>
-  </div>
+ 
 
   @endforeach
 </div>

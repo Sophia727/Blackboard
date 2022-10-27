@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class SpecialityController extends Controller
 {    
     /**
-     * index : afficher dynamiquement les specialités par rapport aux facultés
+     * index : post login function showing specialities of a certain faculty
      *
      * @param  mixed $view
      * @param  mixed $id

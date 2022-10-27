@@ -1,0 +1,13 @@
+.preLogin_news_section{
+    margin: 6rem 0 3rem 0;
+}
+.bigTitle{
+    margin-bottom: 2rem;
+    font-family: 'Nunito';
+}
+.news_image{
+    width: 70%; 
+    border-radius:2%;
+    text-align: center;
+    margin-left: 6rem;
+}

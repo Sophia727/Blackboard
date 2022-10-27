@@ -214,7 +214,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-md btn-outline-secondary m-4" type="submit"> Create subject</button>
+            <button type="submit" class="btn btn-md btn-secondary m-4"> Create Faculty</button>
         </div>
     </form>
     </div>

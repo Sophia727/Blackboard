@@ -1,32 +1,29 @@
 @extends('template.homepage')
 
 @section('content')
-
+<section class="preLogin_news_section">
 <div class="container">
-    <p class="spacer" style="font-weight: 700; font-size: 24px; padding: 0 0 16px 0; margin: 48px 0 32px 0; border-bottom: 2px solid #e8ebed; line-height: 1.25;">
+    
         <div class="row">
-            <div class="col8"><strong>LATEST NEWS</strong></div>
-            <div class="col-4"></div>
-            </div>
-        <div class="row"><div class="div">{{$posts->links()}}</div>
-    </div>
-    </p>
+            <div class="col8"><h2 class="bigTitle">Welcome to our <strong>Community!</strong></h2></div>
+            <div class="col-4 text-right"><div class="div">{{$posts->links()}}</div></div>
+        </div>
     
     <li class="list-group" style="list-style: none">
         @foreach ($posts as $post)
         <div class="row">
             <div class="col-4">
                 <a class="" href="#">
-                    <img src="{{asset('images/dummy-image.jpg')}}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
+                    <img src="{{$post->photo}}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
                 </a>
             </div>
             <div class="col-8">
                 <h2 class="card-title">
-                    <a href="{{route('news.readmore', ['post'=>$post->id])}}">{{$post->title}}</a>
+                    <a href="{{route('readmore.guest', ['post'=>$post->id])}}">{{$post->title}}</a>
                 </h2>
                 <p class="card-text">{{$post->description}}</p>
                 <div class="text-right">
-                    <a href="{{route('news.readmore', ['post'=>$post->id])}}" class="btn btn-outline-primary">Read more</a>
+                    <a href="{{route('readmore.guest', ['post'=>$post->id])}}" class="btn btn-outline-primary">Read more</a>
                 </div>
                 <div class="row">
                     <div class="col-2">
@@ -48,4 +45,5 @@
 
     </li>
 </div>
+</section>
 @endsection

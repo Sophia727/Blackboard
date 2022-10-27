@@ -6,10 +6,10 @@
     <hr>
     {{-- <ul class="nav justify-content-center border-bottom pb-3 mb-3"> --}}
     <ul class="footer_lists">
-        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About us</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">News Feed</a></li>
+        <li class="nav-item"><a href="{{route('pre-login.welcomepage')}}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{{route('aboutUs')}}" class="nav-link">About us</a></li>
+        <li class="nav-item"><a href="{{route('contactUs')}}" class="nav-link">Contact us</a></li>
+        <li class="nav-item"><a href="{{route('news')}}" class="nav-link">News Feed</a></li>
     </ul><hr>
     <div>
         {{-- <ul class="ftco-footer-social p-0"> --}}

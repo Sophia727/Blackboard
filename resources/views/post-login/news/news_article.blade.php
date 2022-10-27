@@ -14,10 +14,6 @@
                 @endif
         </div>
     
-    <p class="spacer" style="font-weight: 700; font-size: 24px; padding: 0 0 16px 0; margin: 48px 0 32px 0; border-bottom: 2px solid #e8ebed; line-height: 1.25;">
-        <strong>LATEST NEWS</strong>
-    </p>
-    
     <li class="list-group" style="list-style: none">
         
         <div class="row">

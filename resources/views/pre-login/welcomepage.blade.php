@@ -2,37 +2,40 @@
 @section('content')
 {{-- LES SLIDERS / caroussel--}}
     <div class="carousel slide carousel-fade" data-ride="carousel">
+      <div id="carouselslide" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('images/InscripOuv.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%">
+                <img src="{{asset('images/Inscriptions ouvertes!.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%; height:550px">
+                <button href="{{route('contactUs')}}" class="join-us">Join us now!</button>
+
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/management.jpg')}}" class="d-block w-100" alt="management" style="width: 100%">
+                <img src="{{asset('images/business2.jpg')}}" class="d-block w-100" alt="management" style="width: 100%; height:550px">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/architecture.jpg')}}" class="d-block w-100" alt="architecture" style="width: 100%">
+                <img src="{{asset('images/architecture2.jpeg')}}" class="d-block w-100" alt="architecture" style="width: 100%; height:550px">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/biology.jpg')}}" class="d-block w-100" alt="biology" style="width: 100%">
+                <img src="{{asset('images/medicine2.jpg')}}" class="d-block w-100" alt="biology" style="width: 100%; height:550px">
             </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselslide" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselslide" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </div>
 
 
 {{-- uni in numbers --}}
     <section>
-        <div class="container" style="margin: 25px; text-align:center;">
+        <div class="container" style="margin: 20px 50px; text-align:center;">
             <h4>NOTRE UNIVERSITÉ EN CHIFFRES</h4>
-
+            <hr>
         <div class="card-columns">
             <div class="card">
     
@@ -47,22 +50,27 @@
               <blockquote class="blockquote mb-0 card-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
                 <footer class="blockquote-footer">
-                  <small class="text-muted">
+                  <small class="text-muted ">
                     Someone famous in <cite title="Source Title">Source Title</cite>
                   </small>
                 </footer>
               </blockquote>
             </div>
-
             <div class="card">
               
+              <div class="card-body mb-0">
+                <h5 class="card-title text-muted" style="font-size: 4rem;">+40% </h5>
+                <p class="card-text" style="font-family: 'PT Serif',Arial,serif;">International Professors and Doctors</p>
+              </div>
+            </div>
+            <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-muted" style="font-size: 5.8rem;">+500</h5>
-                <p class="card-text" style="font-family: 'PT Serif',Arial,serif;">inscriptions par an</p>
+                <h5 class="card-title text-muted" style="font-size: 4.5rem;">+500</h5>
+                <p class="card-text" style="font-family: 'PT Serif',Arial,serif;">Enrollements per year</p>
               </div>
             </div>
             <div class="card bg-secondary text-white text-center p-3">
-              <blockquote class="blockquote  text-right mb-0">
+              <blockquote class="blockquote  text-center mb-0">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
                 <footer class="blockquote-footer text-white">
                   <small>
@@ -90,16 +98,26 @@
             </div>
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title text-muted" style="font-size: 5.8rem;">+250</h5>
+                <h5 class="card-title text-muted" style="font-size: 4.5rem;">+250</h5>
                 <p class="card-text" style="font-family: 'PT Serif',Arial,serif;">d'entreprises partenaires</p>
               </div>
+            </div>
+            <div class="card bg-white text-secondary p-3 text-left">
+              <blockquote class="blockquote">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi delectus molestiae beatae debitis quae, amet tempora illum facilis corrupti? Aliquid!.</p>
+                <footer class="blockquote-footer">
+                  <small class="text-muted">
+                    Someone famous in <cite title="Source Title">Source Title</cite>
+                  </small>
+                </footer>
+              </blockquote>
             </div>
           </div>
         </div>
     </section>
     {{-- posts news --}}
     <div style="background-color:#a7c5bd;">
-    <section style="margin: 50px; padding:20px">
+    <section style="margin:50px ;padding:20px">
         <h3>News feed</h3>
         <div class="card-group">
           @foreach ($posts as $posts)
@@ -126,7 +144,7 @@
             alt="placeholder"
             class="rounded-circle img-fluid my-2"
             width="320"
-            height="300"
+            height="250"
           />
         </div>
 
@@ -135,7 +153,7 @@
           <p class="my-2">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, quaerat incidunt. Vitae vero officiis dignissimos suscipit illum est enim amet repellendus ut. Esse aspernatur incidunt deleniti sequi velit modi distinctio eligendi quibusdam voluptate sit, perspiciatis totam nam minus vitae numquam.
           </p>
-          <button class="btn btn-primary">Join us!</button>
+          <button href="{{route('contactUs')}}" class="btn btn-primary">Join us!</button>
         </div>
       </div>
     </div>

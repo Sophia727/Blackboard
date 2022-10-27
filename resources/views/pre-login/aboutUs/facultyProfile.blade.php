@@ -12,11 +12,10 @@
     <hr>
     <h3 class="discoverDiff">Discover different specialities within our Faculty!</h3>
     <div class="card">
-        @foreach ($specialities as $specialities)
-            
+        @foreach ($specialities as $speciality)
         
         <div class="card-header">
-            <h4>{{$specialities->name}}</h4>
+            <h4>{{$speciality->name}}</h4>
         </div>
         <div class="card-title">
             <h6>Program details: </h6>

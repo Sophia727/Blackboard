@@ -11,7 +11,7 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Create a new faculty</h4>
+                <h4 class="card-title text-warning">Create a new faculty</h4>
                 <h6 class="text-muted">Add a new faculty to database</h6>
             </div>
             <div class="card-body">
@@ -45,7 +45,7 @@
             <div class="row m-2">
             <div class="form-group">
                 <div class="input-group mb-3">
-                    <h6 style="margin:0 2rem 1rem 0; padding-top:0.5rem">Faculty Logo or Badge</h6>
+                    <h6 >Faculty Logo or Badge</h6>
                     <input type="file" class="form-control" name="logo" id="inputGroupFile01" value="{{old('logo')}}">
                     
                 </div>

@@ -15,9 +15,7 @@
     </h1>
   </div>
   <div class="col-4">
-    {{-- <x-searchUser view="post-login.admin.lists.studentsList"/> --}}
   </div>
-  {{-- <div class="d-flex justify-content-end">{{$specialities->links()}}</div>        --}}
 </div><div class="row">
     
     <div class="card-body">
@@ -31,15 +29,14 @@
             </thead>
             <tbody>
               <tbody>
-                @foreach ($specialities as $spec)
+                @foreach ($specialities as $speciality)
                 <tr>
             
-                  <td>{{$spec->name}}</td>
+                  <td>{{$speciality->name}}</td>
              
                   
                   <td> 
-                    {{-- <a href="{{route('user.profile', ['id'=>$user->id])}}" title="profile" class="btn btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
-                    <i class="fa-solid fa-messages"></i>
+                    <i class="fa-solid fa-glasses"> </i>
                   </td>
                 @endforeach
               </tbody>
@@ -47,7 +44,6 @@
           </div>
         </div>
     </div>
-    {{-- <div class="d-flex justify-content-end">{{$specialities->links()}}</div> --}}
 
 </div>
 

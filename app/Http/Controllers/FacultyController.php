@@ -13,12 +13,27 @@ class FacultyController extends Controller
     public function index(){
         $faculty= Faculty::all();
         return view('pre-login.aboutUs.faculties', ['faculty'=>$faculty]);
-    }
-    public function facultyProfile($id){
+    }    
+    /**
+     * facultyProfile: pre-login function to show a faculty profile and related specialities
+     *
+     * @param  mixed $view
+     * @param  mixed $id
+     * @return void
+     */
+    public function facultyProfile($view, $id){
         $faculty = Faculty::find($id);
-        $speciality = Speciality::all();
-        return view('post-login.admin.institution.faculty.facultyProfile', ['faculty' => $faculty, 'speciality'=>$speciality]);
+        
+        // $speciality = Speciality::all();
+        $specialities = $faculty->specialities;
+        return view($view, ['faculty'=>$faculty , 'specialities' => $specialities]);
     }
+    //post login
+    // public function facultyProfile($id){
+    //     $faculty = Faculty::find($id);
+    //     $speciality = Speciality::all();
+    //     return view('post-login.admin.institution.faculty.facultyProfile', ['faculty' => $faculty, 'speciality'=>$speciality]);
+    // }
     public function create()
     {
         $user = DB::table('users')->where(['role'=> 'admin'])->orderBy('name', 'asc')->get(); 

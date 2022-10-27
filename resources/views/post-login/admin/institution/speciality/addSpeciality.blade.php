@@ -11,7 +11,7 @@
         @endif
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Create a new Speciality</h4>
+                <h4 class="card-title text-warning">Create a new Speciality</h4>
                 <h6 class="text-muted">Add a new speciality to database</h6>
             </div>
             <div class="card-body">
@@ -33,10 +33,10 @@
                 <div class="col">
                     <div class="form-group">
                         <h6>Choose assigned faculties: </h6>
-                        <select name="faculty_id" class="form-select" required aria-label="multiple select example">
+                        <select name="faculty_id" class="form-select" aria-label="multiple select example" required>
                             <option selected >Faculty...</option>
                             @foreach ($faculty as $faculty)  
-                                <div class="form-check">
+                                <div class="form-check" >
                                     <option value="{{$faculty->id}}">{{$faculty->name}}</option>
                                 </div>  
                             @endforeach
@@ -46,56 +46,22 @@
                 </div>
             </div>
             
-            {{-- <div class="collapse multi-collapse" id="subject">
-                <div class="card card-body">
-                    <div class="row m-2">
-                        <div class="col">
-                            <div class="form-group">
-                                <h6>Subject Name</h6>
-                                <input type="text" class="form-control  @error('subject name')is-invalid @enderror" name="subject_name" placeholder="Biology" value="{{old('subject_name')}}" >
-                                @error('subject_name')
-                                    <div class="alert alert-danger">{{$message}}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="row m-2">
-                        
-                        <div class="col">
-                            <div class="form-group ">
-                                <h6>Select professor:</h6>
-                                <select class="form-select" name="professor_id" aria-label="multiple select example">
-                                    
-                                    <option selected>Professors...</option>
-                                    @foreach ($role as $users)  
-                                        <div class="form-check @error('professor')is-invalid @enderror">
-                                            <option value="{{$users->name}}" name="professor">{{$users->name}}</option>
-                                        </div>  
-                                    @endforeach
-                                  
-                                </select>
-                                @error('professor')
-                                    <div class="alert alert-danger">{{$message}}</div>
-                                @enderror
-                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        <div class="row g-2"> 
+           
+        <div class="row"> 
             <div class="d-grid col-sm-8">            
                 <button type="submit" class="btn btn-md btn-secondary m-4"> Create Faculty</button>
             </div>
-            <div class="col-sm">    
-                <a data-bs-toggle="collapse" role="button" class="btn btn-md btn-outline-secondary m-4" aria-expanded="false" 
-                    href="#subject" 
-                    aria-controls="subject">   Create Subject
-                </a>     
-                {{-- <button type="button" href="{{route('add.subject')}}" class="btn btn-md btn-outline-secondary m-4"> Create Subject</button> --}}
+            <div class="col-sm-4">    
+                <a role="button" class="btn btn-outline-secondary m-4"
+                href="{{route('add.subject')}}">                    
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                    Add Subject
+                </a>
             </div>
-        
+            
         </div> 
                      
     </div>

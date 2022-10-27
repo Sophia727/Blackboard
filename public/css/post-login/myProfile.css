@@ -17,13 +17,13 @@
     color:white;
 }
 .user_pic{
-    border-radius: 50%;
+    border-radius: 60%;
     height:150px;
     width:150px;
     position:relative;
-    top:45%;
-    left:45%;  
-    background:#E63946;
+    top:43%;
+    left:43%;  
+    background:transparent;
 }
 .myProfile_body h3{
     margin-top: 50px;

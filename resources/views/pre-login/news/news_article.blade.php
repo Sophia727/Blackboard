@@ -1,10 +1,7 @@
 @extends('template.homepage')
 @section('content')
-
+<section class="preLogin_news_section">
 <div class="container">
-    <p class="spacer" style="font-weight: 700; font-size: 24px; padding: 0 0 16px 0; margin: 48px 0 32px 0; border-bottom: 2px solid #e8ebed; line-height: 1.25;">
-        <strong>LATEST NEWS</strong>
-    </p>
     
     <li class="list-group" style="list-style: none">
         
@@ -19,7 +16,7 @@
                     <a href="#">{{$post->title}}</a>
                 </h2>
                 <div class="card-header">
-                    <img src="{{asset('images/dummy-image.jpg') }}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
+                    <img src="{{$post->photo}}" class="news_image" alt="placeholder"/>
                 </div>
                 <hr>
                 <p class="card-text">{{$post->description}}</p>
@@ -68,5 +65,5 @@
 
 
 
-
+</section>
 @endsection

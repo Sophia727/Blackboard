@@ -17,6 +17,7 @@ class CreateGradesTable extends Migration
             $table->id();
             $table->timestamps();
             $table->float('grade')->nullable();
+            $table->string("file")->nullable();
             $table->string('academic_year');
             $table->foreignId('student_id')->constrained('users');
             $table->foreignId('subject_id')->constrained('subjects');

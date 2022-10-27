@@ -3,7 +3,9 @@
     z-index: 100; 
     top:0cm;
     width:100%;
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(108, 122, 137, 0.4); */
+    background-color: rgba(36, 38, 37, 0.4);
+    
 }
 .postlogin_navbar{
     /* position:absolute; */

@@ -18,6 +18,6 @@ class Faculty extends Model
         return $this->belongsTo(User::class);
     }
     public function specialities(){
-        return $this->hasMany(Speciality::class);
+        return $this->hasMany(Speciality::class, 'faculty_id');
     }
 }

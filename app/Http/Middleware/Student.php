@@ -19,7 +19,7 @@ class Student
         if(auth()->user()->role == "student"){
             return $next($request);
         } 
-        return redirect()->route('login')->with('error', 'This account does not exist. Please contact your school administration.');
+        return redirect()->route('login')->with('error', 'This student\'s account does not exist. Please contact your school administration.');
         }
     }
 

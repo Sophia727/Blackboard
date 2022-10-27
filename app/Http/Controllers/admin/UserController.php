@@ -110,17 +110,18 @@ class UserController extends Controller
             'phone' => "required",
             'address' => 'required',
         ]);
-
+        dd($dataOk);
         $user = User::find($id);
         $user->name = $dataOk['name'];
         $user->email = $dataOk['email'];
         $user->phone = $dataOk['phone'];
         $user->address = $dataOk['address'];
-        if ($user->save()) {
-            $user['updated_at'] = now();
-            return redirect()->route('user.profile', ['id' => $user->id])->with(["status" => "$user->name updated successfully"]);
+        
+        if ($user->update()) {
+            return back()->with(["status" => "$user->name updated successfully"]);
+            
         } else {
-            return back()->with("error", "Failed to create the User")->withInput();
+            return back()->with("error", "Failed to update your profile")->withInput();
         }
     }    
     /**

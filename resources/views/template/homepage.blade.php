@@ -18,6 +18,11 @@
         <link rel="stylesheet" href="{{asset('css/pre-login/login.css')}}">
         <link rel="stylesheet" href="{{asset('css/generalities/navbar.css')}}">
         <link rel="stylesheet" href="{{asset('css/generalities/footer.css')}}">
+        <link rel="stylesheet" href="{{asset('css/pre-login/contactUs.css')}}">
+        <link rel="stylesheet" href="{{asset('css/pre-login/pre-login.css')}}">
+        <link rel="stylesheet" href="{{asset('css/pre-login/news.css')}}">
+
+
         <script src="https://kit.fontawesome.com/5c45cf9def.js" crossorigin="anonymous"></script>  
     </head>
 

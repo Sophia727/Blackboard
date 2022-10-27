@@ -1,6 +1,6 @@
 @extends('template.homepage')
 @section('content')
-    <div class="container-fluid">
+    <div class="container-fluid aboutUs_section">
         <div class="row">
             <h2>Learn more about us</h2>
             <div class="col-lg-12">
@@ -9,8 +9,8 @@
                     <div class="row">
                         <div class="col-md-12">
         
-                            <div style="display:inline-block;width:100%;overflow-y:auto;">
-                            <ul class="timeline timeline-horizontal events">
+                            <div > 
+                            <ul class="timeline timeline-horizontal events timeline_style">
                                 <li class="timeline-item">
                                     <div class="px-4">
                                         <div class="event-date bg-soft-success text-success">1980</div>
@@ -68,19 +68,42 @@
                     </div>
                 </div>
                 <!-- end card -->
-                <div class="col-lg-12 mission">
-                    <H4>Mission</H4>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente soluta voluptatem laudantium placeat, nobis obcaecati officia quo minima sed eius enim velit natus illo nostrum praesentium rerum quia quis mollitia? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere magnam illo temporibus corporis sequi fugiat quo quod explicabo modi, voluptatibus aperiam sed, impedit molestiae consectetur ab quos distinctio reiciendis soluta dolorum deserunt. Quibusdam, doloremque vitae!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
+               
                 
             </div>
         </div>
-        
+    </div>
+    <section class="mission">
+        <div class="col-lg-12">
+            <H4>Mission</H4>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente soluta voluptatem laudantium placeat, nobis obcaecati officia quo minima sed eius enim velit natus illo nostrum praesentium rerum quia quis mollitia? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere magnam illo temporibus corporis sequi fugiat quo quod explicabo modi, voluptatibus aperiam sed, impedit molestiae consectetur ab quos distinctio reiciendis soluta dolorum deserunt. Quibusdam, doloremque vitae!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="more-info">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col">
+                    <img src="{{asset('images/happy_students.jpg')}}" class="happy_students_pic" alt="Happy Students" width="600px" height="auto">
+                </div>
+                <div class="col">
+                    <div class="text-center getInTouch">
+                <div>
+                <h2>Need more information?</h2>
+                <button class="btn git_btn">Get in touch!</button>
+            </div></div>
+            </div>
+
+            
+            </div>
+
+            
+          
+        </div>
+    </section>
 @endsection
