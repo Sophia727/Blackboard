@@ -6,10 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FacultyController;
-use App\Http\Controllers\FullCalendarController;
 use App\Http\Controllers\parent\ParentController;
 use App\Http\Controllers\professor\ProfessorController;
 use App\Http\Controllers\admin\ReportController;
+use App\Http\Controllers\FullCalenderController;
 use App\Http\Controllers\professor\GradesController;
 use App\Http\Controllers\professor\Users_PostController;
 use App\Http\Controllers\SpecialityController;
@@ -63,8 +63,9 @@ Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 
 
 //calendar routes
-Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
-Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
+
+
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -72,9 +73,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
 
 //calendar routes
-        Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
-        Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
-    //News
+    Route::controller(FullCalenderController::class)->group(function(){
+
+    Route::get('fullcalender', 'index')->name('calendar.show');
+
+    Route::post('fullcalenderAjax', 'ajax');});
+        //     Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
+    //     Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
+    // //News
     Route::get('/news', [PostController::class, 'showPosts'])->name('user.show.news');
     Route::get('/{post}/news-article', [Users_PostController::class, 'readMore'])->name('user.news.readmore');
     Route::get('/create-post', [Users_PostController::class, 'create'])->name('user.write.post');

@@ -4,7 +4,7 @@
 
 <div class="container preLogin_faculties">
   <div>
-      <h3>Our Faculties and Programs </h3>
+      <h3 style="text-transform: uppercase">Our Faculties and Programs</h3>
   </div><hr>
   <div>
   @foreach ($faculty as $faculty)
