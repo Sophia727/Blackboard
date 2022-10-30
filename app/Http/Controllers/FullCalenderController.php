@@ -19,6 +19,7 @@ class FullCalenderController extends Controller
 
     public function index(Request $request)
     {
+        // dd($request->ajax());
         if($request->ajax()) {
              $data = Event::whereDate('start', '>=', $request->start)
                        ->whereDate('end',   '<=', $request->end)
@@ -42,6 +43,7 @@ class FullCalenderController extends Controller
 
     public function ajax(Request $request)
     {
+        
         switch ($request->type) {
            case 'add':
               $event = Event::create([
