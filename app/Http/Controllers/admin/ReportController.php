@@ -44,40 +44,11 @@ class ReportController extends Controller
             return back()->with("error", "Failed to upload report")->withInput();
         }
     }
-    //public function download($id){
 
-        //$report = Report::where('id', $id)->firstOrFail();
-        // $report = Report::find($id);
-        //$pathToFile = storage_path('files/reports/' . $report);
-        //return response()->download($pathToFile);
-
-        //$report = Report::find($id);
-        // return Storage::disk('public')->download($report->path);
-        //$path= $report->getPath().$report->path;
-        //return Storage::download(asset('storage/files/reports'.$report->path), $report->original_name);
-        //return response()->download($path);
-    
-        // if(Storage::disk('public')->exists('storage/files/reports/'.$request->file)){
-        //     $path=Storage::disk('public')->path('storage/files/reports/'.$request->file);
-        //     $content= file_get_contents($path);
-        //     return response($content)->withHeaders([
-        //         'Content-Type' =>mime_content_type($path)
-        //     ]);
-        // } return redirect('/404');
-    //}
 
     public function download(Request $request, $report){
 
         return Storage::download(asset("storage/".$report));
-
-        // if (Storage::disk('public')->exists("storage/files/reports/".$request->name)) {
-        //     $path = Storage::disk('public')->path("storage/files/reports/".$request->name);
-        //     $content = file_get_contents($path);
-        //     return response()->download(public_path('storage/files/reports/'.$report->file));
-        // } else{
-        //     return redirect('/404');
-            
-        // }
     }
 
     public function viewFile($id){
