@@ -2,7 +2,7 @@
     <div class="prelogin_navbar">
     <nav class="navbar navbar-expand-lg">
       <div class="container px-4">
-        <a href="{{route('pre-login.welcomepage')}}" class="navbar-brand fs-5"><i class="bi bi-building"></i></a>
+        <a href="{{route('pre-login.welcomepage')}}" class="navbar-brand fs-2 text-light"><i class="bi bi-building"></i> University</a>
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">

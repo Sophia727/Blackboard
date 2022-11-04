@@ -1,8 +1,11 @@
 @extends('template.user_homepage')
 @section('content')
 
-
-<h1>Institution file</h1>
+<div class="col-8">
+    <h1>
+      <strong>Institution File</strong>
+    </h1>
+  </div>
 <div class="row">
     
 

@@ -59,6 +59,7 @@ class UserController extends Controller
             $users['role'] = 'parent';
         } else {
             $users['role'] = 'student';
+            
         }
 
         if ($request->file('photo')) {

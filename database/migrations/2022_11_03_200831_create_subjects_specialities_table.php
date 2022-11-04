@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectSpecialitiesTable extends Migration
+class CreateSubjectsSpecialitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateSubjectSpecialitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_specialities', function (Blueprint $table) {
+        Schema::create('subjects_specialities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("spec_subject_id");
-            $table->foreign("spec_subject_id")->references("id")->on("subjects");            
+            $table->foreignId('subject_id')->constrained('subjects');
+            $table->foreignId('speciality_id')->constrained('specialities');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateSubjectSpecialitiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subject_specialities');
+        Schema::dropIfExists('subjects_specialities');
     }
 }

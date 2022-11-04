@@ -42,7 +42,7 @@ class PostController extends Controller
     public function readMore($id, Comment $comments){
         $post = Post::find($id);
         $comments= Post::with('comments')->find($id)->comments;
-        $posts = Post::orderBy('updated_at', 'asc')->paginate(3);
+        $posts = Post::orderBy('updated_at', 'asc')->paginate(5);
         return view('post-login.news.news_article', 
             ['post'=>$post,
             'comments'=>$comments,

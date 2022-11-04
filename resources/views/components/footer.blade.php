@@ -5,7 +5,7 @@
     <i class="bi bi-building fa-2x"></i>
     <hr>
     {{-- <ul class="nav justify-content-center border-bottom pb-3 mb-3"> --}}
-    <ul class="footer_lists">
+    <ul class="footer_lists text-center">
         <li class="nav-item"><a href="{{route('pre-login.welcomepage')}}" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="{{route('aboutUs')}}" class="nav-link">About us</a></li>
         <li class="nav-item"><a href="{{route('contactUs')}}" class="nav-link">Contact us</a></li>

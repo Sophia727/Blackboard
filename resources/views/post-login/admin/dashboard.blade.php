@@ -69,18 +69,20 @@
                     </a>
                 </div>
             </div>
-            
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-green order-card">
-                    <a data-bs-toggle="collapse" role="button" aria-expanded="false" 
-                    href="#grades" 
-                    aria-controls="grades">
+                    <a role="button"
+                    href="{{route('choose.grade')}}" >
                         <div class="card-block">
                             <h3 class="m-b-20">Grades</h3>
                         </div>
                     </a>
+                    
+                    
+                    </a>
                 </div>
             </div>
+            
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-yellow order-card">
                     <a role="button"

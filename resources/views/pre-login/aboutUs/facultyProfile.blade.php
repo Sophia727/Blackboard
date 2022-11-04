@@ -1,6 +1,6 @@
 @extends('template.homepage')
 @section('content')
-<img src="{{asset('images/diff-facu.jpg')}}" class="card-img facultyProfile_coverPic" alt="Students representing different faculties">
+<img src="{{asset('images/students-studying.jpg')}}" class="card-img facultyProfile_coverPic" alt="Students representing different faculties" height="400px">
 
 <div class="container facultyProfile">
     <h2 class="text-center"><strong>{{$faculty->name}}</strong></h2>

@@ -41,7 +41,6 @@ Route::get('/about-us', function () {
 })->name('aboutUs');
 Route::get('/faculties', [FacultyController::class, 'index'])->name('faculty.list');
 Route::get('/{view}/{id}/faculty-profile-and-specialities', [FacultyController::class, 'facultyProfile'])->name('faculty.profile');
-// Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
 
 Route::get('/facilities', function () {
     return view('pre-login.aboutUs.facilities');
@@ -61,41 +60,37 @@ Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 // });
 
 
-
-//calendar routes
-
-
-
-
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
     Route::put('/profile/updated/{user}', [UserController::class, 'saveEdit'])->name('update.profile');
 
-//calendar routes
+    //calendar routes
     Route::controller(FullCalenderController::class)->group(function(){
-
     Route::get('fullcalender', 'index')->name('calendar.show');
-
     Route::post('fullcalenderAjax', 'ajax');});
-        //     Route::get('fullcalendar', [FullCalendarController::class, 'index'])->name('calendar.show');
-    //     Route::post('fullcalendarAjax', [FullCalendarController::class, 'ajax']);
-    // //News
+    //institution
+    Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
+
+    //Grades
+    Route::get('/choose-faculty', [GradesController::class, 'chooseFac'])->name('choose.grade');
+    Route::get('/{view}/{id}/choose-Speciality', [GradesController::class, 'chooseSpec'])->name('chooseSpec.grade');
+    Route::post('/store-grades', [GradesController::class, 'store'])->name('store.grades');
+
+    
+    //News
     Route::get('/news', [PostController::class, 'showPosts'])->name('user.show.news');
-    Route::get('/{post}/news-article', [Users_PostController::class, 'readMore'])->name('user.news.readmore');
-    Route::get('/create-post', [Users_PostController::class, 'create'])->name('user.write.post');
-    Route::post('/publishing-post', [Users_PostController::class, 'store'])->name('user.store.post');
 });
 
 Route::middleware(['auth', 'parent'])->group(function () {
     Route::get('/parent', [ParentController::class, 'index'])->name('parent.dashboard');
+
 });
 
 Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.dashboard');
-    Route::get('/all-grades', [GradesController::class, 'index'])->name('all.grades');
-    Route::get('/add-grades', [GradesController::class, 'create'])->name('add.grades');
-    Route::post('/store-grades', [GradesController::class, 'store'])->name('store.grades');
+    Route::get('/{view}/{id}/add-grades', [GradesController::class, 'chooseSpec'])->name('chooseSpec.grade');
+    Route::get('/{view}/{id}/speciality-profile', [SpecialityController::class, 'specialityProfile'])->name('speciality.profile');
+
 });
 //student
 Route::middleware(['auth', 'student'])->group(function () {
@@ -143,7 +138,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
         Route::get('/add-speciality', [SpecialityController::class, 'create'])->name('add.speciality');
         Route::post('/speciality-post', [SpecialityController::class, 'store'])->name('store.speciality');
-        Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
+        // Route::get('/{view}/{id}/specialities', [SpecialityController::class, 'facultyProfile'])->name('faculty.profile');
+        Route::get('/{view}/{id}/speciality-profile', [SpecialityController::class, 'specialityProfile'])->name('speciality.profile');
+
+        //grades
+        Route::get('/{view}/{id}/add-grades', [GradesController::class, 'chooseSpec'])->name('chooseSpec.grade');
+
         //reports
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        
         Route::get('/add-report', [ReportController::class, 'create'])->name('add.report');

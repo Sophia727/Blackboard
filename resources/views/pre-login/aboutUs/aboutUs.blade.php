@@ -1,8 +1,10 @@
 @extends('template.homepage')
 @section('content')
-    <div class="container-fluid aboutUs_section">
+    <div class="container aboutUs_section">
         <div class="row">
-            <h2>Learn more about us</h2>
+            <h2 style="text-transform: uppercase" class="mb-5 mt-4">Discover more about our University
+                {{-- <hr> --}}
+              </h2> 
             <div class="col-lg-12">
                 <H4>History</H4>
                 <div class="container">
@@ -95,7 +97,7 @@
                     <div class="text-center getInTouch">
                 <div>
                 <h2>Need more information?</h2>
-                <button class="btn git_btn">Get in touch!</button>
+                <a href="{{route('contactUs')}}"><button class="btn git_btn">Get in touch!</button></a>
             </div></div>
             </div>
 

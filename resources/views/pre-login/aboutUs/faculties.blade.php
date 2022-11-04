@@ -4,9 +4,12 @@
 
 <div class="container preLogin_faculties">
   <div>
-      <h3 style="text-transform: uppercase">Our Faculties and Programs</h3>
-  </div><hr>
-  <div>
+      <h3 style="text-transform: uppercase" class="mb-5">Our Faculties and Programs
+        <hr>
+      </h3>
+  </div>
+  
+  <div class="mb-5">
   @foreach ($faculty as $faculty)
       
       <div class="card mb-3">

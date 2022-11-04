@@ -5,16 +5,16 @@
 <div class="container">
     
         <div class="row">
-            <div class="col8"><h2 class="bigTitle">Welcome to our <strong>Community!</strong></h2></div>
-            <div class="col-4 text-right"><div class="div">{{$posts->links()}}</div></div>
+            <div class="col-8"><h2 class="bigTitle">Welcome to our <strong>Community!</strong></h2></div>
+            <div class="col-4 text-right mt-5 mb-4"><div class="div">{{$posts->links()}}</div></div>
         </div>
     
     <li class="list-group" style="list-style: none">
         @foreach ($posts as $post)
-        <div class="row">
+        <div class="row mb-5">
             <div class="col-4">
                 <a class="" href="#">
-                    <img src="{{$post->photo}}" style="width: 15rem; border-radius:5%" alt="placeholder"/>
+                    <img src="{{$post->photo}}"  style="width: 20rem; border-radius:2%" alt="placeholder"/>
                 </a>
             </div>
             <div class="col-8">
@@ -39,9 +39,9 @@
 
             </div>
         </div>
-        <hr>
+        
         @endforeach
-        <div class="div">{{$posts->links()}}</div>
+        <div class="div mt-3">{{$posts->links()}}</div>
 
     </li>
 </div>

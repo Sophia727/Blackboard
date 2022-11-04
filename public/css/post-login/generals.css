@@ -2,7 +2,9 @@ ul, li{
     background-color:transparent;
     text-decoration: none;
 }
-/* button:hover{
-    max-height: auto;
-    transition: 0.5s max-width;
-} */
+
+
+.navbar_admin{
+    position: sticky;
+    top:2rem;
+}

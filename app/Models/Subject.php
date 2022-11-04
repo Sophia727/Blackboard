@@ -16,13 +16,19 @@ class Subject extends Model
     "classroom_name",
     "semester",
     
+    
     ];
     public function users(){
         return $this->hasMany(User::class);
     }
-    public function speciality(){
-        return $this->belongsTo(speciality::class);
+    public function specialities(){
+        return $this->belongsToMany(Speciality::class, 'subjects_specialities');
     }
-
+    public function grades(){
+        return $this->hasMany(Grades::class);
+    }
+    public function students(){
+        return $this->belongsToMany(User::class, 'speciality_students');
+    }
 
 }

@@ -36,7 +36,7 @@
     <div class="col-md-4 col-xl-3">
         <div class="card ">
             <a role="button"
-            href="{{route('all.grades')}}" 
+            href="{{route('choose.grade'])}}" 
             >
                 <div class="card-block">
                     <h3 class="m-b-20 flaticon-rating text-dark">

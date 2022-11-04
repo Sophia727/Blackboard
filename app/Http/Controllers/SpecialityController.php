@@ -22,6 +22,12 @@ class SpecialityController extends Controller
         return view($view, ['specialities' => $specialities]);
     }
 
+    public function specialityProfile($view, $id){
+        $speciality = Speciality::find($id);
+        $subjects = $speciality->subjects;
+        return view($view, ['subjects' => $subjects, 'speciality'=>$speciality]);
+    }
+
     public function create()
     {
         $faculty = DB::table('faculties')->orderBy('name', 'asc')->get(); 

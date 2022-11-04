@@ -10,14 +10,21 @@
     <x-alert type="danger" :message="session('error')" class="mb-4"/>   
     @endif
 </div>
-    
-    <div class="btn-toolbar d-grid d-md-flex justify-content-md-end">
-        <a href="{{route("add.report")}}" class="btn btn-sm btn-outline-secondary ">
+<div class="row">
+<div class="col-6">
+  <h1>
+    <strong>Reports</strong>
+  </h1>
+</div>
+<div class="col-6">
+    <div class="btn-toolbar d-grid d-md-flex justify-content-md-end ">
+        <a href="{{route("add.report")}}" class="btn btn-outline-secondary ">
             <i class="bi bi-plus-circle"></i>
             Upload New File
         </a>
     </div>   
-  
+</div>
+</div>
 <div class="row">
     <table class="table table-striped">
     <thead>
@@ -39,28 +46,7 @@
           <td>{{$report->created_at}}</td>
           <td>{{$report->author->name}}</td>
           <td>
-            {{-- preview --}}
-            <button class="btn btn-outline-secondary btn-sm" >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-zoom-in" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
-                <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
-              </svg>
-            
-            <script>
-              document.getElementById('formFile').forEach(file=>{
-                file.onClick = ()=> {
-                    document.querySelector('.popup-file').style.display='block';
-                  }
-              })
-            </script>
-            </button>
 
-            {{-- <div class="externalFiles" >
-              <iframe src="{{$report->file}}" width="auto" height="500" frameborder="0"></iframe>
-            </div> --}}
-
-            
             {{-- download --}}
             <a class="btn btn-outline-secondary btn-sm" target="_blank"
              href="{{asset('storage/'.$report->file)}}" title="Download" class="btn btn-secondary btn-sm">
@@ -70,13 +56,7 @@
               </svg>
             </a>
                     
-            <br>
-            {{-- export --}}
-            <button class="btn btn-outline-secondary btn-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
-            </svg>
-            </button>
+            
             {{-- delete --}}
             <button onclick="if(confirm('Are you sure you want to delete this file?')){
               document.getElementById('report-delete-{{$report->id}}').submit(); }"
@@ -97,9 +77,6 @@
       </tbody>
 </table>
 
-<div class="popup-file">
-  <span>&times;</span>
-</div>
 </div>
 
   @endsection

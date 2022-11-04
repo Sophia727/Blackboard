@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->enum('role',["admin", "professor", "parent", "student", ])->default('parent');
             $table->boolean("activate")->default(false);
             $table->string("photo")->nullable();
+            $table->foreignId('speciality_id')->constrained('specialities')->nullable();
             $table->rememberToken();
             $table->timestamps();
             

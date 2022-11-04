@@ -3,11 +3,10 @@
 @section('content')
 
   <div class="container facilties_header">
-    <H2>Our university facilities and students' life in campus</H2>
-
-    <hr>
-    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse consequuntur doloremque cupiditate quo vitae excepturi repellat alias, error nesciunt dolores deserunt culpa beatae est fugiat obcaecati labore ex facilis blanditiis!</p>
-    <hr>
+    <h2 style="text-transform: uppercase" class="mb-5">Facilities and life in Campus
+      <hr>
+    </h2>   
+    
   </div>
     <div class="row">
         <div class="container facilities_carousel">
@@ -51,8 +50,7 @@
     </div>
     <p class="book_app mt-3">You are welcome to schedule a guided visit of our university and facilities with our representatives, simply by clicking <a href="{{route('contactUs')}}">HERE!</a></p>
 
-    <hr>
-    <div class="row" style="background-color: rgb(160, 158, 158)">
+    <div class="row mt-3" style="background-color: rgb(160, 158, 158)">
         <div class="container more_sl">
             <h3>More about student life</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum excepturi et doloremque ea! Quisquam, ab? Consectetur repellendus impedit ex voluptatum alias numquam modi, veniam eaque quibusdam doloribus adipisci non id quia beatae. Cum repellendus vel voluptate optio ipsam doloribus, facere illo sunt! Odit, doloremque sit dignissimos commodi temporibus quibusdam animi!</p>

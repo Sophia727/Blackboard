@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -63,5 +64,14 @@ class User extends Authenticatable
     }
     public function report(){
         return $this->hasMany(Report::class);
+    }
+    public function grades(){
+        return $this->hasMany(Grades::class);
+    }
+    public function subjects(){
+        return $this->belongsToMany(Subject::class, 'subjects_specialities');
+    }
+    public function speciality(){
+        return $this->belongsTo(Speciality::class);
     }
 }

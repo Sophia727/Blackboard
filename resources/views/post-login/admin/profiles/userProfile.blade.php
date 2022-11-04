@@ -107,7 +107,7 @@
                                               }" type="checkbox" @if ($user->activate)
                                                 checked
                                               @endif 
-                                              name="activate" class="my-4"  role="switch" id="activate"> <p> Active</p>
+                                              name="activate" class="my-4"  role="switch" id="activate"> <p class="ml-5"> Active</p>
                                         </div>
                                           <form id="activate-{{$user->id}}" action="{{route('user.activate',['id'=>$user->id])}}" method="post">
                                             @csrf 
