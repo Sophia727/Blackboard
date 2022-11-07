@@ -25,7 +25,7 @@ class SubjectController extends Controller
         $dataOk = $request->validate([
             'name' => 'required|min:2',
             'professor_id' => 'required',
-            'speciality' => "required",
+            'speciality_id' => "required",
             'classroom_name' => 'required|min:2',
             'semester'=> 'required'
         ]);

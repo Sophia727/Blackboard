@@ -64,7 +64,7 @@
                     href="#classrooms" 
                     aria-controls="classrooms">
                         <div class="card-block">
-                            <h3 class="m-b-20">Classrooms</h3>
+                            <h3 class="m-b-20">Inbox</h3>
                         </div>
                     </a>
                 </div>
@@ -100,42 +100,17 @@
             
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-pink order-card">
-                    <a data-bs-toggle="collapse" role="button" aria-expanded="false" 
-                    href="#grades" 
+                    <a role="button" 
+                    href="{{route('myProfile')}}" 
                     aria-controls="grades">
                         <div class="card-block">
-                            <h3 class="m-b-20">Attendance</h3>
+                            <h3 class="m-b-20">My Profile</h3>
                         </div>
                     </a>
                     
                 </div>
             </div>
                         
-            <div class="row">
-                
-                <div class="collapse multi-collapse" id="classrooms">
-                    <div class="card card-body">
-                        INSERER TABLEAU CLASSROOMS
-                    </div>
-                </div>
-                <div class="collapse multi-collapse" id="grades">
-                    <div class="card card-body">
-                        INSERER GRADES
-                    </div>
-                </div>
-                <div class="collapse multi-collapse" id="posts">
-                    <div class="card card-body">
-                        {{-- <x-postsList/> --}}
-                    </div>
-                </div>
-                <div class="collapse multi-collapse" id="reports">
-                    <div class="card card-body">
-                        This is a placeholder
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-
+        
 
 @endsection

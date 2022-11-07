@@ -14,7 +14,17 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="{{asset($user->photo)}}" alt="Profile picture" class="rounded-circle p-1 bg-secondary" width="110">
+                            {{-- <img src="{{asset($user->photo)}}" alt="Profile picture" class="rounded-circle p-1 bg-secondary" width="110"> --}}
+                            @if($user->photo)
+                            @if(Str::contains($user->photo, 'https://'))
+                            <img src="{{$user->photo}}" alt="profile picture" class="rounded-circle p-1" width="110px" height="110px">
+                            @else
+                            <img src="{{asset($user->photo)}}" alt="{{$user->name}}" class="rounded-circle p-1" width="110px" height="110px">
+                            @endif
+                          @else
+                          <img src="{{asset('images/profile-default.jpeg')}}" alt="{{$user->name}} profile picture" class="rounded-circle p-1" width="110px" height="110px">
+                          
+                          @endif
                             <div class="mt-3">
                                 <h4>{{$user->name}}</h4>
                                 <p class="text-secondary mb-1">{{$user->role}}</p>
@@ -33,8 +43,8 @@
                                 <span class="text-secondary">{{$user->created_at}}</span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0">Articles Published:</h6>
-                                <span class="text-secondary"></span>
+                                <h6 class="mb-0">Last login:</h6>
+                                <span class="text-secondary">{{$user->last_login->format('d-m-Y')}}</span>
                             </li>
                         </ul>
                     </div>

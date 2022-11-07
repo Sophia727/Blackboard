@@ -33,15 +33,14 @@
                 </div>
                 
                 <h2 class="card-title">
-                    <a class="text-dark">{{$post->title}}</a>
+                    {{$post->title}}
                 </h2>
                 <div class="mt-4 mb-5 text-center">
-                    <img src="{{$post->photo}}" style="width: 25rem; border-radius:5%" alt="placeholder"/>
+                    <img src="{{$post->photo}}" style="width: 25rem; border-radius:2%" alt="placeholder"/>
                 </div>
                 
                 <p class="card-text">{{$post->description}}</p>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit laudantium illum tenetur incidunt voluptate nemo, consectetur rem deserunt tempore architecto illo ratione minima libero quaerat minus dolorem delectus possimus quos enim nesciunt adipisci aspernatur? Eum nemo fugiat, saepe voluptatem dolorem accusamus nesciunt esse, numquam maxime sit obcaecati est fuga dolor!</p>
-                <p>Numquam mollitia dolorum accusamus nemo officia, quia odio incidunt odit delectus suscipit aspernatur non est libero ab quo fuga aliquid nobis in aut ipsam beatae consequuntur. Aperiam, distinctio. Consectetur itaque praesentium ex, cumque nulla quibusdam labore incidunt accusantium dolorum harum esse officia molestiae maiores aspernatur eum perspiciatis qui est natus omnis quisquam. Iure iusto aperiam nostrum impedit nam voluptate molestias numquam explicabo, ut saepe sequi odit doloribus! Perferendis incidunt voluptas iste vero nemo possimus neque ex inventore ratione blanditiis, commodi error, natus facilis laboriosam saepe nisi nostrum. Eius ducimus voluptatum sit nobis.</p>
+                    <p>Numquam mollitia dolorum accusamus nemo officia, quia odio incidunt odit delectus suscipit aspernatur non est libero ab quo fuga aliquid nobis in aut ipsam beatae consequuntur. Aperiam, distinctio. Consectetur itaque praesentium ex, cumque nulla quibusdam labore incidunt accusantium dolorum harum esse officia molestiae maiores aspernatur eum perspiciatis qui est natus omnis quisquam. Iure iusto aperiam nostrum impedit nam voluptate molestias numquam explicabo, ut saepe sequi odit doloribus! Perferendis incidunt voluptas iste vero nemo possimus neque ex inventore ratione blanditiis, commodi error, natus facilis laboriosam saepe nisi nostrum. Eius ducimus voluptatum sit nobis.</p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, exercitationem? Rerum a non tenetur minus asperiores! Illo earum a labore cupiditate minus! Aspernatur saepe, nesciunt voluptas vitae ipsum modi assumenda itaque officia odio, fugiat dignissimos praesentium debitis ab doloribus iste eveniet maiores iure! Quasi mollitia sapiente fugit, repellendus eum totam blanditiis consectetur tempora quisquam laudantium laborum culpa ducimus vitae accusantium soluta excepturi, asperiores ad eius, voluptatum maxime dolore doloremque veritatis sit voluptate? Quidem quos distinctio excepturi iure aspernatur necessitatibus ad! Consequuntur quae fuga nisi officiis unde error ipsa nesciunt amet. Ducimus nostrum aspernatur tenetur inventore cumque laborum, adipisci quas vitae quia incidunt numquam, voluptate at iusto exercitationem odio rem! Consequuntur perferendis alias porro eum recusandae. Reprehenderit quam officia laudantium voluptates?
                 <hr class="card-footer">
                 <div class="row">
@@ -68,7 +67,7 @@
                                     
                                 
                                     <div class="col">
-                                        <form action="{{route('store.comment')}}" method="post" enctype="multipart/form-data"> 
+                                        <form action="{{route('store.comment')}}" method="post" enctype="multipart/form-data" class="mb-5"> 
                                         @csrf
                                         <textarea class="form-control" id="exampleFormControlTextarea1" name='message' style="border-radius:20px; margin-left:0%; background-color:lavender;"></textarea>
                                         <input type="hidden" name="post_id" value="{{ $post->id }}" />
@@ -80,18 +79,20 @@
                                         </form>                        
                                 </div>  
 
-                                <div class="row">
+                                <div class="row ">
                                     <section>                                     
-                                            
                                         @foreach ($comments as $comment)
-                                        <div class="col">
-                                            
-                                            <div class="card-body">
+                                        <div class="row mb-5">
+                                            <div class="col-2">
+                                                <img src="{{$post->author->photo}}" style="width:5rem; height:5rem; border-radius:45%; " alt="Profile Picture">                                            </div>
+                                            <div class="col-10">
                                                 <div class="row">
-                                                    <div class="col">
-                                                        <h5 class="card-title">{{$comment->user->name}} said:</h5>
+                                                    {{-- <div class="col-3 text-left">
+                                                    </div> --}}
+                                                    <div class="col text-left">
+                                                        <p>{{$comment->user->name}} <small class="text-muted"> .{{$comment->updated_at->format('d.m.Y-H:m')}}</small></p>
                                                     </div>
-                                                    <div class="col-1">    
+                                                    <div class="col-2">
                                                         {{-- delete --}}
                                                         @if (Auth::user()->role==='admin')
                                                         <a href="#" onclick="if(confirm('Are you sure you want to delete this comment?')){
@@ -108,23 +109,18 @@
                                                         </form>
                                                         
                                                         @endif
-                                                        
                                                     </div>
+
                                                 </div>
-                                                <h6 class="card-subtitle mb-2 text-muted">{{$comment->created_at}}</h6>
-                                                <p class="card-text">{{$comment->message}}</p>
-                                                
-                                                <small><p class="card-subtitle mb-2 text-muted"> last updated on :{{$comment->updated_at}}</p></small>
+                                                <div class="row">
+                                                    <p class="card-text ml-4">{{$comment->message}}</p>
+
+                                                </div>
                                             </div>
-                                        
-                                            
                                         </div>
-                                            
                                         @endforeach
-                                    </section>
                                     </div>
-                            </div>
-                            </form>
+                           
                     
                     </div>
                 </div>
@@ -135,9 +131,9 @@
             {{-- side section --}}
             <div class="col-3">
                 <section>
-                    <h4>Latest news</h4>
+                    <h4 class="mb-3">Latest news</h4>
                     @foreach ($posts as $post)
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-5">
                             <img src="{{$post->photo}}" style="width: 100px;" alt=""/>
                         </div>

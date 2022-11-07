@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>University </title>
+
         {{-- modal --}}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
@@ -12,11 +13,19 @@
         {{-- Calendar --}}
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />    
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+    
+        
+    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
         {{-- <script src="{{asset('public/js/calendar.js')}}"></script> --}}
 
@@ -34,28 +43,31 @@
         <link rel="stylesheet" href="{{asset('css/post-login/aboutUs.css')}}">
         <link rel="stylesheet" href="{{asset('css/generalities/navbar.css')}}">
         <link rel="stylesheet" href="{{asset('css/generalities/footer.css')}}">
+
+        
     </head>
 
     <body>
         <x-navbar_userLogged/>        
         <div class="row"> 
-        <div class="col-1">
-            @auth
-            @if (Auth::user()->role==='admin')
-                 <x-sidebar_admin/>
-            @endif
-               
-            @endauth        
-        </div>
+            <div class="col-1">
+                @auth
+                    @if (Auth::user()->role==='admin')
+                        <x-sidebar_admin/>
+                    @endif
+                    
+                @endauth        
+            </div>
 
-        <div class="col-10">
-            @yield('content')            
-        </div>
-        <div class="col-1">
+            <div class="col-10">
+                @yield('content')      
+      
+            </div>
+            <div class="col-1">
 
+            </div>
         </div>
-        </div>
-        {{-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> --}}
+    
     </body>
     <footer>
         <x-footer/>

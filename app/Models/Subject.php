@@ -15,6 +15,7 @@ class Subject extends Model
     "faculty_id",
     "classroom_name",
     "semester",
+    'speciality_id'
     
     
     ];

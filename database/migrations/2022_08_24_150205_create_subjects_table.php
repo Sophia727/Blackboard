@@ -21,6 +21,7 @@ class CreateSubjectsTable extends Migration
             $table->unsignedBigInteger("professor_id");
             $table->foreign("professor_id")->references("id")->on('users')->where('role','professor');
             $table->foreignId('student_subject_id')->constrained('users')->where('role', 'student')->nullable();
+            $table->foreignId('subjects_speciality_id')->constrained('specialities')->nullable();
             $table->timestamps();
         });
     }

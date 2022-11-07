@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Speciality;
 use App\Models\User;
 use Faker\Core\Number;
 use Illuminate\Http\Request;
@@ -25,7 +26,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('post-login.admin.profiles.addUser');
+        $speciality = Speciality::all();
+        return view('post-login.admin.profiles.addUser', ['speciality'=>$speciality]);
     }
 
 
@@ -43,14 +45,17 @@ class UserController extends Controller
             'phone' => "required",
             'address' => 'required',
             'photo' => 'max:10250',
+            'speciality_id' => 'required',
 
         ]);
+        
         $users = $dataOk;
         $registration_num = mt_rand(1000, 10000);
         $users['registration_num'] = $registration_num;
         $pass = Str::random(8);
         $users['pass'] = $pass;
         $users['password'] = Hash::make($pass);
+
         if ($request['admin']) {
             $users['role'] = 'admin';
         } elseif ($request['professor']) {
@@ -59,7 +64,8 @@ class UserController extends Controller
             $users['role'] = 'parent';
         } else {
             $users['role'] = 'student';
-            
+            // $users['speciality_id'] = 'speciality_id';
+
         }
 
         if ($request->file('photo')) {
@@ -69,6 +75,7 @@ class UserController extends Controller
             $users['photo'] = 'storage/' . $path;
         }
         $userCreate = User::create($users);
+        
         if ($userCreate) {
             $users['created_at'] = now();
             //send email about created account

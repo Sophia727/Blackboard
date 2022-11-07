@@ -69,13 +69,10 @@
         
        
     </div>
-    {{--<div class="d-flex justify-content-end">{{$role->links()}}</div>        --}}
-  </div>
-  <div class="row">
+    {{-- <div class="d-flex justify-content-end">{{$role->links()}}</div>        --}}
+  </div><div class="row">
   
   <!-- Modal -->
-  <form action="{{route('store.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
-    @csrf
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -89,12 +86,16 @@
             <label for="">Student Name</label>
             <select class="form-select" required name="student_id">
               <option selected value>Select...</option>
-              @foreach ($students as $student)  
+              {{-- @foreach ($students as $student)  
                   <div class="form-check">
                       <option value="{{$student->id}}">{{$student->name}}</option>
                   </div>  
-              @endforeach                    
+              @endforeach                     --}}
           </select>           
+          </div>
+          <div class="form-group mb-3">
+            <label for="">Semester</label>
+            <input type="text" class="semester form-control">
           </div>
           <div class="form-group mb-3">
             <label for="">Subject</label>
@@ -108,56 +109,58 @@
             </select>
           </div>
           <div class="form-group mb-3">
-            <label for="">Semester</label>
-            <input type="text" class="semester form-control" name="semester">
-          </div>
-          
-          <div class="form-group mb-3">
             <label for="">Grade</label>
-            <input type="text" class="grade form-control" name="grade">
-          </div>
-          <div class="form-group mb-3">
-            <label for="">Remarks</label>
-            <input type="text" class="remarks form-control" name="message">
+            <input type="text" class="grade form-control">
           </div>
           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Insert Grade</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
   
-  {{--***** MAIN table ******--}}
   
       <div class="card-body">
           <div class="table-responsive table-striped text-center">
             <table class="table table-sm">
               <thead>
-
                 <tr>
-                  <th>Students</th>
-                  @foreach ($subjects as $subject)
-                  
-                  <th scope="col">{{$subject->name}}</th> 
-                  @endforeach                  
+                  {{-- <th scope="col">Semester</th> --}}
+                  <th scope="col">Faculty</th>
+                  <th scope="col">Speciality</th>
+                  <th scope="col">Student</th>
+                  {{-- <th scope="col"></th> --}}
+                  {{-- general grade? for all sujects --}}
+                  <th scope="col">Grades</th>
                 </tr>
               </thead>
               <tbody>
                 <tbody>
-
-                  @foreach ($students as $student)
+                  {{-- @foreach ($students as $user) --}}
                   <tr>
-                    <td>{{$student->name}}</td> 
                     <td>
-                      {{-- @foreach ($grades as $grade)
-                         {{$grade->grade}}
-                    @endforeach --}}
-                     </td>
-                  </tr>
-                  @endforeach
+                      {{-- @if($user->photo)
+                        @if(Str::contains($user->photo, 'https://'))
+                        <img src="{{$user->photo}}" alt="profile picture" class="rounded-circle p-1" height="75px" width="80px"></td>
+                        @else
+                        <img src="{{asset($user->photo)}}" alt="{{$user->name}}" class="rounded-circle p-1" height="75px" width="80px">
+                        @endif
+                      @else
+                      <img src="{{asset('storage/images/profile-default.jpg'.$user->photo)}}" alt="{{$user->name}}" class="rounded-circle p-1" height="75px" width="80px">
+                      
+                      @endif --}}
+                    </td> 
+                    {{-- <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>{{$user->phone}}</td> --}}
+                    <td> 
+                      {{-- <a href="{{route('user.profile', ['id'=>$user->id])}}" title="profile" class="btn btn-sm"><i class="fa-solid fa-eye"></i></a> --}}
+                      <i class="fa-solid fa-messages"></i>
+                    </td>
+                  {{-- @endforeach --}}
                 </tbody>
               </table>
             </div>

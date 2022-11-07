@@ -53,12 +53,12 @@
             <div class="col">
                 <div class="form-group">
                     <h6>Choose assigned Speciality: </h6>
-                    <select name="speciality" class="form-select @error('classroom')is-invalid @enderror" aria-label="multiple select example">
+                    <select name="speciality_id" class="form-select @error('classroom')is-invalid @enderror" aria-label="multiple select example">
                        
                         <option selected >Speciality...</option>
                         @foreach ($speciality as $spec)  
                             <div class="form-check">
-                                <option value="{{$spec->name}}">{{$spec->name}}</option>
+                                <option value="{{$spec->id}}">{{$spec->name}}</option>
                             </div>  
                         @endforeach
                       </select>  
@@ -214,7 +214,7 @@
         </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-md btn-secondary m-4"> Create Faculty</button>
+            <button type="submit" class="btn btn-md btn-secondary m-4"> Create Subject</button>
         </div>
     </form>
     </div>

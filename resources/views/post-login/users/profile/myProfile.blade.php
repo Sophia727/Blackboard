@@ -51,6 +51,19 @@
                 <input type="text" class="form-control" name="address" value="{{$user->address}}">
             </div>
         </div>
+        @if(Auth::User()->role==='student')
+        <div class="row mb-3">
+            <div class="col-sm-2">
+                <h6 class="mb-0">Speciality</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" name="speciality" @if (Auth::User()->speciality_id!='')
+                    value="{{$user->spreciality_id->name}}"
+                    @else value="No Speciality assigned" disabled
+                @endif >
+            </div>
+        </div>
+        @endif
         <div class="row mt-4">
             <div class="d-grid gap-2 col-6 mx-auto">
                 {{-- <a href="" type="submit" class="btn btn-primary px-4" class="btn btn-success btn-sm" title="Save Changes">Save Changes</a> --}}

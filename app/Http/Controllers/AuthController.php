@@ -22,7 +22,7 @@ class AuthController extends Controller
         'email' => ['required', 'email'],
         'password' => ['required'],
     ]);
-
+    
     if (Auth::attempt($info)) {
         $request->session()->regenerate();
 
@@ -39,7 +39,7 @@ class AuthController extends Controller
         }
     }
     return back()->withErrors([
-        'email' => 'The provided info does not match our records.',
+        'email' => 'The provided information doesn\'t match our records.',
     ])->onlyInput('email');
     }
     public function dashboardIndex(){

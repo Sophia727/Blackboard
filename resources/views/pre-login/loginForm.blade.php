@@ -40,7 +40,7 @@
                     </button>
                     <div id="contact_us_login">
                          <a type="button" href="{{route('contactUs')}}" >
-                        Don't have an account yet? Contact-us!
+                        <h6>Troubles accessing? Please contact-us.</h6>   
                     </a>
                     </div>
                    

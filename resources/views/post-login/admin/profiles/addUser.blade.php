@@ -79,11 +79,24 @@
                     <label class="form-check-label" for="inlineCheckbox1">Parent</label>    
                 </div>
                 <div style="margin: 0 45px;">
-                    <input class="form-check-input" type="radio" name="student" role="student" id="student">
+                    <input class="form-check-input" type="radio" name="student" role="student" 
+                    id="rolestudent" data-bs-toggle="collapse" data-bs-target="#specialitystudent" aria-expanded="false"
+                    >
                     <label class="form-check-label" for="inlineCheckbox1">Student</label>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row m-2 collapse" id="specialitystudent">
+        <h6 style="margin:0 2rem 1rem 0; padding-top:0.5rem">Assign speciality</h6>
+        <select name="speciality_id" class="form-select @error('classroom')is-invalid @enderror" aria-label="multiple select example">     
+            <option selected value>Speciality...</option>
+            @foreach ($speciality as $spec)  
+                <div class="form-check">
+                    <option value="{{$spec->id}}">{{$spec->name}}</option>
+                </div>  
+            @endforeach
+        </select>     
     </div>
     <div class="row m-2">
         <div class="form-group">

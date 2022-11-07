@@ -8,7 +8,7 @@
   <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
     @foreach ($specialities as $speciality)
       <div class="col">
-          <a class="text-dark" href="{{route('chooseSpec.grade',['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}">
+          <a class="text-dark" href="{{route('add.grades',['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}">
         <div class="card">
           <div class="card-body">
             <h3 class="card-title">{{$speciality->name}}</h3>

@@ -83,23 +83,24 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'parent'])->group(function () {
     Route::get('/parent', [ParentController::class, 'index'])->name('parent.dashboard');
-
+    Route::prefix('/parent')->group(function () {
+});
 });
 
 Route::middleware(['auth', 'professor'])->group(function () {
     Route::get('/professor', [ProfessorController::class, 'index'])->name('professor.dashboard');
-    Route::get('/{view}/{id}/add-grades', [GradesController::class, 'chooseSpec'])->name('chooseSpec.grade');
+    Route::prefix('/professor')->group(function () {
+    Route::get('/{view}/{id}/add-grades', [GradesController::class, 'addGrades'])->name('add.grades');
     Route::get('/{view}/{id}/speciality-profile', [SpecialityController::class, 'specialityProfile'])->name('speciality.profile');
-
+});
 });
 //student
 Route::middleware(['auth', 'student'])->group(function () {
     Route::get('/student', [StudentController::class, 'index'])->name('student.dashboard');
     Route::prefix('/student')->group(function () {
-        // Route::get('/{id}/student-profile', [UserController::class, 'myProfile'])->name('student.profile');
+    Route::get('/access-grades', [StudentController::class, 'accessGrades'])->name('access.grades');
 
-    });
-});
+});});
 
 
     /**
@@ -142,7 +143,10 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/{view}/{id}/speciality-profile', [SpecialityController::class, 'specialityProfile'])->name('speciality.profile');
 
         //grades
-        Route::get('/{view}/{id}/add-grades', [GradesController::class, 'chooseSpec'])->name('chooseSpec.grade');
+        Route::get('/{view}/{id}/add-grades', [GradesController::class, 'addGrades'])->name('add.grades');
+        Route::post('/store-grades', [GradesController::class, 'storeGrades'])->name('store.grades');
+
+
 
         //reports
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        

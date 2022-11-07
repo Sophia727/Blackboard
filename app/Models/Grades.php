@@ -14,7 +14,8 @@ class Grades extends Model
         'semester',
         'student_id',
         'author_id',
-        'message_id'
+        'message'
+
     ];
     public function subject(){
         return $this->belongsTo(Subject::class);

@@ -38,8 +38,8 @@
                   </a>
                   <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                     <a class="dropdown-item" href="#"> <i class="bi bi-bell"></i> Notifications</a>
-                    <a class="dropdown-item" href="#"> <i class="bi bi-envelope"></i>   Messages</a>
-                    <a class="dropdown-item" href="{{route('show.news')}}"><i class="bi bi-heart"></i>  Feed</a>
+                    <a class="dropdown-item" href="#"> <i class="bi bi-envelope"></i>   Inbox</a>
+                    <a class="dropdown-item" href="{{route('show.news')}}"><i class="bi bi-heart"></i>  News</a>
                     <a class="dropdown-item" href="{{route('myProfile')}}"> <i class="bi bi-person"></i>  Profile</a>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>

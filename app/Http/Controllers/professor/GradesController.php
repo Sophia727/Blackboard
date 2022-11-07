@@ -5,6 +5,7 @@ namespace App\Http\Controllers\professor;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Student;
 use App\Models\Faculty;
+use App\Models\Grades;
 use App\Models\Report;
 use App\Models\Speciality;
 use App\Models\Subject;
@@ -29,25 +30,32 @@ class GradesController extends Controller
     }
     public function addGrades($view, $id){
         $speciality= Speciality::find($id);
-        // $subjects = DB::table('')->where(['role'=> 'admin'])->orderBy('name', 'asc')->get(); 
-        // $subjects = Subject::where('speciality_id', )
+        $subjects = Subject::where('speciality_id', $speciality->id)->get();
+        $students = User::where('role', 'student')->where('speciality_id', $speciality->id)->orderBy('name', 'asc')->get();
+        // $grade= Grades::where('subject_id', $subjects)->where('student_id',$students->id)->get();
+        return view($view, [
+            'speciality'=>$speciality, 
+            'subjects'=>$subjects,
+            'students'=>$students,
+            // 'grades'=>$grade
+    ]);
     }
-    
-    
-    
     
     public function storeGrades( Request $request){
         $dataOk = $request->validate([
-            // 'name' => 'required|min:2',
-            // 'tag'=>'required|min:2',
-            // 'file'=>'required'
+            'student_id' => 'required',
+            'subject_id'=>'required',
+            'semester'=>'required',
+            'grade'=>'required|max:100',
+            'message'=>'required'
         ]);
         $dataOk['author_id']= Auth::user()->id;
-        $newGrades= $dataOk;
-       
-        $storeGrade = Report::create($newGrades);
+        $newGrade= $dataOk;
+        $storeGrade = Grades::create($newGrade);
+        // dd($storeGrade);
+
         if ($storeGrade) {
-            return redirect()->route('reports.list')->with(["message" => "Grades uploaded successfully"]);
+            return back()->with(["message" => "Grades uploaded successfully"]);
         } else {
             return back()->with("error", "Failed to upload report")->withInput();
         }
