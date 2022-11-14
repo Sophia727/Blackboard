@@ -32,7 +32,7 @@
             <div class="row m-2">
                 <div class="col">
                     <div class="form-group">
-                        <h6>Choose assigned faculties: </h6>
+                        <h6>Choose assigned faculty: </h6>
                         <select name="faculty_id" class="form-select" aria-label="multiple select example" required>
                             <option selected >Faculty...</option>
                             @foreach ($faculty as $faculty)  

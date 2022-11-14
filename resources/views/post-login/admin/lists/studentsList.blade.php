@@ -52,8 +52,14 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->phone}}</td>
                   <td> 
-                    <a href="{{route('user.profile', ['id'=>$user->id])}}" title="profile" class="btn btn-sm"><i class="fa-solid fa-eye"></i></a>
-                    <i class="fa-solid fa-messages"></i>
+                       
+                    @if (Auth::user()->role == "admin")
+                      <a href="{{route('user.profile',['view'=> 'post-login.admin.profiles.userProfile', 'id'=>$user->id])}}" class="btn btn-sm text-primary"><i class="fa-solid fa-eye"></i></a>
+                      <a class="btn btn-lg text-success" href={{route('student.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
+
+                    @elseif (Auth::user()->role == "professor")
+                      <a  class="btn btn-lg text-success" href={{route('studentProf.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
+                    @endif
                   </td>
                 @endforeach
               </tbody>

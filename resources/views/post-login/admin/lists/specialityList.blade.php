@@ -20,21 +20,25 @@
     
     <div class="card-body">
       <div class="row mb-4">
-        <div class="col-8 text-center">
+        <div class="col-6 text-center">
           <strong>Name</strong>
         </div>
         <div class="col-2 text-center"><strong>View</strong></div>
+        <div class="col-2 text-center"><strong>Students List</strong></div>
         <div class="col-2 text-center"><strong>Add Subject</strong></div>
 
       </div>
     
         @foreach ($specialities as $speciality)
         <div class="row mb-4">    
-        <div class="col-8 text-center">
+        <div class="col-6  text-center">
           {{$speciality->name}}
           </div>
           <div class="col-2 text-center"> 
            <a href="{{route('speciality.profile', ['view'=> 'post-login.admin.institution.speciality.specialityProfile', 'id'=>$speciality->id])}}"><i class="fa-solid fa-eye text-warning"> </i></a> 
+          </div>
+          <div class="col-2 text-center"> 
+            <a class="text-dark"  href="{{route('add.grades',['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}"><i class="bi bi-list-ul text-success"></i></a>
           </div>
           <div class="col-2 text-center">
             <a role="button"

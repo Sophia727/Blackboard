@@ -55,7 +55,7 @@
                 <h2 class="card-title">
                     <a href="{{route('news.readmore', ['post'=>$post->id])}}" class="text-dark">{{$post->title}}</a>
                 </h2>
-                <p class="card-text">{{$post->description}}</p>
+                <p class="card-text">{{Str::limit($post->description,'150')}}</p>
                 
                 <div class="row mb-5">
                     <div class="col-2">

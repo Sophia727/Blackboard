@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserCreatedNotification;
 use App\Models\Speciality;
 use App\Models\User;
 use Faker\Core\Number;
@@ -10,12 +11,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
-/**
- * UserController: add user / desactivate
- */
+
 class UserController extends Controller
 {
 
@@ -45,11 +45,12 @@ class UserController extends Controller
             'phone' => "required",
             'address' => 'required',
             'photo' => 'max:10250',
-            'speciality_id' => 'required',
+            'speciality_id' => '',
 
         ]);
-        
+    
         $users = $dataOk;
+        
         $registration_num = mt_rand(1000, 10000);
         $users['registration_num'] = $registration_num;
         $pass = Str::random(8);
@@ -64,8 +65,6 @@ class UserController extends Controller
             $users['role'] = 'parent';
         } else {
             $users['role'] = 'student';
-            // $users['speciality_id'] = 'speciality_id';
-
         }
 
         if ($request->file('photo')) {
@@ -78,7 +77,9 @@ class UserController extends Controller
         
         if ($userCreate) {
             $users['created_at'] = now();
-            //send email about created account
+            Mail::to($userCreate->email)->send(new UserCreatedNotification($users));
+
+           // Mail::to($userCreate->email)->send(new UserCreatedNotification($users));
             return redirect()->route('admin.dashboard')->with(["status" => "$userCreate->name created successfully"]);
         } else {
             return back()->with("error", "Failed to create the User")->withInput();
@@ -104,28 +105,67 @@ class UserController extends Controller
         }
     }
     /**
-     * saveEdit: save modifications in user's profile
+     * saveEdit: save modifications in myProfile****
      *
      * @param  mixed $request
      * @param  mixed $id
      * @return void
      */
-    public function saveEdit(Request $request, $id)
+   
+    public function saveEdit(Request $request)
     {
+        // dd($request);
         $dataOk = $request->validate([
-            'name' => 'required|min:2',
-            'email' => 'email|required',
-            'phone' => "required",
+            'name' => 'min:2',
+            'email' => 'email',
+            'phone' => "numeric|min:10",
             'address' => 'required',
+            'speciality_id'=>'string'
         ]);
-        dd($dataOk);
-        $user = User::find($id);
+        
+        $user = Auth::user();
+        if($request->name){
         $user->name = $dataOk['name'];
+        };
         $user->email = $dataOk['email'];
         $user->phone = $dataOk['phone'];
         $user->address = $dataOk['address'];
-        
-        if ($user->update()) {
+        if($request->speciality_id){
+        $user->speciality_id = $dataOk['speciality_id'];
+        }
+        if ($user->update(['field' => 'value'])) {
+            return back()->with(["status" => "$user->name updated successfully"]);
+            
+        } else {
+            return back()->with("error", "Failed to update your profile")->withInput();
+        }
+    }    
+
+
+
+
+    public function saveEditUsersProfile(Request $request, $id)
+    {
+        // dd($request);
+        $dataOk = $request->validate([
+            'name' => 'min:2',
+            'email' => 'email',
+            'phone' => "numeric|min:10",
+            'address' => 'string',
+            'speciality_id'=>'string'
+        ]);
+        // dd($dataOk);
+        $user = User::findOrFail($id);
+        if($request->name){
+        $user->name = $dataOk['name'];
+        };
+        $user->email = $dataOk['email'];
+        $user->phone = $dataOk['phone'];
+        $user->address = $dataOk['address'];
+        if($request->speciality_id){
+        $user->speciality_id = $dataOk['speciality_id'];
+        }
+        if ($user->update(['field' => 'value'])) {
             return back()->with(["status" => "$user->name updated successfully"]);
             
         } else {
@@ -137,21 +177,10 @@ class UserController extends Controller
      *
      * @return void
      */
-    //public function myProfile($id){
-        // if (Auth::user()->role =='admin') {
-        //     $admin= User::find($id);
-        //     return view('post-login.admin.profiles.myProfile',['id' => $admin->id]);
-        // } else {
-        //     $user= User::find($id);
-        //     return view('post-login.users.profile.myProfile',['id' => $user->id]);
-        // }
-        //$admin= User::find($id);
-        //return view('post-login.admin.profiles.myProfile',['id' => $admin->id]);
-    //}
-    public function myProfile(){
-        // // $userProfile=Auth->user($id);
-        $userProfile = Auth::user();
-        return view('post-login.users.profile.myProfile', ['user'=>$userProfile]);
+    
+    public function myProfile($view){
+        $user = Auth::user();
+        return view($view, ['user'=>$user]);
     }
     
     /**
@@ -162,7 +191,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         if ($user->delete()) {
             return redirect()->route('admin.dashboard')->with(["status" => "$user->name deleted successfully"]);
         } else {
@@ -197,10 +226,11 @@ class UserController extends Controller
         return view('post-login.admin.lists.adminsList', ['role' => $user]);
     }
     
-    public function userProfile($id)
+    public function userProfile($view, $id)
     {
         $user = User::find($id);
-        return view('post-login.admin.profiles.userProfile', ['user' => $user]);
+        $specialities = Speciality::all();
+        return view($view, ['user' => $user, 'specialities'=>$specialities]);
     }
 
 

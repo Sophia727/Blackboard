@@ -3,30 +3,29 @@
 
 <div class="container facultyProfile">
     <h2 class="text-center">{{$speciality->name}}</h2>
+    <div class="text-center mt-4">
+    <div class="btn btn-success">
+        <a  href="{{route('add.grades',['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}">View students list</a>
+    </div>
+    <div class="btn btn-warning">
+        <a   href="{{route('add.subject')}}">Add Subject</a>
+    </div>
+</div>
+   
     <hr>
-    <h3 class="discoverDiff">Discover different subjects within our Faculty!</h3>
-    <div class="card">
-        @foreach ($subjects as $subject)
-            
-        
-        <div class="card-header">
-            <h4>{{$subject->name}}</h4>
-        </div>
-        <div class="card-title">
-            <h6>Program details: </h6>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-7">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Molestiae quasi consequatur ad ab distinctio nam, <br> voluptatem ex delectus impedit blanditiis.
-                </div>
-                <div class="col-5">
-                    <div class="text-right"><a type="button" class="btn btn-outline-primary text-primary" href="{{route('contactUs')}}">Schedule a meeting!</a> </div>
+    
+    <section >
+        <div class="card-group mt-5">
+            @foreach ($subjects as $subject)
+
+            <div class="card" style="margin: 20px" >
+                <div class="card-body">
+                    <h4 href="#" class="card-title">{{$subject->name}}</h4>
                 </div>
             </div>
-        </div>
-        @endforeach
-    </div>
+          @endforeach
+
+    </section>
 </div>
 
 @endsection

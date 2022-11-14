@@ -20,8 +20,8 @@ class Grades extends Model
     public function subject(){
         return $this->belongsTo(Subject::class);
     }
-    public function authors(){
-        return $this->hasMany(User::class);
+    public function author(){
+        return $this->belongsTo(User::class);
 
     }
     public function students(){

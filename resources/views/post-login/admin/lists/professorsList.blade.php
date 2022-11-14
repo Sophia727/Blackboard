@@ -29,7 +29,9 @@
                 <th scope="col">Name</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Phone Number</th>
+                @if (Auth::user()->role != 'student')
                 <th scope="col">Action</th>
+                @endif  
               </tr>
             </thead>
             <tbody>        
@@ -40,22 +42,25 @@
                   <td>
                     @if($user->photo)
                       @if(Str::contains($user->photo, 'https://'))
-                      <img src="{{$user->photo}}" alt="profile picture" class="rounded-circle p-1" height="75px" width="80px"></td>
+                      <img src="{{$user->photo}}" alt="profile picture" class="rounded-circle p-1" height="75px" width="80px">
                       @else
                       <img src="{{asset($user->photo)}}" alt="{{$user->name}}" class="rounded-circle p-1" height="75px" width="80px">
                       @endif
                     @else
-                    <img src="{{asset('storage/images/profile-default.jpg'.$user->photo)}}" alt="{{$user->name}}" class="rounded-circle p-1" height="75px" width="80px">
+                    <img src="{{asset('images/profile-default.jpeg')}}" alt="{{$user->name}} profile picture" class="rounded-circle p-1" height="75px" width="80px">
                     
                     @endif
                   </td> 
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
-                  <td>{{$user->phone}}</td>            
+                  <td>{{$user->phone}}</td>  
+                  @if (Auth::user()->role != 'student')
                   <td class="text-center"> 
-                    <a href="{{route('user.profile', ['id'=>$user->id])}}" title="profile" class="btn btn-sm"><i class="fa-solid fa-eye"></i></a>
+                    <a href="{{route('user.profile',['view'=> 'post-login.admin.profiles.userProfile', 'id'=>$user->id])}}" class="btn btn-sm"><i class="fa-solid fa-eye text-primary"></i></a>
                     <i class="fa-solid fa-messages"></i>
                   </td>
+                  @endif          
+                  
                 @endforeach
               </tbody>
             </table>

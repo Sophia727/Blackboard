@@ -42,10 +42,10 @@
             </div>            
             </div>
     
-            <div class="row m-2">
+            <div class="row m-2 mt-4">
             <div class="form-group">
-                <div class="input-group mb-3">
-                    <h6 >Faculty Logo or Badge</h6>
+                <div class="input-group col mb-3">
+                    <h6>Faculty Badge</h6>
                     <input type="file" class="form-control" name="logo" id="inputGroupFile01" value="{{old('logo')}}">
                     
                 </div>

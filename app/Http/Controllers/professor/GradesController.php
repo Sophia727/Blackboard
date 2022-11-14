@@ -28,18 +28,19 @@ class GradesController extends Controller
         $students= User::where('role'=='student');
         return view('post-login.professor.addGrades', ['students'=>$students]);
     }
+
+
     public function addGrades($view, $id){
         $speciality= Speciality::find($id);
         $subjects = Subject::where('speciality_id', $speciality->id)->get();
         $students = User::where('role', 'student')->where('speciality_id', $speciality->id)->orderBy('name', 'asc')->get();
-        // $grade= Grades::where('subject_id', $subjects)->where('student_id',$students->id)->get();
         return view($view, [
             'speciality'=>$speciality, 
             'subjects'=>$subjects,
             'students'=>$students,
-            // 'grades'=>$grade
     ]);
     }
+    
     
     public function storeGrades( Request $request){
         $dataOk = $request->validate([
@@ -49,16 +50,46 @@ class GradesController extends Controller
             'grade'=>'required|max:100',
             'message'=>'required'
         ]);
+        dd($dataOk);
         $dataOk['author_id']= Auth::user()->id;
         $newGrade= $dataOk;
         $storeGrade = Grades::create($newGrade);
-        // dd($storeGrade);
 
         if ($storeGrade) {
             return back()->with(["message" => "Grades uploaded successfully"]);
         } else {
             return back()->with("error", "Failed to upload report")->withInput();
         }
+    }
+
+
+
+
+    public function studentGrades($view, $id){
+        $student = User::find($id);
+        $grades = Grades::where('student_id', $student->id)->get();
+        $subjects = Subject::Where('speciality_id', $student->speciality_id)->get();
+        return view($view,
+        ['student'=>$student,
+        'grades'=>$grades,
+        'subjects'=>$subjects,
+       
+    ]);
+}
+
+
+
+    public function studentGradesProfile($view, $id){
+        $student = User::find($id);
+
+        $grades = Grades::where('student_id', $student->id)->get();
+     $subjects = Subject::Where('speciality_id', $student->speciality_id)->get();
+        return view($view,
+        ['student'=>$student,
+        'grades'=>$grades,
+        'subjects'=>$subjects,
+       
+    ]);
     }
     
 }

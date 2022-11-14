@@ -49,6 +49,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    protected $dates = [
+        'last_sign_in_at'
+    ];
 
     public function post(){
         return $this->hasMany(Post::class);
@@ -59,15 +62,14 @@ class User extends Authenticatable
     public function institution(){
         return $this->belongsTo(Institution::class);
     }
-    public function faculty()
-    {
-        return $this->hasMany(Faculty::class);
+    public function faculty(){
+        return $this->hasOne(Faculty::class, 'rector_id');
     }
     public function report(){
         return $this->hasMany(Report::class);
     }
     public function grades(){
-        return $this->hasMany(Grades::class);
+        return $this->hasMany(Grades::class, 'grades');
     }
     public function subjects(){
         return $this->belongsToMany(Subject::class, 'subjects_specialities');

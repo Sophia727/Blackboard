@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string("photo")->nullable();
             $table->foreignId('speciality_id')->constrained('specialities')->nullable();
             $table->rememberToken();
+            $table->timestamp('last_sign_in_at')->nullable();
             $table->timestamps();
             
         });

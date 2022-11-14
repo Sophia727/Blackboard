@@ -11,6 +11,7 @@
         {{-- insert code here --}}
         <form action="{{route('update.post', ['post'=>$post->id])}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="row my-2">
                 <div class="col">
                     <div class="form-group">
@@ -30,7 +31,7 @@
                 <div class="col">
                     <div class="form-group ">
                         <label for="description">Description</label>
-                    <textarea name="description" class="form-control" placeholder="Start typing.." cols="30" rows="10">{{$post->desciption}}</textarea>
+                    <textarea name="description" class="form-control" placeholder="Start typing.." cols="30" rows="10">{{$post->description}}</textarea>
                     </div>
                     @error('description')
                     <div class="alert alert-danger">
@@ -43,7 +44,7 @@
                 <div class="row my-2">
                 <div class="col">
                     <div class="form-group">
-                    <input type="file" class="form-control" name="photo" id="title" placeholder="Post image" value="{{old('photo')}}" >
+                    <input type="file" class="form-control" name="photo" id="title" placeholder="Post image" value="{{$post->photo}}" >
                     @error('photo')
                         <div class="alert alert-danger">
                         {{$message}}

@@ -58,25 +58,47 @@
     <hr>
 </div>
 <div class="row">
+    <section style="padding: 0 20px;">
   @foreach ($faculty as $faculty)
   
     <div class="row mb-5">
-    <div class="col-5 text-center">
-        <img src="{{$faculty->logo}}" class="card-img-left" alt="{{$faculty->name}} logo ">
+    <div class="col-3 ">
+        @if($faculty->logo)
+                      @if(Str::contains($faculty->logo, 'https://'))
+                      <img src="{{$faculty->logo}}" alt="{{$faculty->name}} logo " class="  p-1 mt-3" height="120px" width="120px">
+                      @else
+                      <img src="{{asset('images/logos'.$faculty->logo)}}" alt="{{$faculty->name}} logo " class=" p-1 mt-3" height="120px" width="120px">
+                      @endif
+                    @else
+                    <img src="{{asset('images/dummy-image.jpg')}}" alt="{{$faculty->name}} logo "s class=" p-1 mt-3" height="120px" width="120px">
+                    
+                    @endif
+        {{-- <img src="{{$faculty->logo}}" class="card-img-left" alt="{{$faculty->name}} logo "> --}}
     </div>
-    <div class="col-5 text-left">
-            <h5 class="card-title ">{{$faculty->name}}</h5>
-            <p class="card-text">Here goes a quick description of the faculty...</p>
-    </div>
-    <div class="col-2">
-        {{-- <a href="" class="btn btn-outline-secondary">See all Specialities</a> --}}
-        <a href="{{route('speciality.list',['view'=> 'post-login.admin.lists.specialityList', 'id'=>$faculty->id])}}" class="btn btn-outline-secondary">See all specialities</a>
+    <div class="col text-left">
+            <h5 class="card-title mt-3">{{$faculty->name}}</h5>
 
+            
+                <div class="row">
+                     <div class="col-sm-6 mt-2 text-dark">
+                        <p class="card-text">Rector: {{$faculty->rector->name}}</p>
+                    </div>
+                        <div class="col-sm-3">
+                        <img src="{{$faculty->rector->photo}}" style="width:5rem; height:5rem; border-radius:2%;" alt="author's picture">
+                    </div> 
+                    <div class="col-sm-3">
+                        <a href="{{route('speciality.list',['view'=> 'post-login.admin.lists.specialityList', 'id'=>$faculty->id])}}" class="btn btn-outline-secondary">See all specialities</a>
+                    </div>
+                </div>
+            </p>
     </div>
+    {{-- <div class="col-2 mt-4">
+    </div> --}}
     </div>
  
 
   @endforeach
+</section>
 </div>
 
 

@@ -23,7 +23,7 @@ class Subject extends Model
         return $this->hasMany(User::class);
     }
     public function specialities(){
-        return $this->belongsToMany(Speciality::class, 'subjects_specialities');
+        return $this->belongsToMany(Speciality::class);
     }
     public function grades(){
         return $this->hasMany(Grades::class);

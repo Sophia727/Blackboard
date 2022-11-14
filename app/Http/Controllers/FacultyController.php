@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use App\Models\Speciality;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -23,20 +24,13 @@ class FacultyController extends Controller
      */
     public function facultyProfile($view, $id){
         $faculty = Faculty::find($id);
-        
-        // $speciality = Speciality::all();
         $specialities = $faculty->specialities;
         return view($view, ['faculty'=>$faculty , 'specialities' => $specialities]);
     }
-    //post login
-    // public function facultyProfile($id){
-    //     $faculty = Faculty::find($id);
-    //     $speciality = Speciality::all();
-    //     return view('post-login.admin.institution.faculty.facultyProfile', ['faculty' => $faculty, 'speciality'=>$speciality]);
-    // }
+   
     public function create()
     {
-        $user = DB::table('users')->where(['role'=> 'admin'])->orderBy('name', 'asc')->get(); 
+        $user = User::where(['role'=> 'admin'])->orderBy('name', 'asc')->get(); 
         return view('post-login.admin.institution.faculty.addFaculty',['role' => $user]);
     }
     public function store(Request $request){
@@ -47,11 +41,11 @@ class FacultyController extends Controller
         ]);
         
         $newFaculty= $dataOk;
-        if ($request->file('logo')) {
+         if ($request->file('logo')) {
             $file = $request->file('logo');
-            $fileName = "faculty-".$newFaculty['name']."-". time() . "." . $file->getClientOriginalExtension();
+            $fileName = "faculty-".$newFaculty['name'] . time() . "." . $file->getClientOriginalExtension();
             $path = $file->storeAs('images/logos', $fileName, 'public');
-            $newFaculty['logo'] = 'storage/'. $path;
+            $newFaculty['logo'] = 'storage/' . $path;
         }
         
         $facultyCreate = Faculty::create($newFaculty);

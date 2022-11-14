@@ -10,7 +10,11 @@
     @foreach ($faculties as $faculty)
 
         <div class="col">
-            <a class="text-dark" href="{{route('chooseSpec.grade',['view'=> 'post-login.users.professor.chooseSpecToGrade', 'id'=>$faculty->id])}}">
+          @if (Auth::user()->role == "admin")
+          <a class="text-dark" href="{{route('chooseSpec.grade',['view'=> 'post-login.users.professor.chooseSpecToGrade', 'id'=>$faculty->id])}}">
+          @else
+          <a class="text-dark" href="{{route('chooseSpeciality.grade',['view'=> 'post-login.users.professor.chooseSpecToGrade', 'id'=>$faculty->id])}}">
+          @endif
           <div class="card">
             <div class="card-body">
               <h3 class="card-title">{{$faculty->name}}</h3>

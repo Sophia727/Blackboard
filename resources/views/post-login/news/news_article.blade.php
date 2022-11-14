@@ -27,7 +27,19 @@
                     </div>
                     @if (Auth::user()->role==='admin')    
                     <div class="col text-right">
-                        <a href="{{route('edit.post', ['post'=>$post->id])}}"> <i class="bi bi-pencil-square text-warning px-1 fa-xl"></i></a>
+                        <a href="{{route('edit.post', ['post'=>$post->id])}}"> <i class="bi bi-pencil-square text-primary px-1 fa-xl"></i></a>
+                        
+                        <a href="#" onclick="if(confirm('Are you sure you want to delete this article?')){
+                        document.getElementById('post-{{$post->id}}').submit();}"
+                         title="Delete">
+                         <i class="bi bi-trash text-danger px-1 fa-xl"></i>
+                      
+                        </a>
+                        <form id="post-{{$post->id}}" action="{{route('delete.post', ['post'=>$post->id])}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        </form>
+                
                     </div>
                     @endif
                 </div>
@@ -36,12 +48,21 @@
                     {{$post->title}}
                 </h2>
                 <div class="mt-4 mb-5 text-center">
-                    <img src="{{$post->photo}}" style="width: 25rem; border-radius:2%" alt="placeholder"/>
+                    @if($post->photo)
+                    @if(Str::contains($post->photo, 'https://'))
+                      <img src="{{$post->photo}}" alt="{{$post->title}}"  style="width: 27rem; border-radius:2%"/>
+                      @else
+                      <img src="{{asset("storage/".$post->photo)}}" alt="{{$post->title}}" style="width: 27rem; border-radius:2%"/>
+                    @endif
+                    @else
+                    <img src="{{asset('images/dummy-image.jpg'.$post->photo)}}"alt="{{$post->title}}" style="width: 27rem; border-radius:2%"/>
+                    
+                  @endif 
                 </div>
                 
                 <p class="card-text">{{$post->description}}</p>
                     <p>Numquam mollitia dolorum accusamus nemo officia, quia odio incidunt odit delectus suscipit aspernatur non est libero ab quo fuga aliquid nobis in aut ipsam beatae consequuntur. Aperiam, distinctio. Consectetur itaque praesentium ex, cumque nulla quibusdam labore incidunt accusantium dolorum harum esse officia molestiae maiores aspernatur eum perspiciatis qui est natus omnis quisquam. Iure iusto aperiam nostrum impedit nam voluptate molestias numquam explicabo, ut saepe sequi odit doloribus! Perferendis incidunt voluptas iste vero nemo possimus neque ex inventore ratione blanditiis, commodi error, natus facilis laboriosam saepe nisi nostrum. Eius ducimus voluptatum sit nobis.</p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, exercitationem? Rerum a non tenetur minus asperiores! Illo earum a labore cupiditate minus! Aspernatur saepe, nesciunt voluptas vitae ipsum modi assumenda itaque officia odio, fugiat dignissimos praesentium debitis ab doloribus iste eveniet maiores iure! Quasi mollitia sapiente fugit, repellendus eum totam blanditiis consectetur tempora quisquam laudantium laborum culpa ducimus vitae accusantium soluta excepturi, asperiores ad eius, voluptatum maxime dolore doloremque veritatis sit voluptate? Quidem quos distinctio excepturi iure aspernatur necessitatibus ad! Consequuntur quae fuga nisi officiis unde error ipsa nesciunt amet. Ducimus nostrum aspernatur tenetur inventore cumque laborum, adipisci quas vitae quia incidunt numquam, voluptate at iusto exercitationem odio rem! Consequuntur perferendis alias porro eum recusandae. Reprehenderit quam officia laudantium voluptates?
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ut, exercitationem? Rerum a non tenetur minus asperiores! Illo earum a labore cupiditate minus! Aspernatur saepe, nesciunt voluptas vitae ipsum modi assumenda itaque officia odio, fugiat dignissimos praesentium debitis ab doloribus iste eveniet maiores iure! Quasi mollitia sapiente fugit, repellendus eum totam blanditiis consectetur tempora quisquam laudantium laborum culpa ducimus vitae accusantium soluta excepturi, asperiores ad eius, voluptatum maxime dolore doloremque veritatis sit voluptate? Quidem quos distinctio excepturi iure aspernatur necessitatibus ad! Consequuntur quae fuga nisi officiis unde error ipsa nesciunt amet, adipisci quas vitae quia incidunt numquam, voluptate at iusto exercitationem odio rem! Consequuntur perferendis alias porro eum recusandae.
                 <hr class="card-footer">
                 <div class="row">
                     

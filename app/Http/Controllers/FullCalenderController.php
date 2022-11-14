@@ -26,7 +26,7 @@ class FullCalenderController extends Controller
                        ->get(['id', 'title', 'start', 'end']);
                 return response()->json($data);
         }
-        return view('post-login.admin.fullCalendar');
+        return view('template.admin_calendar');
     }
 
  

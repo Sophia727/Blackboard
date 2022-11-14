@@ -1,5 +1,15 @@
 @extends('template.user_homepage')
 @section('content')
+<div class="row">
+    {{-- partie message --}}
+    @if(session('status'))
+    <x-alert type="success" :message="session('status')" class="mb-4"/>   
+    @endif
+    @if(session('error'))
+    <x-alert type="danger" :message="session('error')" class="mb-4"/>   
+    @endif
+</div>
+
 <div class="row myProfile_head">
     <h2>{{$user->name}}</h2>
     <div class="user_pic">
@@ -9,10 +19,25 @@
 <div class="row myProfile_body">
     <h3>Profile</h3>
     
-    <div class="card-body">
-        <form action="{{route('update.profile', ['user'=>$user->id])}}" method="post">
-        @csrf
-        @method('put')    
+    <div class="card-body mb-5">
+        @if (Auth::user()->role == 'admin')
+        <form action="{{route('update.profile', ['id'=>$user->id])}}" method="post">
+            @csrf
+            @method('put')    
+    
+        @elseif (Auth::user()->role == 'professor')
+        <form action="{{route('updateProf.profile',['id'=>$user->id])}}" method="post">
+            @csrf
+            @method('put')   
+        @elseif (Auth::user()->role == 'student')
+        <form action="{{route('updateStu.profile', ['id'=>$user->id])}}" method="post">
+            @csrf
+            @method('put')   
+        @elseif (Auth::user()->role == 'parent')
+        <form action="{{route('updatePar.profile', ['id'=>$user->id])}}" method="post">
+            @csrf
+            @method('put')   
+        @endif
         <div class="text-right mb-3 " style="margin-right: 91px">                
             <button type="submit" class="btn btn-primary">Update  <i class="bi bi-check"></i></button>
         </div>
@@ -20,47 +45,77 @@
         <div class="row mb-3">
             <div class="col-sm-2">
                 <input type="hidden" value="{{$user->id}}">
-                <h6 class="mb-0">Full Name</h6>
+                <h6 class="mb-2">Full Name</h6>
             </div>
             <div class="col-sm-9 text-secondary">
-                <input type="text" name="name" class="form-control" value="{{$user->name}}" disabled>
+                <input type="text" name="name" class="form-control" value="{{$user->name}}" disabled >
+
+                @error('name')
+                <div class="alert alert-danger">
+                {{$message}} 
+                </div>
+                @enderror
+
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-2">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mt-2">Email</h6>
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" name="email" value="{{$user->email}}">
+                @error('email')
+                <div class="alert alert-danger">
+                {{$message}} 
+                </div>
+                @enderror
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-2">
-                <h6 class="mb-0">Mobile</h6>
+                <h6 class="mt-2">Mobile</h6>
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" name="phone" value="{{$user->phone}}">
+                @error('phone')
+                <div class="alert alert-danger">
+                {{$message}} 
+                </div>
+                @enderror
             </div>
         </div>
         
         <div class="row mb-3">
             <div class="col-sm-2">
-                <h6 class="mb-0">Address</h6>
+                <h6 class="mt-2">Address</h6>
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" class="form-control" name="address" value="{{$user->address}}">
+                @error('address')
+                <div class="alert alert-danger">
+                {{$message}} 
+                </div>
+                @enderror           
             </div>
         </div>
         @if(Auth::User()->role==='student')
         <div class="row mb-3">
             <div class="col-sm-2">
-                <h6 class="mb-0">Speciality</h6>
+                <h6 class="mt-2">Speciality</h6>
             </div>
             <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" name="speciality" @if (Auth::User()->speciality_id!='')
-                    value="{{$user->spreciality_id->name}}"
-                    @else value="No Speciality assigned" disabled
-                @endif >
+                <input type="text" class="form-control" name="speciality_id" 
+                @if (Auth::User()->speciality_id!='')
+                    value="{{$user->speciality->name}}" disabled
+                @else 
+                    value="No Speciality assigned" disabled
+                @endif 
+                >
+                @error('speciality_id')
+                <div class="alert alert-danger">
+                {{$message}} 
+                </div>
+                @enderror
             </div>
         </div>
         @endif

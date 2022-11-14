@@ -2,14 +2,15 @@
 @section('content')
 {{-- <img src="{{asset('images/login-background.jpg')}}" alt="background image" width="1295px" height="600px"> --}}
 <div class="login-page">
-<div class="container">
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{session('error')}}
-        </div>
-    @endif
-</div>
+
 <div class="container login-frame">
+    <div class="container">
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{session('error')}}
+            </div>
+        @endif
+    </div>
     <form action="{{route('post.login')}}" method="POST" class="text-white">
         @csrf
         <h2>Access User Portal</h2>

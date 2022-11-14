@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faculty;
 use App\Models\Speciality;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,7 @@ class SpecialityController extends Controller
 
     public function specialityProfile($view, $id){
         $speciality = Speciality::find($id);
-        $subjects = $speciality->subjects;
+        $subjects = Subject::where('speciality_id', $speciality->id)->get();
         return view($view, ['subjects' => $subjects, 'speciality'=>$speciality]);
     }
 

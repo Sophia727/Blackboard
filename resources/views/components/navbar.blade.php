@@ -1,4 +1,3 @@
-
     <div class="prelogin_navbar">
     <nav class="navbar navbar-expand-lg">
       <div class="container px-4">
@@ -6,6 +5,7 @@
 
         <div class="collapse navbar-collapse" id="navmenu">
           <ul class="navbar-nav ms-auto">
+            <li>
             <div class="dropdown">
               <a class="btn dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 About us
@@ -18,10 +18,10 @@
                 <li><a class="dropdown-item" href="#">Partnerships</a></li>
               </ul>
             </div>
-
+          </li>
             {{-- <li class="nav-item"><a class="nav-link active" href="{{route('aboutUs')}}">About us</a></li> --}}
             <div class="dropdown">
-              <a class="btn bg-transparent text-white dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="btn dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Programs
               </a>
             
@@ -35,9 +35,9 @@
                 <li><a class="dropdown-item" href="#">All programs and courses</a></li>
               </ul>
             </div>
-            <li class="nav-item"><a class="nav-link active text-white" href="{{route('news')}}"> News </a></li>
-            <li class="nav-item"><a class="nav-link active text-white" href="{{route('contactUs')}}">Contact us </a></li>
-            <li class="nav-item"><a class="nav-link active text-white" href="{{route('login')}}">  User Portal <i class="bi bi-box-arrow-in-right"></i></a>
+            <li class="nav-item"><a class="nav-link text-white" href="{{route('news')}}"> News </a></li>
+            <li class="nav-item{{ (strpos(Route::currentRouteName(), 'contactUs') == 0) ? 'active' : '' }}"><a class="nav-link text-white" href="{{route('contactUs')}}">Contact us </a></li>
+            <li class="nav-item  {{ (strpos(Route::currentRouteName(), 'login') == 0) ? 'active' : '' }}"><a class="nav-link text-white" href="{{route('login')}}">  User Portal <i class="bi bi-box-arrow-in-right"></i></a>
             </li>
           </ul>
         </div>

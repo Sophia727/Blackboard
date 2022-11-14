@@ -88,7 +88,7 @@
                     <a role="button"
                     href="{{route('show.news')}}">
                         <div class="card-block">
-                            <h3 class="m-b-20">Posts</h3>
+                            <h3 class="m-b-20">News</h3>
                         </div>
                     </a>
                     
@@ -101,7 +101,8 @@
             <div class="col-md-4 col-xl-3">
                 <div class="card bg-c-pink order-card">
                     <a role="button" 
-                    href="{{route('myProfile')}}" 
+                    href="{{route('myProfile', ['view'=> 'post-login.users.profile.myProfile'])}}"
+
                     aria-controls="grades">
                         <div class="card-block">
                             <h3 class="m-b-20">My Profile</h3>

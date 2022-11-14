@@ -8,3 +8,7 @@ ul, li{
     position: sticky;
     top:2rem;
 }
+
+a:active {
+    color: rgb(233, 77, 77);
+  }

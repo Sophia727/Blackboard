@@ -48,19 +48,16 @@
                 @auth
                     @if (Auth::user()->role==='admin')
                         <x-sidebar_admin/>
-                        
                     @endif
                     
                 @endauth        
             </div>
 
             <div class="col-10">
-                <div class="contaier ml-4">
-                    @yield('content')
-                </div>
-      
+                @yield('content')      
+             <x-calendar/>
             </div>
-            <div class="col-auto">
+            <div class="col-1">
 
             </div>
         </div>

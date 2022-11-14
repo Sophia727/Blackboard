@@ -14,10 +14,10 @@ class Speciality extends Model
         "subject_id",
     ];
     public function subjects(){
-        return $this->belongsToMany(Subject::class, 'subjects_specialities');
+        return $this->belongsToMany(Subject::class);
     }
     public function faculty(){
-        return $this->belongsTo(Faculty::class, 'speciality_id');
+        return $this->belongsTo(Faculty::class, 'specialities');
     }
     public function students(){
         return $this->hasMany(User::class);

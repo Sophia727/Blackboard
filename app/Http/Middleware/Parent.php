@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class parent
+class Parent
 {
     /**
      * Handle an incoming request.
@@ -19,6 +19,6 @@ class parent
         if(auth()->user()->role == "parent"){
             return $next($request);
         } 
-        return redirect()->route('login')->with('error', 'This parent\'s account does not exist. Please contact your school administration.');
+        return redirect()->route('login')->with('error', 'This account does not exist. Please contact your school administration.');
     }
 }

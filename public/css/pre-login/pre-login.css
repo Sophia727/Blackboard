@@ -19,3 +19,11 @@
     transition: 1s;
     box-shadow: 0 0 25px 5px #c2c2c2;
 }
+
+nav li a:hover {
+  font-weight: bold!important;
+}
+nav li a:active{
+  font-weight: bold!important;
+
+}

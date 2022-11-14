@@ -8,6 +8,6 @@ use App\Http\Controllers\Controller;
 class ParentController extends Controller
 {
     public function index(){
-        return view('post-login.users.professor.dashboard');
+        return view('post-login.users.parent.dashboard');
     }
 }

@@ -4,10 +4,12 @@
 
 <div class="row">
     @if(session('status'))
-    <div class="alert alert--success">
-      {{session('status')}}
-    </div>
-  @endif
+    <x-alert type="success" :message="session('status')" class="mb-4"/>   
+    @endif
+    @if(session('error'))
+    <x-alert type="danger" :message="session('error')" class="mb-4"/>   
+    @endif
+</div>
 <div class="card">
 <div class="card-header">
     <h4 class="card-title">Create a new user</h4>

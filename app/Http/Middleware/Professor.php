@@ -19,7 +19,7 @@ class Professor
         if(auth()->user()->role == "professor"){
             return $next($request);
         } 
-        return redirect()->route('login')->with('error', 'This professor\'s account does not exist. Please contact your school administration.');
+        return redirect()->route('login')->with('error', 'This account does not exist. Please contact your school administration.');
 
         }
     

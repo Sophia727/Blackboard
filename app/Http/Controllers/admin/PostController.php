@@ -22,6 +22,9 @@ class PostController extends Controller
         $posts = Post::orderBy('updated_at', 'asc')->paginate(10);
         return view("pre-login.news.news", ['posts' => $posts]);
     }
+
+
+
     public function guestReadMore($id, Comment $comments){
         $post = Post::find($id);
         $comments= Post::with('comments')->find($id)->comments;
@@ -39,6 +42,8 @@ class PostController extends Controller
         return view("post-login.news.news", ['posts' => $posts]);
     }
 
+
+
     public function readMore($id, Comment $comments){
         $post = Post::find($id);
         $comments= Post::with('comments')->find($id)->comments;
@@ -53,18 +58,20 @@ class PostController extends Controller
     public function create(){
         return view('post-login.news.writePost');
     }
+
+
+
     public function store(Request $request){
         $dataOk = $request->validate([
             'title'=> 'required|min:2',
             'description'=>'required|min:2',
             'photo'=>'max:10250',
         ]);
-
         $dataOk['author_id']= Auth::user()->id;
         $post = $dataOk;
         if($request->file('photo')){
             $file = $request->file('photo');
-            $fileName = "user-".time().".".$file->getClientOriginalExtension();
+            $fileName = "Article-".$post['title'].time().".".$file->getClientOriginalExtension();
             $path = $file->storeAs('images/users', $fileName, 'public');
             $post['photo'] = $path;
         }
@@ -75,13 +82,17 @@ class PostController extends Controller
         } else{
             return back()->with("error", "Failed to create the User")->withInput();
         }
-
     }
+
+
+
     public function editPost($id){
         $post = Post::find($id);
         return view("post-login.news.editPost", ['post'=>$post]);
     }
-    public function updatePost($id, Request $request){
+
+
+    public function updatePost(Request $request, $id){
         $data = $request->validate([
             'title' => 'required|string|max:50',
             'description' => 'required',
@@ -103,12 +114,20 @@ class PostController extends Controller
         $post->publication_date = $post->published? now(): null;
 
         if($post->update()){
-           return  back()->with(["status"=>"Article updated!"]);
+           return  redirect()->route('news.readmore' ,['post' => $post])->with(["status"=>"Article updated!"]);
         }else{
             return back()->with("error"," Edit and Update Failed")->withInput();
         }
     }
-
+    public function destroyPost($id)
+    { 
+        $post = Post::find($id);
+        if($post->delete()){
+        return back()->with('status', $post->title.' deleted successfully');
+        } else {
+            return back()->with('status', "Oops: failed to delete $post->message ");
+        }
+    }
     public function searchPost(){
         if(!($query = null)){
             $query = request()->input('query');

@@ -9,14 +9,14 @@
     @if(session('error'))
     <x-alert type="danger" :message="session('error')" class="mb-4"/>   
     @endif
-    <div class="col-8">
+    <div class="col-8 mb-5">
       <h1>
-        <strong>Grades</strong>
+        <strong>Students in {{$speciality->name}}</strong>
       </h1>
     </div>
   
     <!-- Add grades Modal -->
-    <div class="modal fade" id="addGradesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="addGradesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -27,7 +27,7 @@
           </div>
           <div class="modal-body">
             <div class="form-group mb-3">
-              {{-- a modifier --}}
+          
               <label for="">Student Name</label>
               <input type="text" class="name form-control">
             </div>
@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-    
+     --}}
     
       <div class="col-4">
         <div class="row">
@@ -74,8 +74,15 @@
   <div class="row">
   
   <!-- Modal -->
+  @if (Auth::user()->role =='admin')
   <form action="{{route('store.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
     @csrf
+  @else
+  <form action="{{route('storeProf.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
+    @csrf
+
+  @endif
+  {{-- <form action="{{route('store.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data"> --}}
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -94,7 +101,8 @@
                       <option value="{{$student->id}}">{{$student->name}}</option>
                   </div>  
               @endforeach                    
-          </select>           
+          </select>   
+                  
           </div>
           <div class="form-group mb-3">
             <label for="">Subject</label>
@@ -133,28 +141,28 @@
   {{--***** MAIN table ******--}}
   
       <div class="card-body">
-          <div class="table-responsive table-striped text-center">
+          <div class="table-responsive text-center">
             <table class="table table-sm">
               <thead>
 
                 <tr>
-                  <th>Students</th>
-                  @foreach ($subjects as $subject)
+                  <th>All Students</th>
                   
-                  <th scope="col">{{$subject->name}}</th> 
-                  @endforeach                  
+                  <th scope="col">View grades</th> 
+                        
                 </tr>
               </thead>
-              <tbody>
+              
                 <tbody>
-
                   @foreach ($students as $student)
                   <tr>
                     <td>{{$student->name}}</td> 
-                    <td>
-                      {{-- @foreach ($grades as $grade)
-                         {{$grade->grade}}
-                    @endforeach --}}
+                    <td> 
+                      @if (Auth::user()->role == "admin")
+                      <a class="text-dark" href={{route('student.grades',['view'=>'post-login.users.professor.studentGrades', 'id'=>$student->id] )}}>Grades</a>
+                      @else
+                      <a class="text-dark" href={{route('studentProf.grades',['view'=>'post-login.users.professor.studentGrades', 'id'=>$student->id] )}}>Grades</a>
+                      @endif                      
                      </td>
                   </tr>
                   @endforeach
