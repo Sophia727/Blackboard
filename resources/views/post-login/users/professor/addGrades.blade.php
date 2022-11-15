@@ -75,14 +75,13 @@
   
   <!-- Modal -->
   @if (Auth::user()->role =='admin')
-  <form action="{{route('store.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
+  <form action="{{route('store.grades', ['id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
     @csrf
   @else
-  <form action="{{route('storeProf.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
+  <form action="{{route('storeProf.grades',['id'=>$speciality->id])}}" method="post" enctype="multipart/form-data">
     @csrf
 
   @endif
-  {{-- <form action="{{route('store.grades', ['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}" method="post" enctype="multipart/form-data"> --}}
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -117,7 +116,26 @@
           </div>
           <div class="form-group mb-3">
             <label for="">Semester</label>
-            <input type="text" class="semester form-control" name="semester">
+            <select class="form-select" required name="semester">
+              <option selected value>Select...</option>
+                  <div class="form-check">
+                      <option value="s1">semester 1</option>
+                      <option value="s2">semester 2</option>
+                      <option value="s3">semester 3</option>
+                      <option value="s4">semester 4</option>
+                      <option value="s5">semester 5</option>
+                      <option value="s6">semester 6</option>
+                      <option value="s7">semester 7</option>
+                      <option value="s8">semester 8</option>
+                      <option value="s9">semester 9</option>
+                      <option value="s10">semester 10</option>
+                      <option value="s11">semester 11</option>
+                      <option value="s12">semester 12</option>
+                      <option value="s13">semester 13</option>
+                      <option value="s14">semester 14</option>
+
+                  </div>  
+            </select>
           </div>
           
           <div class="form-group mb-3">
@@ -140,7 +158,7 @@
   
   {{--***** MAIN table ******--}}
   
-      <div class="card-body">
+      <div class="card-body ml-4">
           <div class="table-responsive text-center">
             <table class="table table-sm">
               <thead>

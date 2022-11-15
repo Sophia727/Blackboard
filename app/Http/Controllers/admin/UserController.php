@@ -266,7 +266,7 @@ class UserController extends Controller
      */
     public function showStudents()
     {
-        $user = DB::table('users')->where('role', 'student')->orderBy('name', 'asc')->paginate(15);
+        $user = User::where('role', 'student')->orderBy('name', 'asc')->paginate(15);
         return view('post-login.admin.lists.studentsList', ['role' => $user]);
     }
 }

@@ -43,14 +43,15 @@ class GradesController extends Controller
     
     
     public function storeGrades( Request $request){
+        // dd($request);
         $dataOk = $request->validate([
             'student_id' => 'required',
             'subject_id'=>'required',
             'semester'=>'required',
             'grade'=>'required|max:100',
-            'message'=>'required'
+            'message'=>'string'
         ]);
-        dd($dataOk);
+        // dd($request['student_id']);
         $dataOk['author_id']= Auth::user()->id;
         $newGrade= $dataOk;
         $storeGrade = Grades::create($newGrade);

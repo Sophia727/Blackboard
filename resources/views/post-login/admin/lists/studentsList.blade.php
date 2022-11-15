@@ -27,6 +27,7 @@
               <tr>
                 <th scope="col">Photo</th>
                 <th scope="col">Name</th>
+                <th scope="col">Speciality</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Actions</th>
@@ -49,6 +50,13 @@
                     @endif
                   </td> 
                   <td>{{$user->name}}</td>
+                  
+                  @if ($user->role != '')
+                  <td>{{$user->speciality_id}}</td>
+                  @else
+                  <td>N/A</td>
+
+                  @endif
                   <td>{{$user->email}}</td>
                   <td>{{$user->phone}}</td>
                   <td> 

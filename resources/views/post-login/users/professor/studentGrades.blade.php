@@ -58,7 +58,7 @@
   
   {{--***** MAIN table ******--}}
   
-      <div class="card-body">
+      <div class="card-body ml-4">
           <div class="table-responsive text-center">
             <table class="table table-sm mb-5">
               <thead>
@@ -113,11 +113,12 @@
             <div class="form-group mb-3">
               {{-- a modifier --}}
               <label for="">Student Name</label>
-              <input type="text" name="name" class="form-control" value="{{$student->name}}" disabled>
+              <input type="hidden" name="student_id" class="form-control" value="{{$student->id}}">
+              <input type="text" class="form-control" value="{{$student->name}}" disabled>
             </div>
             <div class="form-group mb-3">
               <label for="">Subject</label>
-              <select class="form-select" required name="subject_id">
+              <select class="form-select" name="subject_id">
                 <option selected value>Select...</option>
                 @foreach ($subjects as $subject)  
                     <div class="form-check">
@@ -128,7 +129,7 @@
             </div>
             <div class="form-group mb-3">
               <label for="">Semester</label>
-              <select class="form-select" required name="semester">
+              <select class="form-select" name="semester">
                 <option selected value>Select...</option>
                     <div class="form-check">
                         <option value="s1">semester 1</option>
