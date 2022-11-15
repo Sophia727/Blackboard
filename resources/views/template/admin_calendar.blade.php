@@ -53,9 +53,11 @@
                 @endauth        
             </div>
 
-            <div class="col-10">
-                @yield('content')      
-             <x-calendar/>
+            <div class="col">
+                @yield('content')  
+                <div class="container">
+                    <x-calendar/>
+                </div>    
             </div>
             <div class="col-1">
 

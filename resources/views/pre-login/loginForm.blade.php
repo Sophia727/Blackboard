@@ -1,6 +1,5 @@
 @extends('template.homepage')
 @section('content')
-{{-- <img src="{{asset('images/login-background.jpg')}}" alt="background image" width="1295px" height="600px"> --}}
 <div class="login-page">
 
 <div class="container login-frame">

@@ -92,5 +92,15 @@ class GradesController extends Controller
        
     ]);
     }
+    public function destroyGrades($id)
+    { 
+        $grades = Grades::find($id);
+        if($grades->delete()){
+        return back()->with('status', 'Grade deleted successfully');
+        } else {
+            return back()->with('status', "Oops: failed to delete this grade");
+        }
+    }
+
     
 }

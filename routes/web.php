@@ -66,8 +66,8 @@ Route::middleware(['auth'])->group(function () {
 
     //calendar routes
     Route::controller(FullCalenderController::class)->group(function(){
-    Route::get('fullcalender', 'index')->name('calendar.show');
-    Route::post('fullcalenderAjax', 'ajax');
+    Route::get('/fullcalender', 'index')->name('calendar.show');
+    Route::post('/fullcalenderAjax', 'ajax');
     });
     //institution
     Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
@@ -169,6 +169,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/{view}/{id}/add-grades', [GradesController::class, 'addGrades'])->name('add.grades');
         Route::post('/store-grades', [GradesController::class, 'storeGrades'])->name('store.grades');
         Route::get('/{view}/{id}/student-grades', [GradesController::class, 'studentGrades'])->name('student.grades');
+        Route::delete("/student-grades/{grade}", [GradesController::class, 'destroyGrades'])->name('delete.grade');
 
         //reports
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.list');        

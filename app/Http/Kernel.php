@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\Admin;
 use App\Http\Middleware\Professor;
 use App\Http\Middleware\Student;
+use App\Http\Middleware\Parents;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -72,7 +73,7 @@ class Kernel extends HttpKernel
          'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'student' => \App\Http\Middleware\Student::class,
-        'parent' => \App\Http\Middleware\Parent::class,
+        'parent' => \App\Http\Middleware\Parents::class,
         'professor' => \App\Http\Middleware\Professor::class,
 
 

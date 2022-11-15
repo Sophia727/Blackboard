@@ -5,7 +5,7 @@
 </div>
 <hr>
 <div>
-  <div class="row row-cols-1 row-cols-md-2 g-4 mt-5">
+  <div class="row row-cols-1 row-cols-md-2 g-4 mt-5 mb-5">
     @foreach ($specialities as $speciality)
       <div class="col">
         @if (Auth::user()->role == "admin")
