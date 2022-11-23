@@ -7,14 +7,21 @@
     <title>User created successfully!</title>
 </head>
 <body>
-    <h2>Email Notification: user account created on Blackboard</h2>
+    <h2>Email Notification: New user on Blackboard</h2>
     <p>Greetings from University, and a warm welcome to our Community! </p>
     
-    <p>Your Info:</p>
-    <p>
-        <strong>Name: </strong> {{$user['name']}}
-        <strong>Email: </strong> {{$user['email']}}
-        <strong>Name: </strong> {{$user['pass']}}
-    </p>
+    
+
+    <p>Kindly recieve your login account information which you can log with direclyon our portal: http://127.0.0.1:8000/login :</p>
+    <ul>
+        <li><strong>Name: </strong> {{$user['name']}}</li>
+        <li><strong>Email: </strong> {{$user['email']}}</li>
+        <li><strong>Password: </strong> {{$user['pass']}}</li>
+    </ul>
+
+    <p>For any question or further in formation, please contact us <a href="{{route('contactUs')}}">here</a>. </p>
+      
+    <p>Sincerely,</p>
+    <p>University Team.</p>
 </body>
 </html>

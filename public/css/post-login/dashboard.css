@@ -45,6 +45,3 @@ a:hover{
     transform: scale(0.75);
     transition: 0.4s;
 }
-.nav-link:active{
-    color:red;
-}

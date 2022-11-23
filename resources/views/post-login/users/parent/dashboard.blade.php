@@ -23,7 +23,7 @@
             href="#"> 
                 <div class="card-block ">
                     <h3 class="m-b-20 text-dark"> Inbox 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="#6aafff" class="bi bi-envelope-fill ml-2" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#6aafff" class="bi bi-envelope-fill ml-2" viewBox="0 0 16 16">
                             <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
                         </svg>
                         
@@ -35,7 +35,7 @@
     <div class="col-md-4 col-xl-4">
         <div class="card order-card">
             <a role="button"
-            href="{{route('access.grades'
+            href="{{route('studentsPar.list'
             // ,['id'=>Auth::user()->id]
             )
             }}"> 
@@ -55,7 +55,7 @@
                 <div class="card-block">
                     <h3 class="m-b-20 text-dark">
                         News 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="45" fill="#33d9b8" class="bi bi-newspaper ml-2" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" fill="#44d166" class="bi bi-newspaper" viewBox="0 0 16 16">
                             <path d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z"/>
                             <path d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z"/>
                           </svg>
@@ -71,7 +71,7 @@
                 <div class="card-block">
                     <h3 class="m-b-20 text-dark">
                         New Article
-                        <svg xmlns="http://www.w3.org/2000/svg" width="45" fill="#c297dd" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" fill="#c297dd" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                           </svg>
@@ -82,14 +82,12 @@
     </div><div class="col-md-4 col-xl-4">
         <div class="card order-card">
             <a role="button"
-            href="{{route('professorsStu.list')}}">
+            href="{{route('professorsPar.list')}}">
                 <div class="card-block">
                     <h3 class="m-b-20 text-dark">
-                        Professors
-                        <svg xmlns="http://www.w3.org/2000/svg"  width="45" fill="#ffc167" class="bi bi-calendar-event ml-2" viewBox="0 0 16 16">
-                            <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                          </svg>
+                        Professors 
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="45" height="50" fill="#f29d00" class="bi bi-calendar-event" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 256c-53 0-96-43-96-96s43-96 96-96s96 43 96 96s-43 96-96 96zm-26.7 32h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg>
+
                     </h3>
                 </div>
             </a>
@@ -100,7 +98,7 @@
             href="{{route('myProfile', ['view'=> 'post-login.users.profile.myProfile'])}}">                
                 <div class="card-block">
                 <h3 class="m-b-20 text-dark"> Profile
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" fill="#E63946" class="bi bi-person-fill" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="50" fill="#E63946" class="bi bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                       </svg>
                 </h3>

@@ -13,7 +13,20 @@
 <div class="row myProfile_head">
     <h2>{{$user->name}}</h2>
     <div class="user_pic">
-        <img src="{{asset($user->photo)}}" alt="Profile picture"  width="100%" style="border-radius: 60px">
+        @if($user->photo)
+          @if(Str::contains($user->photo, 'https://'))
+          <img src="{{$user->photo}}"  alt="Profile picture"  width="100%" style="border-radius: 60px">
+          @else
+          <img src="{{asset($user->photo)}}"  alt="Profile picture"  width="100%" style="border-radius: 60px">
+          @endif
+        @else
+        <img src="{{asset('images/profile-default.jpeg')}}"  alt="Profile picture"  width="100%" style="border-radius: 60px">
+                    
+        @endif
+        {{-- <div class="text-end modify-pp">
+        <i class="fa-sharp fa-solid fa-pen text-success"></i>
+    </div> --}}
+        {{-- <img src="{{asset($user->photo)}}" alt="Profile picture"  width="100%" style="border-radius: 60px"> --}}
     </div>
 </div>
 <div class="row myProfile_body">
@@ -45,7 +58,7 @@
         <div class="row mb-3">
             <div class="col-sm-2">
                 <input type="hidden" value="{{$user->id}}">
-                <h6 class="mb-2">Full Name</h6>
+                <h6 class="mt-2">Full Name</h6>
             </div>
             <div class="col-sm-9 text-secondary">
                 <input type="text" name="name" class="form-control" value="{{$user->name}}" disabled >
@@ -85,19 +98,7 @@
             </div>
         </div>
         
-        <div class="row mb-3">
-            <div class="col-sm-2">
-                <h6 class="mt-2">Address</h6>
-            </div>
-            <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" name="address" value="{{$user->address}}">
-                @error('address')
-                <div class="alert alert-danger">
-                {{$message}} 
-                </div>
-                @enderror           
-            </div>
-        </div>
+        
         @if(Auth::User()->role==='student')
         <div class="row mb-3">
             <div class="col-sm-2">
@@ -127,6 +128,51 @@
             </div>
         </div>
     </form>
+    </div>
+    <div class="row myProfile_body">
+    <h4>Change password</h4>
+    <div class="card-body mb-5">
+
+        <form action="{{route('changePassword', ['id'=>$user->id])}}" method="post">
+            @csrf
+            @method('put')    
+    
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <h6 class="mt-2">Password</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                    <input type="password" class="form-control 
+                    @error('password') is-invalid @enderror" 
+                    name="password" autocomplete="current-password">
+            
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <label for="password" class="text-md-right">Confirm Password</label>
+                </div>
+                <div class="col-lg-9 text-secondary">
+                    <input id="password" type="password" class="form-control 
+                    @error('password') is-invalid @enderror" 
+                    name="password_confirmation" autocomplete="current-password">
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary">Update  <i class="bi bi-check"></i></button>
+    
+                </div>
+            </div>
+           
+        </form>
+    </div>
     </div>
 </div>
 </div>

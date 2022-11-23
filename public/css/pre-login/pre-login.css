@@ -23,7 +23,10 @@
 nav li a:hover {
   font-weight: bold!important;
 }
-nav li a:active{
+/* nav li a:active{
   font-weight: bold!important;
 
+} */
+li{
+  list-style: none;
 }

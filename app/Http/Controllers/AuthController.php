@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Post;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
@@ -12,7 +13,8 @@ class AuthController extends Controller
 {
     public function welcomepage(){
         $posts = Post::orderBy('updated_at', 'asc')->paginate(5);
-        return view('pre-login.welcomepage', ['posts'=>$posts]);
+        $events = Event::orderBy('updated_at', 'asc')->paginate(7);
+        return view('pre-login.welcomepage', ['posts'=>$posts, 'events'=>$events]);
     }
     
     public function index(){

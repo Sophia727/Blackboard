@@ -22,7 +22,7 @@
     
     <div class="card-body">
         <div class="table-responsive table-striped text-center">
-          <table class="table  table-sm">
+          <table class="table  table-md">
             <thead>
               <tr>
                 <th scope="col">Photo</th>
@@ -33,10 +33,10 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody>
+          
               <tbody>
                 @foreach ($role as $user)
-                <tr>
+                <tr class="justify-content-between">
                   <td>
                     @if($user->photo)
                       @if(Str::contains($user->photo, 'https://'))
@@ -49,10 +49,10 @@
                     
                     @endif
                   </td> 
-                  <td>{{$user->name}}</td>
+                  <td >{{$user->name}}</td>
                   
-                  @if ($user->role != '')
-                  <td>{{$user->speciality_id}}</td>
+                  @if ($user->speciality_id != '')
+                  <td>{{$user->speciality->name}}</td>
                   @else
                   <td>N/A</td>
 
@@ -60,14 +60,17 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->phone}}</td>
                   <td> 
-                       
+                     
                     @if (Auth::user()->role == "admin")
-                      <a href="{{route('user.profile',['view'=> 'post-login.admin.profiles.userProfile', 'id'=>$user->id])}}" class="btn btn-sm text-primary"><i class="fa-solid fa-eye"></i></a>
-                      <a class="btn btn-lg text-success" href={{route('student.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
+                      <a href="{{route('user.profile',['view'=> 'post-login.admin.profiles.userProfile', 'id'=>$user->id])}}" class="btn text-primary"><i class="fa-solid fa-eye"></i></a>
+                      <a class="btn text-success" href={{route('student.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
 
                     @elseif (Auth::user()->role == "professor")
                       <a  class="btn btn-lg text-success" href={{route('studentProf.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
-                    @endif
+                    @elseif (Auth::user()->role == "parent")
+                      <a  class="btn btn-lg text-success" href={{route('studentPar.grades',['view'=>'post-login.users.professor.studentGrades','id'=>$user->id] )}}>G</a>
+                    
+                      @endif
                   </td>
                 @endforeach
               </tbody>

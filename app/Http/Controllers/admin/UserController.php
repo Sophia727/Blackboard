@@ -1,8 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\admin;
-
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordChangedNotification;
 use App\Mail\UserCreatedNotification;
 use App\Models\Speciality;
 use App\Models\User;
@@ -78,8 +77,6 @@ class UserController extends Controller
         if ($userCreate) {
             $users['created_at'] = now();
             Mail::to($userCreate->email)->send(new UserCreatedNotification($users));
-
-           // Mail::to($userCreate->email)->send(new UserCreatedNotification($users));
             return redirect()->route('admin.dashboard')->with(["status" => "$userCreate->name created successfully"]);
         } else {
             return back()->with("error", "Failed to create the User")->withInput();
@@ -114,13 +111,14 @@ class UserController extends Controller
    
     public function saveEdit(Request $request)
     {
-        // dd($request);
+        
         $dataOk = $request->validate([
             'name' => 'min:2',
             'email' => 'email',
             'phone' => "numeric|min:10",
             'address' => 'required',
-            'speciality_id'=>'string'
+            'speciality_id'=>'string',
+            'password' => 'required|confirmed|min:8'
         ]);
         
         $user = Auth::user();
@@ -135,12 +133,32 @@ class UserController extends Controller
         }
         if ($user->update(['field' => 'value'])) {
             return back()->with(["status" => "$user->name updated successfully"]);
-            
         } else {
             return back()->with("error", "Failed to update your profile")->withInput();
         }
     }    
+        public function changePassword(Request $request){
+            $dataOk = $request->validate([
+                'password' => 'required|confirmed|min:8'
+            ]);
+            // $pass = Str::random(8);
+            // $user['pass'] = $pass;
+            // $user['password'] = Hash::make($pass);
+        
+            $user = Auth::user();
+            if($request->password){
+                $pass= $dataOk['password'];
+                $user['password'] = Hash::make($pass);
+            }
+            if ($user->update(['field' => 'value'])) {
+                $user['created_at'] = now();
+                Mail::to($user->email)->send(new PasswordChangedNotification($user));
 
+                return back()->with(["status" => "Your password has been updated successfully"]);
+            } else {
+                return back()->with("error", "Failed to update your profile")->withInput();
+            }
+        }
 
 
 

@@ -1,7 +1,7 @@
 <div class="postlogin_navbar">
       <nav class="navbar navbar-expand-lg bg-transparent">
         <div class="container px-4">
-          <a href="{{route('show.news')}}" class="navbar-brand fs-1 ml-5"><i class="bi bi-building text-muted"></i></a>
+          <a href="{{route('show.news')}}" class="navbar-brand fs-1 ml-5{{request()->routeIs('show.news') ? 'active' : '' }}"><i class="bi bi-building text-muted"></i></a>
           <button
             type="button"
             class="navbar-toggler"
@@ -12,11 +12,17 @@
           <div class="collapse navbar-collapse" id="navmenu">
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="{{route('show.news')}}">Home</a>
+                <a class="nav-link text-muted" href="{{route('show.news')}}">Home</a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="{{route('calendar.show')}}">Calendar</a></li>
               <li class="nav-item">
-                <a class="nav-link" 
+                @if (Auth::user()->role == 'admin')
+                <a class="nav-link text-muted" href="{{route('calendar.show')}}">Calendar</a></li>
+                @elseif (Auth::user()->role != 'admin')
+                <a class="nav-link text-muted" href="{{route('calendarUser.show')}}">Calendar</a></li>
+
+                @endif
+              <li class="nav-item">
+                <a class="nav-link text-muted" 
                   @if (Auth::user()->role =='admin')
                   href="{{route('admin.dashboard')}}"
                   @elseif (Auth::user()->role =='professor')
@@ -44,6 +50,7 @@
                     <li><a class="dropdown-item" href="{{route('logout')}}"><i class="bi bi-box-arrow-right"></i> Sign out</a></li>
                   </ul>
                 </div>
+                
               </li>
             </ul>
           </div>

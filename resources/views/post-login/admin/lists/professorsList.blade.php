@@ -30,7 +30,9 @@
                 <th scope="col">E-mail</th>
                 <th scope="col">Phone Number</th>
                 @if (Auth::user()->role != 'student')
+                @if(Auth::user()->role != 'parent')
                 <th scope="col">Action</th>
+                @endif
                 @endif  
               </tr>
             </thead>
@@ -55,12 +57,14 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->phone}}</td>  
                   @if (Auth::user()->role != 'student')
+                 
+                  @if(Auth::user()->role != 'parent')
                   <td class="text-center"> 
                     <a href="{{route('user.profile',['view'=> 'post-login.admin.profiles.userProfile', 'id'=>$user->id])}}" class="btn btn-sm"><i class="fa-solid fa-eye text-primary"></i></a>
                     <i class="fa-solid fa-messages"></i>
                   </td>
                   @endif          
-                  
+                  @endif
                 @endforeach
               </tbody>
             </table>

@@ -55,23 +55,18 @@ Route::get('/contact-us', function () {
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::Post('/login', [AuthController::class, 'login'])->name('post.login');
 
-//test route
-// Route::get('/addfaculty', function () {
-//     return view('post-login.admin.faculty');
-// });
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/{view}/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
 
     //calendar routes
     Route::controller(FullCalenderController::class)->group(function(){
-    Route::get('/fullcalender', 'index')->name('calendar.show');
-    Route::post('/fullcalenderAjax', 'ajax');
+    Route::get('/user-fullcalender', 'indexUser')->name('calendarUser.show');
     });
     //institution
     Route::get('/{view}/{id}/speciality-list', [SpecialityController::class, 'index'])->name('speciality.list');
-    
+    //update password
+    Route::put('/profile/{id}/update-password', [UserController::class, 'changePassword'])->name('changePassword');
     //News
     Route::get('/user-news', [PostController::class, 'showPosts'])->name('user.show.news');
     Route::get('/news', [PostController::class, 'showPosts'])->name('show.news');
@@ -87,6 +82,9 @@ Route::middleware(['auth', 'parent'])->group(function () {
     Route::prefix('/parent')->group(function () {
         //profile
     Route::put('/profile/{id}/update', [UserController::class, 'saveEdit'])->name('updatePar.profile');
+    Route::get('/professors-list', [UserController::class, 'showProfessors'])->name('professorsPar.list');
+    Route::get('/students-list', [UserController::class, 'showStudents'])->name('studentsPar.list');
+    Route::get('/{view}/{id}/student-grades', [GradesController::class, 'studentGradesProfile'])->name('studentPar.grades');
 
 });
 });
@@ -132,7 +130,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         // navbar
         Route::get('/{id}/admin-profile', [UserController::class, 'myProfile'])->name('admin.profile');
-        
+          //calendar routes
+        Route::controller(FullCalenderController::class)->group(function(){
+        Route::get('/fullcalender', 'index')->name('calendar.show');
+        Route::post('/fullcalenderAjax', 'ajax');
+        });
         //users
         Route::get('/add-user', [UserController::class, 'create'])->name('add.user');
         Route::post('/storing-user', [UserController::class, 'store'])->name('store.user');
@@ -144,7 +146,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::put('/profile/{id}/update', [UserController::class, 'saveEdit'])->name('update.profile');
         // Route::put('/profile/{id}/update', [UserController::class, 'saveEdit'])->name('update.profile');
         Route::put('/profile/{id}/update-user-profile', [UserController::class, 'saveEditUsersProfile'])->name('updateUP.profile');
-        
+        // Route::get('/send-notification', function(){
+        //        $user = [
+        //         //    "name"="{testSoso}",
+        //         ];
+        //         Mail::to($user->email)->send(new UserCreatedNotification($user));
+        //         dd("mail sent successfylly")
+        // });
 
         // lists
         Route::get('/professors-list', [UserController::class, 'showProfessors'])->name('professors.list');

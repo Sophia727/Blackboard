@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class UserCreatedNotification extends Mailable
+class PasswordChangedNotification extends Mailable
 {
     use Queueable, SerializesModels;
     public $user;
@@ -17,9 +17,9 @@ class UserCreatedNotification extends Mailable
      *
      * @return void
      */
-    public function __construct(Array $user)
+    public function __construct($user)
     {
-        $this->user= $user;
+        $this->user = $user;
     }
 
     /**
@@ -29,6 +29,6 @@ class UserCreatedNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your user\'s account has been Created!')->view('emails.created_user_notification');
+        return $this->subject('Your password has been changed!')->view('emails.password_changed_notification');
     }
 }

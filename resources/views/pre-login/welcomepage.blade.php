@@ -5,18 +5,18 @@
       <div id="carouselslide" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{asset('images/Inscriptions ouvertes!.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%; height:550px">
+                <img src="{{asset('images/Inscriptions ouvertes!.jpg')}}" class="d-block w-100" alt="les inscriptions sont ouvertes!" style="width: 100%; height:656px">
                 <button href="{{route('contactUs')}}" class="join-us">Join us now!</button>
 
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/business2.jpg')}}" class="d-block w-100" alt="management" style="width: 100%; height:550px">
+                <img src="{{asset('images/business2.jpg')}}" class="d-block w-100" alt="management" style="width: 100%; height:656px">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/architecture2.jpeg')}}" class="d-block w-100" alt="architecture" style="width: 100%; height:550px">
+                <img src="{{asset('images/architecture2.jpeg')}}" class="d-block w-100" alt="architecture" style="width: 100%; height:656px">
             </div>
             <div class="carousel-item">
-                <img src="{{asset('images/medicine2.jpg')}}" class="d-block w-100" alt="biology" style="width: 100%; height:550px">
+                <img src="{{asset('images/medicine2.jpg')}}" class="d-block w-100" alt="biology" style="width: 100%; height:656px">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselslide" data-bs-slide="prev">
@@ -120,9 +120,7 @@
     <section style="margin:50px ;padding:20px">
         <h3>News feed</h3>
         <div class="card-group">
-          @foreach ($posts as $posts)
-              
-          
+          @foreach ($posts as $posts)                        
             <div class="card" style="margin: 20px" >
               <img href="" src="{{$posts->photo}}" class="card-img-top" alt="..." width="245" height="138">
               <div class="card-body">
@@ -133,8 +131,27 @@
           @endforeach
 
     </section>
-</div>
+    </div>
+{{-- news --}}
+<div style="background-color:#4a4a4a;">
+  <section style="margin:50px ;padding:20px">
+      <h3 class="text-light">Recent and upcoming events</h3>
+      <div class="card-group">
+        @foreach ($events as $event)
+                   
+          <div class="card" style="margin: 10px; background:transparent;" >
+            <div class="card-body">
+              <h5 class="card-title text-light">{{$event->title}}</h5>
+              <small class="text-muted">from:{{$event->start}}</small>
+              <small class="text-muted">to: {{$event->end}}</small>
 
+            </div>
+          </div>
+          <div class="vl"></div>
+        @endforeach
+
+  </section>
+  </div>
  <section>
     <div class="container">
       <div class="row my-5 gx-lg-5 gx-4 align-items-center">

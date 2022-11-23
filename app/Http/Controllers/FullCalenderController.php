@@ -19,16 +19,28 @@ class FullCalenderController extends Controller
 
     public function index(Request $request)
     {
-        // dd($request->ajax());
-        // if($request->ajax()) {
-        //      $data = Event::whereDate('start', '>=', $request->start)
-        //                ->whereDate('end',   '<=', $request->end)
-        //                ->get(['id', 'title', 'start', 'end']);
-        //         return response()->json($data);
-        // }
-        return view('template.admin_calendar');
+    
+        if($request->ajax()) {
+             $data = Event::whereDate('start', '>=', $request->start)
+                       ->whereDate('end',   '<=', $request->end)
+                        ->get(['id', 'title', 'start', 'end']);
+                return response()->json($data);
+        }
+        return view('fullCalendar');
     }
 
+
+
+    public function indexUser(Request $request)
+    {
+        if($request->ajax()) {
+             $data = Event::whereDate('start', '>=', $request->start)
+                       ->whereDate('end',   '<=', $request->end)
+                        ->get(['id', 'title', 'start', 'end']);
+                return response()->json($data);
+        }
+        return view('user_fullCalendar');
+    }
  
 
     /**
@@ -45,12 +57,14 @@ class FullCalenderController extends Controller
     {
         
         switch ($request->type) {
+            
            case 'add':
               $event = Event::create([
                   'title' => $request->title,
                   'start' => $request->start,
                   'end' => $request->end,
               ]);
+              
               return response()->json($event);
              break;
            case 'update':

@@ -22,9 +22,9 @@
             <div class="col">
               <ul>
                 <li>Speciality: {{$student->speciality->name}}</li>
-                <li>Enrolled since: {{$student->created_at}}</li>
+                <li>Enrolled since: {{$student->created_at->format('d/m/Y')}}</li>
                 @if ($student->last_sign_in_at != '')
-                <li>Last login: {{$student->last_sign_in_at}}</li>
+                <li>Last login: {{$student->last_sign_in_at->format('d/m/Y - h:m')}}</li>
                   
                 @endif
               </ul>
@@ -41,11 +41,16 @@
             <div class="col-2 mr-3">
               <div class="text-end">
             
-                    
+                 @if (Auth::user()->role =='admin')
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                   Insert Grades
                 </button>
-              
+                @elseif (Auth::user()->role == 'professor')
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Insert Grades
+                </button>
+               
+                @endif   
           </div>
             </div>
           </div>

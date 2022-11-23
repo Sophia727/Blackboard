@@ -5,6 +5,7 @@
     <h2 class="text-center">{{$speciality->name}}</h2>
     <div class="text-center mt-4">
     <div class="btn btn-success">
+        
         <a  href="{{route('add.grades',['view'=> 'post-login.users.professor.addGrades', 'id'=>$speciality->id])}}">View students list</a>
     </div>
     <div class="btn btn-warning">
